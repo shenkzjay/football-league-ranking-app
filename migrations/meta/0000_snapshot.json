@@ -1,0 +1,244 @@
+{
+  "id": "45a08c41-376d-40e7-a13c-9599c447c323",
+  "prevId": "00000000-0000-0000-0000-000000000000",
+  "version": "7",
+  "dialect": "postgresql",
+  "tables": {
+    "public.player_table": {
+      "name": "player_table",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "playerName": {
+          "name": "playerName",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {}
+    },
+    "public.scores_table": {
+      "name": "scores_table",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "gamesPlayed": {
+          "name": "gamesPlayed",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "gamesWon": {
+          "name": "gamesWon",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "gamesLost": {
+          "name": "gamesLost",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "goalFor": {
+          "name": "goalFor",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "goalAgainst": {
+          "name": "goalAgainst",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "goalDifference": {
+          "name": "goalDifference",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "points": {
+          "name": "points",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "form": {
+          "name": "form",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        },
+        "updated_at": {
+          "name": "updated_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {}
+    },
+    "public.team_players": {
+      "name": "team_players",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "teams_table": {
+          "name": "teams_table",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "player_table": {
+          "name": "player_table",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "team_players_teams_table_team_table_id_fk": {
+          "name": "team_players_teams_table_team_table_id_fk",
+          "tableFrom": "team_players",
+          "tableTo": "team_table",
+          "columnsFrom": [
+            "teams_table"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "team_players_player_table_player_table_id_fk": {
+          "name": "team_players_player_table_player_table_id_fk",
+          "tableFrom": "team_players",
+          "tableTo": "player_table",
+          "columnsFrom": [
+            "player_table"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {
+        "unique_player_per_team": {
+          "name": "unique_player_per_team",
+          "nullsNotDistinct": false,
+          "columns": [
+            "player_table"
+          ]
+        }
+      },
+      "checkConstraints": {}
+    },
+    "public.team_table": {
+      "name": "team_table",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "title": {
+          "name": "title",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "scores_table": {
+          "name": "scores_table",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "player_table": {
+          "name": "player_table",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "team_table_scores_table_scores_table_id_fk": {
+          "name": "team_table_scores_table_scores_table_id_fk",
+          "tableFrom": "team_table",
+          "tableTo": "scores_table",
+          "columnsFrom": [
+            "scores_table"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "team_table_player_table_player_table_id_fk": {
+          "name": "team_table_player_table_player_table_id_fk",
+          "tableFrom": "team_table",
+          "tableTo": "player_table",
+          "columnsFrom": [
+            "player_table"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {}
+    }
+  },
+  "enums": {},
+  "schemas": {},
+  "sequences": {},
+  "views": {},
+  "_meta": {
+    "columns": {},
+    "schemas": {},
+    "tables": {}
+  }
+}

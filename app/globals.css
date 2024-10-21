@@ -2,26 +2,46 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+.pitch {
+  background-image: url("/imgs/halfcourt.png");
+  background-size: contain;
+  background-repeat: no-repeat;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+.style-1,
+.style-2,
+.style-3,
+.style-4,
+.style-5 {
+  position: absolute;
+  width: 4rem;
+  height: 4rem;
+  border: 3px solid white;
+  border-radius: 100%;
+  background-color: red;
 }
 
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+.style-1 {
+  left: 7vw;
+  top: 16.5vw;
 }
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
+.style-2 {
+  left: 7vw;
+  top: 28vw;
+}
+
+.style-3 {
+  left: 18vw;
+  top: 22.5vw;
+}
+
+.style-4 {
+  left: 27vw;
+  top: 3vw;
+}
+
+.style-5 {
+  left: 27vw;
+  top: 41vw;
 }

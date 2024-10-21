@@ -1,0 +1,48 @@
+{
+  "version": "7",
+  "dialect": "postgresql",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "7",
+      "when": 1729437498148,
+      "tag": "0000_damp_stark_industries",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1729437832555,
+      "tag": "0001_first_monster_badoon",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1729437965071,
+      "tag": "0002_far_wonder_man",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "7",
+      "when": 1729460120640,
+      "tag": "0003_shallow_unus",
+      "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "7",
+      "when": 1729460972551,
+      "tag": "0004_shocking_ted_forrester",
+      "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "7",
+      "when": 1729502074418,
+      "tag": "0005_tranquil_squirrel_girl",
+      "breakpoints": true
+    }
+  ]
+}
