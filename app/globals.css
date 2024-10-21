@@ -16,32 +16,62 @@
   position: absolute;
   width: 4rem;
   height: 4rem;
-  border: 3px solid white;
+  left: 0;
+  top: 0;
+  border: 0.2vw solid white;
   border-radius: 100%;
   background-color: red;
 }
 
 .style-1 {
-  left: 7vw;
-  top: 16.5vw;
+  left: 4vw;
+  top: 9.5vw;
+  animation: move 1s linear forwards;
 }
 
 .style-2 {
-  left: 7vw;
-  top: 28vw;
+  left: 4vw;
+  top: 17vw;
+  animation: move 1s linear forwards;
 }
 
 .style-3 {
-  left: 18vw;
-  top: 22.5vw;
+  left: 30%;
+  top: 25%;
+  animation: move 1s linear forwards;
 }
 
 .style-4 {
-  left: 27vw;
+  left: 17vw;
   top: 3vw;
+  animation: move 1s linear forwards;
 }
 
 .style-5 {
-  left: 27vw;
-  top: 41vw;
+  left: 17vw;
+  top: 24vw;
+  animation: move 1s linear forwards;
+}
+
+@keyframes move {
+  from {
+    left: 0vw;
+    top: 0vw;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .style-1,
+  .style-2,
+  .style-3,
+  .style-4,
+  .style-5 {
+    width: 2rem;
+    height: 2rem;
+  }
+
+  .pitch {
+    width: 100vw;
+    height: 50vh;
+  }
 }

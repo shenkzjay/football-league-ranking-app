@@ -6,6 +6,8 @@ import { useState, useRef, useEffect } from "react";
 import { Colors } from "@/types/color";
 import { getAllPlayers } from "@/app/queries/getallplayers";
 import { Player } from "@/types/player";
+import { getAllTeams } from "@/app/queries/getallteams";
+import { Team } from "@/types/team";
 
 export const CreateTeams = () => {
   const initialState = {
@@ -13,6 +15,10 @@ export const CreateTeams = () => {
   };
 
   const { data, isError, isPending } = getAllPlayers();
+
+  const { data: teamData } = getAllTeams();
+
+  const teams: Team[] = teamData;
 
   const [state, formAction] = useFormState(createTeam, initialState);
   const formRef = useRef<HTMLFormElement | null>(null);
@@ -50,6 +56,15 @@ export const CreateTeams = () => {
     formData.append("selectedItems", JSON.stringify(selectedItems));
     formData.append("teamColor", JSON.stringify(selectedColor));
     formAction(formData);
+
+    formRef.current?.reset();
+    setSelectedItems([]);
+    setAvailableItems(playerNames);
+  };
+
+  const handleViewTeam = (team: Team) => {
+    setSelectedItems(team.players);
+    setSelectedColor(team.teamColor);
   };
 
   const handleSelectColor = (color: string) => {
@@ -57,8 +72,8 @@ export const CreateTeams = () => {
   };
 
   return (
-    <section className="flex gap-4 p-4 ">
-      <div className="w-[40%] bg-white flex-col flex  p-6 border gap-6 h-screen rounded-xl">
+    <section className="flex md:flex-row flex-col gap-4 p-4">
+      <div className="md:w-[40%] bg-white flex-col flex p-6 border gap-6 md:h-screen rounded-xl w-full">
         <form ref={formRef} onSubmit={handleSubmit} className="">
           <legend className="font-bold text-xl">Add Team</legend>
           <fieldset className="w-full">
@@ -89,8 +104,8 @@ export const CreateTeams = () => {
                         removeSelectedItems(selected);
                       }}
                     >
-                      {selected}
-                      <button className="text-base leading-none">&times;</button>
+                      {/* {selected} */}
+                      {/* <button className="text-base leading-none">&times;</button> */}
                     </div>
                   ))}
 
@@ -103,19 +118,20 @@ export const CreateTeams = () => {
 
                 {toggleInput && (
                   <ul className="border h-44 overflow-auto">
-                    {availableItems.map((test, index) => (
-                      <li key={index + 1} className="p-2 ">
-                        <p
-                          onClick={(e) => {
-                            e.preventDefault();
-                            handleSelect(test);
-                          }}
-                          className="hover:bg-slate-200 hover:p-2 p-2 cursor-pointer"
-                        >
-                          {test}
-                        </p>
-                      </li>
-                    ))}
+                    {availableItems &&
+                      availableItems.map((test, index) => (
+                        <li key={index + 1} className="p-2 ">
+                          <p
+                            onClick={(e) => {
+                              e.preventDefault();
+                              handleSelect(test);
+                            }}
+                            className="hover:bg-slate-200 hover:p-2 p-2 cursor-pointer"
+                          >
+                            {test}
+                          </p>
+                        </li>
+                      ))}
                   </ul>
                 )}
               </div>
@@ -143,13 +159,31 @@ export const CreateTeams = () => {
               </div>
 
               <button className="py-2 mt-4 px-4 bg-black rounded-xl text-white">Add Team</button>
+              <p>{state?.message}</p>
             </div>
           </fieldset>
         </form>
       </div>
 
-      <section className="bg-white w-full p-6 rounded-xl ">
-        <div className="pitch h-full w-full relative rounded-xl overflow-hidden">
+      <section className="flex flex-row justify-between bg-white w-full gap-10  p-6 rounded-xl">
+        <div className="w-1/3">
+          {teams &&
+            teams.map((team, index) => (
+              <button
+                key={index}
+                onClick={() => handleViewTeam(team)}
+                className="flex w-full items-center gap-4 bg-[#f5f5f5] mb-4 p-2 rounded-xl cursor-pointer"
+              >
+                <span
+                  className="w-5 h-5 rounded-full "
+                  style={{ backgroundColor: team.teamColor }}
+                ></span>
+                <p>{team.title}</p>
+                <span>→</span>
+              </button>
+            ))}
+        </div>
+        <div className="pitch relative w-2/3 rounded-xl overflow-hidden">
           {selectedItems && selectedItems.length > 0
             ? selectedItems.map((player, index) => (
                 <div key={index} className="">
@@ -159,8 +193,8 @@ export const CreateTeams = () => {
                       index < 5
                         ? `style-${
                             index + 1
-                          } z-50 flex items-center justify-center text-nowrap font-bold text-sm`
-                        : ""
+                          } z-50 ml-4 md:ml-0 mt-8 md:mt-0 flex items-center justify-center text-nowrap  font-bold [font-size:clamp(1vw,5vw,1.2vw)]`
+                        : "[font-size:clamp(.5vw,5vw,1vw)] flex m-1 w-fit"
                     }`}
                   >
                     {player}

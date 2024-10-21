@@ -1,23 +1,32 @@
 "use client";
 
-import { createPlayer } from "../formaction/createplayer-action";
 import { useFormState } from "react-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { createScores } from "../formaction/createscore-action";
+import { getAllTeams } from "@/app/queries/getallteams";
+import { Team } from "@/types/team";
 
 export const CreateScores = () => {
   const initialState = {
     message: "",
   };
 
+  const { data, isError, isLoading } = getAllTeams();
+  console.log({ data });
+
   const [selectHomeTeam, setSelectHomeTeam] = useState("");
   const [selectAwayTeam, setSelectAwayTeam] = useState("");
-  const [availableteams, setSelectAvailableTeam] = useState<string[]>([
-    "Team A",
-    "Team B",
-    "Team C",
-    "Team D",
-  ]);
+  const [homeTeamScores, setHomeTeamScores] = useState("");
+  const [awayTeamScores, setAwayTeamScores] = useState("");
+  const [teamName, setTeamName] = useState([]);
+  const [availableteams, setSelectAvailableTeam] = useState<string[]>([]);
+
+  useEffect(() => {
+    if (data) {
+      setTeamName(data.map((team: Team) => team.title)); // Extract player names
+      setSelectAvailableTeam(data.map((team: Team) => team.title)); // Initialize availableItems
+    }
+  }, [data]);
 
   console.log({ selectHomeTeam });
 
@@ -53,6 +62,25 @@ export const CreateScores = () => {
 
   const handleUpdateHomeScores = () => {};
 
+  const handleHomeTeamScores = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const selectedScores = e.target.value;
+
+    setHomeTeamScores(selectedScores);
+  };
+
+  const handleAwayTeamScores = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const selectedScores = e.target.value;
+    setAwayTeamScores(selectedScores);
+  };
+
+  const handleEditHomeTeamScores = () => {
+    setHomeTeamScores("");
+  };
+
+  const handleEditAwayTeamScores = () => {
+    setAwayTeamScores("");
+  };
+
   const handleSubmitScores = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
@@ -86,7 +114,7 @@ export const CreateScores = () => {
                       name="hometeam"
                     >
                       <option value="">Select team</option>
-                      {availableteams.map((team, index) => (
+                      {availableteams?.map((team, index) => (
                         <option key={index}>{team}</option>
                       ))}
                     </select>
@@ -103,19 +131,32 @@ export const CreateScores = () => {
                   </div>
                 )}
 
-                <div className="flex justify-between">
-                  <h3 className="text-slate-400">Update Scores</h3>
-                  <select
-                    onChange={handleUpdateHomeScores}
-                    name="homescores"
-                    className="border rounded-lg p-1"
-                  >
-                    <option></option>
-                    {Array.from({ length: 11 }).map((_, index) => (
-                      <option key={index}>{index}</option>
-                    ))}
-                  </select>
-                </div>
+                {!homeTeamScores ? (
+                  <div className="flex justify-between">
+                    <h3 className="text-slate-400">Update Scores</h3>
+
+                    <select
+                      onChange={handleHomeTeamScores}
+                      name="homescores"
+                      className="border rounded-lg p-1"
+                    >
+                      <option></option>
+                      {Array.from({ length: 11 }).map((_, index) => (
+                        <option key={index}>{index}</option>
+                      ))}
+                    </select>
+                  </div>
+                ) : (
+                  <div className="flex justify-between">
+                    <span className="text-2xl font-bold">{homeTeamScores}</span>
+                    <button
+                      className="text-blue-600 underline cursor-pointer"
+                      onClick={handleEditHomeTeamScores}
+                    >
+                      Edit
+                    </button>
+                  </div>
+                )}
               </div>
 
               <div className=" gap-3 border rounded-xl p-4 flex flex-col w-1/2">
@@ -129,7 +170,7 @@ export const CreateScores = () => {
                       onChange={handleSelectAwayTeam}
                     >
                       <option value="">Select team</option>
-                      {availableteams.map((team, index) => (
+                      {availableteams?.map((team, index) => (
                         <option key={index}>{team}</option>
                       ))}
                     </select>
@@ -146,15 +187,27 @@ export const CreateScores = () => {
                   </div>
                 )}
 
-                <div className="flex justify-between">
-                  <h3 className="text-slate-400">Scores</h3>
-                  <select name="awayscores">
-                    <option></option>
-                    {Array.from({ length: 11 }).map((_, index) => (
-                      <option key={index}>{index}</option>
-                    ))}
-                  </select>
-                </div>
+                {!awayTeamScores ? (
+                  <div className="flex justify-between">
+                    <h3 className="text-slate-400">Scores</h3>
+                    <select name="awayscores" onChange={handleAwayTeamScores}>
+                      <option></option>
+                      {Array.from({ length: 11 }).map((_, index) => (
+                        <option key={index}>{index}</option>
+                      ))}
+                    </select>
+                  </div>
+                ) : (
+                  <div className="flex justify-between">
+                    <span className="text-2xl font-bold">{awayTeamScores}</span>
+                    <button
+                      className="text-blue-600 underline cursor-pointer"
+                      onClick={handleEditAwayTeamScores}
+                    >
+                      Edit
+                    </button>
+                  </div>
+                )}
               </div>
             </div>
             <button className="py-2 mt-4 px-4 bg-black rounded-xl text-white">Update scores</button>

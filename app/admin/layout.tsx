@@ -19,7 +19,7 @@ export default function AdminLayout({
         <div className="w-[15rem] p-6 mt-10">
           <SideMenu />
         </div>
-        <div className=" w-full h-screen border bg-[#eaeaea]">{children}</div>
+        <div className=" w-full h-screen border bg-[#f5f5f5]">{children}</div>
       </section>
     </Provider>
   );

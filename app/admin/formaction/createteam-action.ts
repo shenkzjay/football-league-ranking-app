@@ -47,7 +47,7 @@ export async function createTeam(prevState: any, formData: FormData) {
 
     await db.insert(teamsTable).values(teamDetails);
 
-    return { message: "Team created successfully" };
+    return { message: `${teamDetails.title} created successfully` };
   } catch (error) {
     return {
       message: "Error creating team: " + (error instanceof Error ? error.message : String(error)),
