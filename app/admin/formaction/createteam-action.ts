@@ -4,9 +4,11 @@ import { InsertPlayer, teamsTable, scoresTable, InsertTeam } from "@/app/db/sche
 
 export async function createTeam(prevState: any, formData: FormData) {
   try {
-    const teamName = formData.get("teamname") as string;
+    const teamNameJSON = formData.get("teamname") as string;
     const selectedItemsJson = formData.get("selectedItems") as string;
     const teamColorJSON = formData.get("teamColor") as string;
+
+    const teamName = teamNameJSON.toUpperCase();
 
     const teamColor = JSON.parse(teamColorJSON);
 
@@ -20,6 +22,7 @@ export async function createTeam(prevState: any, formData: FormData) {
       gamesPlayed: 0,
       gamesWon: 0,
       gamesLost: 0,
+      gamesDrawn: 0,
       goalFor: 0,
       goalAgainst: 0,
       goalDifference: 0,

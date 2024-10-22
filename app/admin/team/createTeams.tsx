@@ -8,17 +8,22 @@ import { getAllPlayers } from "@/app/queries/getallplayers";
 import { Player } from "@/types/player";
 import { getAllTeams } from "@/app/queries/getallteams";
 import { Team } from "@/types/team";
+import { useQueryClient } from "@tanstack/react-query";
 
 export const CreateTeams = () => {
   const initialState = {
     message: "",
   };
 
+  const queryClient = useQueryClient();
+
   const { data, isError, isPending } = getAllPlayers();
 
   const { data: teamData } = getAllTeams();
 
   const teams: Team[] = teamData;
+
+  console.log({ teams });
 
   const [state, formAction] = useFormState(createTeam, initialState);
   const formRef = useRef<HTMLFormElement | null>(null);
@@ -31,8 +36,21 @@ export const CreateTeams = () => {
   const [availableItems, setAvailableItems] = useState<string[]>([]); // Available items for selection
 
   useEffect(() => {
+    if (localStorage.length > 0) {
+      const getLocalStorageTeamDetails = localStorage.getItem("teamDetails");
+
+      const localStorageTeamDetails = JSON.parse(getLocalStorageTeamDetails as string);
+
+      const selectedItemsFromStorage = localStorageTeamDetails?.selectedItems || [];
+
+      setAvailableItems((prevAvailableItems) =>
+        prevAvailableItems.filter((item) => !selectedItemsFromStorage.includes(item))
+      );
+    }
+
     if (data) {
       setPlayerNames(data.map((player: Player) => player.playerName)); // Extract player names
+
       setAvailableItems(data.map((player: Player) => player.playerName)); // Initialize availableItems
     }
   }, [data]);
@@ -53,13 +71,24 @@ export const CreateTeams = () => {
     e.preventDefault();
 
     const formData = new FormData(e.currentTarget);
+    const teamName = formData.get("teamname") as string;
     formData.append("selectedItems", JSON.stringify(selectedItems));
     formData.append("teamColor", JSON.stringify(selectedColor));
     formAction(formData);
 
+    const teamData = {
+      teamName,
+      selectedItems,
+      selectedColor,
+    };
+
+    localStorage.setItem("teamDetails", JSON.stringify(teamData));
+
     formRef.current?.reset();
     setSelectedItems([]);
     setAvailableItems(playerNames);
+
+    queryClient.invalidateQueries({ queryKey: ["getallteams"] });
   };
 
   const handleViewTeam = (team: Team) => {
@@ -87,6 +116,7 @@ export const CreateTeams = () => {
                 id="teamname"
                 placeholder="Enter Teams name"
                 className="border rounded-xl py-2 px-4 w-full"
+                required
               />
 
               <div className="border rounded-xl">
@@ -104,8 +134,8 @@ export const CreateTeams = () => {
                         removeSelectedItems(selected);
                       }}
                     >
-                      {/* {selected} */}
-                      {/* <button className="text-base leading-none">&times;</button> */}
+                      {selected}
+                      <button className="text-base leading-none">&times;</button>
                     </div>
                   ))}
 

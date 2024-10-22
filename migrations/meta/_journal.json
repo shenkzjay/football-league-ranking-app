@@ -43,6 +43,13 @@
       "when": 1729502074418,
       "tag": "0005_tranquil_squirrel_girl",
       "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "7",
+      "when": 1729605909850,
+      "tag": "0006_clumsy_wolverine",
+      "breakpoints": true
     }
   ]
 }

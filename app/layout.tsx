@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
+import { Courgette } from "next/font/google";
 import "./globals.css";
+import Provider from "./provider";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -11,6 +13,13 @@ const geistMono = localFont({
   src: "./fonts/GeistMonoVF.woff",
   variable: "--font-geist-mono",
   weight: "100 900",
+});
+
+const courgette = Courgette({
+  subsets: ["latin"],
+  weight: "400",
+  display: "swap",
+  variable: "--font-courgette",
 });
 
 export const metadata: Metadata = {
@@ -24,12 +33,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        {children}
-      </body>
-    </html>
+    <Provider>
+      <html lang="en">
+        <body
+          className={`${courgette.variable} ${geistSans.variable} ${geistMono.variable}  antialiased`}
+        >
+          {children}
+        </body>
+      </html>
+    </Provider>
   );
 }

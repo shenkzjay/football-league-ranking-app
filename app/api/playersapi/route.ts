@@ -7,6 +7,6 @@ export async function GET(request: Request) {
 
     return Response.json(players, { status: 200 });
   } catch (error) {
-    return Response.json({ error: `failed to fetch players: ${error}` }, { status: 200 });
+    return Response.json({ error: `failed to fetch players: ${error}` }, { status: 500 });
   }
 }

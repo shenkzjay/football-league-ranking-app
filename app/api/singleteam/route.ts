@@ -1,10 +1,14 @@
+import { InsertPlayer, teamsTable, scoresTable } from "@/app/db/schema";
 import { db } from "@/app/db";
-import { teamsTable, scoresTable } from "@/app/db/schema";
 import { eq } from "drizzle-orm";
 
-export async function GET(request: Request) {
+export async function GET(request: Request, { params }: { params: Promise<{ id: number }> }) {
   try {
-    const teams = await db
+    const id = (await params).id;
+
+    console.log(id);
+
+    const singleteam = await db
       .select({
         teamId: teamsTable.id,
         title: teamsTable.title,
@@ -24,10 +28,11 @@ export async function GET(request: Request) {
         updatedAt: scoresTable.updatedAt,
       })
       .from(teamsTable)
-      .innerJoin(scoresTable, eq(teamsTable.scoreId, scoresTable.id));
+      .innerJoin(scoresTable, eq(teamsTable.scoreId, scoresTable.id))
+      .where(eq(teamsTable.id, id));
 
-    return Response.json(teams, { status: 200 });
+    return Response.json(singleteam, { status: 200 });
   } catch (error) {
-    return Response.json({ error: `failed to fetch teams: ${error}` }, { status: 500 });
+    return Response.json({ error: `failed to fetch singleteam: ${error}` }, { status: 500 });
   }
 }

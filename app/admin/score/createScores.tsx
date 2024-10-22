@@ -40,7 +40,6 @@ export const CreateScores = () => {
 
   const handleEditSelectedHomeTeam = () => {
     setSelectHomeTeam("");
-
     setSelectAvailableTeam((prevAvailableTeams) => [...prevAvailableTeams, selectHomeTeam]);
   };
 
@@ -60,11 +59,8 @@ export const CreateScores = () => {
     setSelectAvailableTeam((prevAvailableTeams) => [...prevAvailableTeams, selectAwayTeam]);
   };
 
-  const handleUpdateHomeScores = () => {};
-
   const handleHomeTeamScores = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const selectedScores = e.target.value;
-
     setHomeTeamScores(selectedScores);
   };
 
@@ -86,12 +82,12 @@ export const CreateScores = () => {
 
     const formData = new FormData(e.currentTarget);
 
-    formData.append("hometeam", JSON.stringify(selectHomeTeam));
-    formData.append("awayteam", JSON.stringify(selectAwayTeam));
+    formData.append("hometeam", selectHomeTeam);
+    formData.append("awayteam", selectAwayTeam);
+    formData.append("homescores", homeTeamScores);
+    formData.append("awayscores", awayTeamScores);
 
     formAction(formData);
-
-    // const teamA = formData.append("teamA", JSON.stringify());
   };
 
   const [state, formAction] = useFormState(createScores, initialState);
@@ -159,6 +155,7 @@ export const CreateScores = () => {
                 )}
               </div>
 
+              {/**AWAY TEAM */}
               <div className=" gap-3 border rounded-xl p-4 flex flex-col w-1/2">
                 <h3 className="text-slate-400">AWAY</h3>
 
@@ -211,6 +208,7 @@ export const CreateScores = () => {
               </div>
             </div>
             <button className="py-2 mt-4 px-4 bg-black rounded-xl text-white">Update scores</button>
+            <p>{state?.message}</p>
           </fieldset>
         </form>
 

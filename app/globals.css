@@ -8,6 +8,10 @@
   background-repeat: no-repeat;
 }
 
+body {
+  font-family: var(--font-geist-sans);
+}
+
 .style-1,
 .style-2,
 .style-3,
@@ -74,4 +78,51 @@
     width: 100vw;
     height: 50vh;
   }
+}
+
+.bannerbg {
+  height: 25vh;
+  background: repeating-conic-gradient(
+      from 45deg at 10% 50%,
+      #93e0f4 0deg 10deg,
+      #52afd7 10deg 20deg
+    ),
+    linear-gradient(45deg, #93e0f4, #52afd7);
+  background-repeat: no-repeat;
+}
+
+.stars {
+  /* the stars for the top item */
+  place-self: start start;
+  /* top left corner */
+  /* for absolutely positioned pseudos */
+  position: relative;
+  translate: 20% 100%;
+  rotate: -9deg;
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 5em;
+}
+.stars::before,
+.stars::after {
+  position: absolute;
+  inset: 0;
+  content: "★";
+}
+.stars::before {
+  translate: 130%;
+  scale: 0.3;
+  text-shadow: -0.2em 2.5em, 2em 1em, -1.9em -0.175em, -2em 1.5em, -3em 2.5em;
+}
+.stars::after {
+  translate: -50% 50%;
+  scale: 0.25;
+  text-shadow: -0.5em -2em, -0.25em -3.5em, 1em -4.5em;
+}
+
+#titleEffects {
+  filter: url(#titleEffects);
+}
+
+.badge {
+  border-radius: 0em 0em 20em 20em;
 }

@@ -15,6 +15,7 @@ export const scoresTable = pgTable("scores", {
   gamesPlayed: integer("gamesPlayed").notNull(),
   gamesWon: integer("gamesWon").notNull(),
   gamesLost: integer("gamesLost").notNull(),
+  gamesDrawn: integer("gamesDrawn").notNull(),
   goalFor: integer("goalFor").notNull(),
   goalAgainst: integer("goalAgainst").notNull(),
   goalDifference: integer("goalDifference").notNull(),
