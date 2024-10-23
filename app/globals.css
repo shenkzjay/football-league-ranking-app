@@ -81,14 +81,14 @@ body {
 }
 
 .bannerbg {
-  height: 25vh;
-  background: repeating-conic-gradient(
-      from 45deg at 10% 50%,
-      #93e0f4 0deg 10deg,
-      #52afd7 10deg 20deg
-    ),
-    linear-gradient(45deg, #93e0f4, #52afd7);
+  background-image: url("/imgs/bg2.jpg");
   background-repeat: no-repeat;
+  width: 100%;
+  height: 70vh;
+  background-size: cover;
+  background-position: 50% 30%;
+  /* animation: scale 1s linear infinite; */
+  transition: all 1s ease-in-out;
 }
 
 .stars {
@@ -120,9 +120,19 @@ body {
 }
 
 #titleEffects {
-  filter: url(#titleEffects);
+  /* filter: url(#titleEffects); */
+  /* font-family: var(--font-courgette); */
+  font-weight: 800;
+  font-size: 4rem;
 }
 
 .badge {
   border-radius: 0em 0em 20em 20em;
+}
+
+@keyframes scale {
+  from {
+    background-size: 2100px 1350px;
+    transition: all 1s ease-in-out;
+  }
 }

@@ -1,6 +1,7 @@
 "use server";
 import { db } from "@/app/db";
 import { InsertPlayer, playerTable } from "@/app/db/schema";
+import { redirect } from "next/navigation";
 
 export async function createPlayer(prevState: any, formData: FormData) {
   try {
@@ -24,4 +25,6 @@ export async function createPlayer(prevState: any, formData: FormData) {
       message: "Error creating team: " + (error instanceof Error ? error.message : String(error)),
     };
   }
+
+  redirect("/admin/player");
 }

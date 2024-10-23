@@ -1,13 +1,10 @@
-"use client";
-
 import Image from "next/image";
 import soccer from "@/public/imgs/soccer.png";
 import { getAllTeams } from "@/app/queries/getallteams";
 import { TeamDetails } from "@/types/team";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 
-export default function Home() {
+export default async function Home() {
   const fixturesData = [
     {
       fixtureTitle: "City league",
@@ -66,48 +63,49 @@ export default function Home() {
     },
   ];
 
-  const { data, isError, isLoading } = getAllTeams();
+  const data = await getAllTeams();
 
-  const teamData: TeamDetails[] = data;
+  const teamData = data;
 
-  console.log({ data });
-
-  const router = useRouter();
-
-  const handleTableRowClick = (teamId: number) => {
-    router.push(`/team/${teamId}`);
-  };
+  // const handleTableRowClick = (teamId: number) => {
+  //   router.push(`/team/${teamId}`);
+  // };
 
   return (
     <section>
-      <div className="mx-auto w-[80vw]">
+      <div className="">
         <nav>
           <h1>City Footbal League Standings</h1>
         </nav>
         <header className="relative">
-          <div className="bannerbg w-full h-full rounded-xl">
+          <div className="bannerbg rounded-xl">
+            <div className="w-full h-full bg-black/50 absolute top-0"></div>
             <div className="text-3xl font-extrabold flex flex-col justify-center h-full pl-12">
-              <span className="absolute top-[25%] z-10" id="titleEffects">
-                <p>City Club</p>
-                <p>League Pro</p>
-              </span>
-              <div className="item top w-full h-full">
+              <span className="flex flex-col gap-10 z-10 text-white" id="titleEffects">
+                <p>City Football Club</p>
+                <p>Mini League</p>
+              </span>{" "}
+              <p className="text-white text-base z-20 relative mt-6">
+                Get live scores update of thrilling soccer games <br />
+                happening live in the arena of dreams!
+              </p>
+              {/* <div className="item top w-full h-full absolute top-0">
                 <div className="stars">★</div>
-              </div>
+              </div> */}
               <div className="item"></div>
             </div>
           </div>
-          <div className="absolute top-0 right-0">
+          {/* <div className="absolute top-0 right-0">
             <Image
               src={soccer}
               width={300}
               height={300}
               alt="illustration of a man striking a football"
             />
-          </div>
+          </div> */}
         </header>
 
-        <section className="mt-12">
+        <section className="mt-12 mx-auto w-[80vw]">
           <h2 className="text-2xl font-semibold text-center mb-6 text-slate-400">Fixtures</h2>
           <div className="flex flex-row  gap-6 w-full overflow-auto ">
             <button className="sticky left-0 right-0 bg-white px-2 shadow-[0px_8px_20px_14px_rgba(0,0,0,0.08)]">
@@ -117,13 +115,21 @@ export default function Home() {
               {fixturesData.map((fixtures, index) => (
                 <button
                   key={index}
-                  className="w-[20vw] bg-[#f5f5f5] p-4 rounded-xl gap-2 flex flex-col"
+                  className={`w-[20vw] ${
+                    index === 0 ? "bg-[#f5f5f5]" : "bg-[#333333]"
+                  } p-4 rounded-xl gap-2 flex flex-col`}
                 >
-                  <div className="flex w-full flex-row justify-between text-sm text-slate-500">
+                  <div
+                    className={`flex w-full flex-row justify-between text-sm ${
+                      index === 0 ? "text-black" : "text-white"
+                    } `}
+                  >
                     <p>{fixtures.fixtureTitle}</p>
                     <p>{fixtures.fixtureDate}</p>
                   </div>
-                  <div className="flex flex-col gap-2">
+                  <div
+                    className={`flex flex-col gap-2 ${index === 0 ? "text-black" : "text-white"}`}
+                  >
                     <div className="flex items-center gap-2">
                       <span className="w-4 h-4 bg-red-500 rounded-full "></span>
                       <h4>{fixtures.homeTeam}</h4>
@@ -142,43 +148,45 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="mt-12">
+        <section className="mt-12 mx-auto w-[80vw] mb-20">
           <table className="w-full text-left">
             <caption className="text-2xl font-semibold text-center mb-6 text-slate-400">
               League standings
             </caption>
             <thead className="">
-              <tr className="bg-slate-100">
-                <th>Pos</th>
-                <th>Team</th>
-                <th>P</th>
-                <th>W</th>
-                <th>L</th>
-                <th>D</th>
-                <th>GF</th>
-                <th>GA</th>
-                <th>GD</th>
-                <th>Pts</th>
+              <tr className="bg-slate-300">
+                <th className="p-4">Pos</th>
+                <th className="p-4">Team</th>
+                <th className="p-4">P</th>
+                <th className="p-4">W</th>
+                <th className="p-4">L</th>
+                <th className="p-4">D</th>
+                <th className="p-4">GF</th>
+                <th className="p-4">GA</th>
+                <th className="p-4">GD</th>
+                <th className="p-4">Pts</th>
+                <th className="p-4"></th>
               </tr>
             </thead>
             <tbody>
               {teamData && teamData.length > 0 ? (
                 teamData.map((teams, index) => (
-                  <tr
-                    key={teams.teamId}
-                    onClick={() => handleTableRowClick(teams.teamId)}
-                    className="cursor-pointer"
-                  >
-                    <td>{index + 1}</td>
-                    <td>{teams.title}</td>
-                    <td>{teams.gamesPlayed}</td>
-                    <td>{teams.gamesWon}</td>
-                    <td>{teams.gamesLost}</td>
-                    <td>{teams.gamesDrawn}</td>
-                    <td>{teams.goalFor}</td>
-                    <td>{teams.goalAgainst}</td>
-                    <td>{teams.goalDifference}</td>
-                    <td>{teams.points}</td>
+                  <tr key={teams.teamId} className="even:bg-gray-100">
+                    <td className="p-4">{index + 1}</td>
+                    <td className="p-4">{teams.title}</td>
+                    <td className="p-4">{teams.gamesPlayed}</td>
+                    <td className="p-4">{teams.gamesWon}</td>
+                    <td className="p-4">{teams.gamesLost}</td>
+                    <td className="p-4">{teams.gamesDrawn}</td>
+                    <td className="p-4">{teams.goalFor}</td>
+                    <td className="p-4">{teams.goalAgainst}</td>
+                    <td className="p-4">{teams.goalDifference}</td>
+                    <td className="p-4">{teams.points}</td>
+                    <td className="p-4">
+                      <Link href={`/team/${index}`} className="text-sm text-blue-500 underline">
+                        View team →
+                      </Link>
+                    </td>
                   </tr>
                 ))
               ) : (

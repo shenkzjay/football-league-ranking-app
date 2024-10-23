@@ -1,21 +1,12 @@
 "use client";
 
-import { useEffect } from "react";
-import { createPlayer } from "../formaction/createplayer-action";
+import { createPlayer } from "../../formaction/createplayer-action";
 import { useFormState } from "react-dom";
-import { getAllPlayers } from "@/app/queries/getallplayers";
-import { Player } from "@/types/player";
 
 export const CreatePlayers = () => {
   const initialState = {
     message: "",
   };
-
-  const { data, isError, isPending } = getAllPlayers();
-
-  const playerData: Player[] = data;
-
-  console.log({ data });
 
   const [state, formAction] = useFormState(createPlayer, initialState);
   return (
@@ -97,39 +88,6 @@ export const CreatePlayers = () => {
         </fieldset>
         <p>{state?.message}</p>
       </form>
-      <section className="bg-white w-full p-6 rounded-xl">
-        <h2>List of Players</h2>
-        <table className="w-full text-left bg">
-          <thead>
-            <tr className="">
-              <th className="px-4 py-2">S/N</th>
-              <th className="px-4 py-2">Name</th>
-              <th className="px-4 py-2">Goal</th>
-              <th className="px-4 py-2">Assist</th>
-              <th className="px-4 py-2">yellowCard</th>
-              <th className="px-4 py-2">redCard</th>
-            </tr>
-          </thead>
-          <tbody>
-            {playerData && playerData.length > 0 ? (
-              playerData.map((player, index) => (
-                <tr key={player.id}>
-                  <td className="px-4 py-2">{player.id}</td>
-                  <td className="px-4 py-2">{player.playerName}</td>
-                  <td className="px-4 py-2">{player.goal}</td>
-                  <td className="px-4 py-2">{player.assist}</td>
-                  <td className="px-4 py-2">{player.yellowCard}</td>
-                  <td className="px-4 py-2">{player.redCard}</td>
-                </tr>
-              ))
-            ) : (
-              <tr>
-                <td className="px-4 py-2">1</td>
-              </tr>
-            )}
-          </tbody>
-        </table>
-      </section>
     </section>
   );
 };

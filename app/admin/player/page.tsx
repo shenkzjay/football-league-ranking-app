@@ -1,9 +1,11 @@
-import { CreatePlayers } from "./createPlayers";
+import { ListPlayers } from "./listplayers";
 
 export default function Players() {
   return (
-    <section className="">
-      <CreatePlayers />
-    </section>
+    <>
+      <section className="">
+        <ListPlayers />
+      </section>
+    </>
   );
 }

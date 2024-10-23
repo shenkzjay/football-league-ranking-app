@@ -1,6 +1,6 @@
 "use client";
 
-import { createTeam } from "../formaction/createteam-action";
+import { createTeam } from "../../formaction/createteam-action";
 import { useFormState } from "react-dom";
 import { useState, useRef, useEffect } from "react";
 import { Colors } from "@/types/color";
@@ -9,21 +9,21 @@ import { Player } from "@/types/player";
 import { getAllTeams } from "@/app/queries/getallteams";
 import { Team } from "@/types/team";
 import { useQueryClient } from "@tanstack/react-query";
+import { getAllTeamFromApi } from "@/app/queries/apigetallteams";
+import { getAllPlayersFromApi } from "@/app/queries/apigetallplayers";
 
-export const CreateTeams = () => {
+export default function CreateTeams() {
+  const { data: teamsData } = getAllTeamFromApi();
+
+  const { data } = getAllPlayersFromApi();
+
+  const teams: Team[] = teamsData;
+
+  console.log({ data });
+
   const initialState = {
     message: "",
   };
-
-  const queryClient = useQueryClient();
-
-  const { data, isError, isPending } = getAllPlayers();
-
-  const { data: teamData } = getAllTeams();
-
-  const teams: Team[] = teamData;
-
-  console.log({ teams });
 
   const [state, formAction] = useFormState(createTeam, initialState);
   const formRef = useRef<HTMLFormElement | null>(null);
@@ -87,8 +87,6 @@ export const CreateTeams = () => {
     formRef.current?.reset();
     setSelectedItems([]);
     setAvailableItems(playerNames);
-
-    queryClient.invalidateQueries({ queryKey: ["getallteams"] });
   };
 
   const handleViewTeam = (team: Team) => {
@@ -195,18 +193,18 @@ export const CreateTeams = () => {
         </form>
       </div>
 
-      <section className="flex flex-row justify-between bg-white w-full gap-10  p-6 rounded-xl">
+      <section className="flex flex-col justify-between w-full bg-white gap-10  p-6 rounded-xl">
         <div className="w-1/3">
           {teams &&
             teams.map((team, index) => (
               <button
                 key={index}
-                onClick={() => handleViewTeam(team)}
+                //   onClick={() => handleViewTeam(team)}
                 className="flex w-full items-center gap-4 bg-[#f5f5f5] mb-4 p-2 rounded-xl cursor-pointer"
               >
                 <span
                   className="w-5 h-5 rounded-full "
-                  style={{ backgroundColor: team.teamColor }}
+                  style={{ backgroundColor: team?.teamColor }}
                 ></span>
                 <p>{team.title}</p>
                 <span>→</span>
@@ -236,4 +234,4 @@ export const CreateTeams = () => {
       </section>
     </section>
   );
-};
+}

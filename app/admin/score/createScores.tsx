@@ -3,7 +3,7 @@
 import { useFormState } from "react-dom";
 import { useState, useEffect } from "react";
 import { createScores } from "../formaction/createscore-action";
-import { getAllTeams } from "@/app/queries/getallteams";
+import { getAllTeamFromApi } from "@/app/queries/apigetallteams";
 import { Team } from "@/types/team";
 
 export const CreateScores = () => {
@@ -11,7 +11,7 @@ export const CreateScores = () => {
     message: "",
   };
 
-  const { data, isError, isLoading } = getAllTeams();
+  const { data, isError, isLoading } = getAllTeamFromApi();
   console.log({ data });
 
   const [selectHomeTeam, setSelectHomeTeam] = useState("");
