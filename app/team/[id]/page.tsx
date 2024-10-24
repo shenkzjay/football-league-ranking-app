@@ -8,8 +8,6 @@ export default async function Team({ params }: { params: { id: number } }) {
 
   const team = await getSingleTeam(teamId);
 
-  console.log({ team });
-
   return (
     <section className="md:mx-auto md:w-[80vw] mx-6">
       <div>
@@ -17,7 +15,7 @@ export default async function Team({ params }: { params: { id: number } }) {
           <Link href="/">←</Link>
           <h3 className="my-4 font-bold text-xl">{team?.title} - Starting V</h3>
         </div>
-        <div className="[background-image:url('/imgs/pitch.avif')] bg-cover w-full md:h-[55vw]">
+        <div className="[background-image:url('/imgs/pitch.avif')] bg-cover w-full h-[55vw]">
           {team?.players && team.players?.length > 0
             ? team.players.map((players, index) => (
                 <div key={index} className="relative ml-4 md:ml-0 ">
