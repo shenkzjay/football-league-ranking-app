@@ -1,7 +1,4 @@
-import Image from "next/image";
-import soccer from "@/public/imgs/soccer.png";
 import { getAllTeams } from "@/app/queries/getallteams";
-import { TeamDetails } from "@/types/team";
 import Link from "next/link";
 
 export default async function Home() {

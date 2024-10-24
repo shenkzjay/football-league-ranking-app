@@ -2,9 +2,9 @@ import { teamsTable, scoresTable } from "@/app/db/schema";
 import { db } from "@/app/db";
 import { eq } from "drizzle-orm";
 
-export async function GET({ params }: { params: Promise<{ id: number }> }) {
+export async function GET({ params }: { params: { id: number } }) {
   try {
-    const id = (await params).id;
+    const { id } = params;
 
     console.log(id);
 

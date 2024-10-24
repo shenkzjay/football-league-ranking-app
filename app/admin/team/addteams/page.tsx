@@ -89,11 +89,6 @@ export default function CreateTeams() {
     setAvailableItems(playerNames);
   };
 
-  const handleViewTeam = (team: Team) => {
-    setSelectedItems(team.players);
-    setSelectedColor(team.teamColor);
-  };
-
   const handleSelectColor = (color: string) => {
     setSelectedColor(color);
   };
