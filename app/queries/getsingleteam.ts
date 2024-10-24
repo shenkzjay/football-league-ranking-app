@@ -1,21 +1,34 @@
-"use client";
+// "use client";
 
-import { useQuery } from "@tanstack/react-query";
+// import { useQuery } from "@tanstack/react-query";
 
-export const getSingleTeam = ({ params }: { params: { id: number } }) => {
-  const { id } = params;
-  return useQuery({
-    queryKey: ["getsingleteam", params?.id],
-    queryFn: async () => {
-      return await fetch(`http://localhost:3000/api/singleteam/${id}`, {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        cache: "force-cache",
-      }).then((res) => res.json());
-    },
+// export const getSingleTeam = ({ params }: { params: { id: number } }) => {
+//   const { id } = params;
 
-    staleTime: Infinity,
+//   console.log(id, "usequery");
+
+//   return useQuery({
+//     queryKey: ["getsingleteam", params?.id],
+//     queryFn: async () => {
+//       await fetch(`/api/singleteam/${id}`, {
+//         method: "GET",
+//         headers: {
+//           "Content-Type": "application/json",
+//         },
+//         cache: "force-cache",
+//       }).then((res) => res.json());
+//     },
+
+//     staleTime: Infinity,
+//   });
+// };
+
+import { db } from "../db";
+
+export async function getSingleTeam(id: number) {
+  const singleteam = await db.query.teamsTable.findFirst({
+    where: (teamsTable, { eq }) => eq(teamsTable.id, id),
   });
-};
+
+  return singleteam;
+}

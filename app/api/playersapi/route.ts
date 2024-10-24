@@ -1,7 +1,7 @@
 import { db } from "@/app/db";
 import { playerTable } from "@/app/db/schema";
 
-export async function GET(request: Request) {
+export async function GET() {
   try {
     const players = await db.select().from(playerTable);
 

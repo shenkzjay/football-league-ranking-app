@@ -31,8 +31,8 @@ export async function ListPlayers() {
         </thead>
         <tbody>
           {playerData && playerData.length > 0 ? (
-            playerData.map((player, index) => (
-              <tr key={player.id}>
+            playerData.map((player) => (
+              <tr key={player.playerName}>
                 <td className="px-4 py-2">{player.id}</td>
                 <td className="px-4 py-2">{player.playerName}</td>
                 <td className="px-4 py-2">{player.goal}</td>

@@ -19,7 +19,7 @@ export const CreatePlayers = () => {
         <fieldset className="w-full">
           <div className="flex flex-col w-full gap-4">
             <label htmlFor="playername" className="sr-only">
-              Enter player's name or alias
+              Enter player&apos;s name or alias
             </label>
             <input
               type="text"

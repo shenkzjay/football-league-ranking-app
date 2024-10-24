@@ -2,11 +2,11 @@
 
 import { db } from "@/app/db";
 
-import { InsertScore, scoresTable, teamsTable } from "@/app/db/schema";
+import { scoresTable, teamsTable } from "@/app/db/schema";
 
 import { eq, ilike } from "drizzle-orm";
 
-export async function createScores(prevState: any, formData: FormData) {
+export async function createScores(prevState: unknown, formData: FormData) {
   const homeTeamName = formData.get("hometeam") as string;
   const awayTeamName = formData.get("awayteam") as string;
   const homeScore = Number(formData.get("homescores"));

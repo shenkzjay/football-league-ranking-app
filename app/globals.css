@@ -18,8 +18,8 @@ body {
 .style-4,
 .style-5 {
   position: absolute;
-  width: 4rem;
-  height: 4rem;
+  width: 6rem;
+  height: 6rem;
   left: 0;
   top: 0;
   border: 0.2vw solid white;
@@ -28,32 +28,32 @@ body {
 }
 
 .style-1 {
-  left: 4vw;
-  top: 9.5vw;
+  left: 24vw;
+  top: 12.5vw;
   animation: move 1s linear forwards;
 }
 
 .style-2 {
-  left: 4vw;
-  top: 17vw;
+  left: 50vw;
+  top: 12.5vw;
   animation: move 1s linear forwards;
 }
 
 .style-3 {
-  left: 30%;
-  top: 25%;
+  left: 37vw;
+  top: 28vw;
   animation: move 1s linear forwards;
 }
 
 .style-4 {
   left: 17vw;
-  top: 3vw;
+  top: 40vw;
   animation: move 1s linear forwards;
 }
 
 .style-5 {
-  left: 17vw;
-  top: 24vw;
+  left: 58vw;
+  top: 40vw;
   animation: move 1s linear forwards;
 }
 
@@ -87,8 +87,6 @@ body {
   height: 70vh;
   background-size: cover;
   background-position: 50% 30%;
-  /* animation: scale 1s linear infinite; */
-  transition: all 1s ease-in-out;
 }
 
 .stars {
@@ -123,7 +121,7 @@ body {
   /* filter: url(#titleEffects); */
   /* font-family: var(--font-courgette); */
   font-weight: 800;
-  font-size: 4rem;
+  font-size: clamp(1em, 5vw, 4em);
 }
 
 .badge {
@@ -136,3 +134,12 @@ body {
     transition: all 1s ease-in-out;
   }
 }
+
+/* @media screen and (max-width: 800px) {
+  .bannerbg {
+    width: 100vw;
+    height: 70vh;
+    background-size: cover;
+    background-position: 50% 30%;
+  }
+} */

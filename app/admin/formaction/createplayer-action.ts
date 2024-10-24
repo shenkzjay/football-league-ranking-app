@@ -1,9 +1,9 @@
 "use server";
 import { db } from "@/app/db";
-import { InsertPlayer, playerTable } from "@/app/db/schema";
+import { playerTable } from "@/app/db/schema";
 import { redirect } from "next/navigation";
 
-export async function createPlayer(prevState: any, formData: FormData) {
+export async function createPlayer(prevState: unknown, formData: FormData) {
   try {
     const playerDetails = {
       playerName: formData.get("playername") as string,

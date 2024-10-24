@@ -1,8 +1,8 @@
 "use server";
 import { db } from "@/app/db";
-import { InsertPlayer, teamsTable, scoresTable, InsertTeam } from "@/app/db/schema";
+import { teamsTable, scoresTable, InsertTeam } from "@/app/db/schema";
 
-export async function createTeam(prevState: any, formData: FormData) {
+export async function createTeam(prevState: unknown, formData: FormData) {
   try {
     const teamNameJSON = formData.get("teamname") as string;
     const selectedItemsJson = formData.get("selectedItems") as string;

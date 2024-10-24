@@ -2,7 +2,7 @@
 
 import { useQuery } from "@tanstack/react-query";
 
-export const getAllTeamFromApi = () => {
+export const GetAllTeamFromApi = () => {
   return useQuery({
     queryKey: ["getallteamapi"],
     queryFn: async () => {

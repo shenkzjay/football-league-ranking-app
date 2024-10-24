@@ -2,7 +2,7 @@ import { db } from "@/app/db";
 import { teamsTable, scoresTable } from "@/app/db/schema";
 import { eq } from "drizzle-orm";
 
-export async function GET(request: Request) {
+export async function GET() {
   try {
     const teams = await db
       .select({

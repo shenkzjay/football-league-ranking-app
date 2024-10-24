@@ -4,22 +4,17 @@ import { createTeam } from "../../formaction/createteam-action";
 import { useFormState } from "react-dom";
 import { useState, useRef, useEffect } from "react";
 import { Colors } from "@/types/color";
-import { getAllPlayers } from "@/app/queries/getallplayers";
 import { Player } from "@/types/player";
-import { getAllTeams } from "@/app/queries/getallteams";
 import { Team } from "@/types/team";
-import { useQueryClient } from "@tanstack/react-query";
-import { getAllTeamFromApi } from "@/app/queries/apigetallteams";
-import { getAllPlayersFromApi } from "@/app/queries/apigetallplayers";
+import { GetAllTeamFromApi } from "@/app/queries/apigetallteams";
+import { GetAllPlayersFromApi } from "@/app/queries/apigetallplayers";
 
 export default function CreateTeams() {
-  const { data: teamsData } = getAllTeamFromApi();
+  const { data: teamsData } = GetAllTeamFromApi();
 
-  const { data } = getAllPlayersFromApi();
+  const { data } = GetAllPlayersFromApi();
 
   const teams: Team[] = teamsData;
-
-  console.log({ data });
 
   const initialState = {
     message: "",
@@ -29,41 +24,46 @@ export default function CreateTeams() {
   const formRef = useRef<HTMLFormElement | null>(null);
   const [playerNames, setPlayerNames] = useState<string[]>([]);
   const [selectedColor, setSelectedColor] = useState("");
-  const [playerTiles, setPlayerTiles] = useState([]);
 
   const [toggleInput, setInputToggle] = useState(false);
   const [selectedItems, setSelectedItems] = useState<string[]>([]);
   const [availableItems, setAvailableItems] = useState<string[]>([]); // Available items for selection
 
   useEffect(() => {
+    let selectedItemsFromStorage: string[] = [];
+
     if (localStorage.length > 0) {
       const getLocalStorageTeamDetails = localStorage.getItem("teamDetails");
 
       const localStorageTeamDetails = JSON.parse(getLocalStorageTeamDetails as string);
 
-      const selectedItemsFromStorage = localStorageTeamDetails?.selectedItems || [];
-
-      setAvailableItems((prevAvailableItems) =>
-        prevAvailableItems.filter((item) => !selectedItemsFromStorage.includes(item))
-      );
+      selectedItemsFromStorage = localStorageTeamDetails?.selectedItems || [];
     }
 
     if (data) {
       setPlayerNames(data.map((player: Player) => player.playerName)); // Extract player names
 
-      setAvailableItems(data.map((player: Player) => player.playerName)); // Initialize availableItems
+      setAvailableItems(data.map((player: Player) => player.playerName));
+      setAvailableItems((prevAvailableItems) =>
+        prevAvailableItems.filter((item) => !selectedItemsFromStorage.includes(item))
+      );
+
+      console.log({ selectedItemsFromStorage });
     }
   }, [data]);
+
+  console.log({ availableItems });
+  console.log({ playerNames });
 
   const handleSelect = (selectedItem: string) => {
     if (!selectedItems.includes(selectedItem)) {
       setSelectedItems((prevSelectedItems) => [...prevSelectedItems, selectedItem]);
-      setAvailableItems(availableItems.filter((available, _) => available !== selectedItem));
+      setAvailableItems(availableItems.filter((available) => available !== selectedItem));
     }
   };
 
   const removeSelectedItems = (selectedItem: string) => {
-    setSelectedItems(selectedItems.filter((selected, _) => selected !== selectedItem));
+    setSelectedItems(selectedItems.filter((selected) => selected !== selectedItem));
     setAvailableItems((prevRemovedItems) => [...prevRemovedItems, selectedItem]);
   };
 
@@ -168,7 +168,7 @@ export default function CreateTeams() {
                 <h3>Select team color</h3>
                 <div className="flex flex-row gap-6">
                   {Object.values(Colors).map((color, index) => (
-                    <div>
+                    <div key={index}>
                       <label
                         style={{ backgroundColor: color }}
                         htmlFor={color}

@@ -3,7 +3,7 @@
 import { useFormState } from "react-dom";
 import { useState, useEffect } from "react";
 import { createScores } from "../formaction/createscore-action";
-import { getAllTeamFromApi } from "@/app/queries/apigetallteams";
+import { GetAllTeamFromApi } from "@/app/queries/apigetallteams";
 import { Team } from "@/types/team";
 
 export const CreateScores = () => {
@@ -11,24 +11,30 @@ export const CreateScores = () => {
     message: "",
   };
 
-  const { data, isError, isLoading } = getAllTeamFromApi();
-  console.log({ data });
+  const { data } = GetAllTeamFromApi();
 
   const [selectHomeTeam, setSelectHomeTeam] = useState("");
   const [selectAwayTeam, setSelectAwayTeam] = useState("");
   const [homeTeamScores, setHomeTeamScores] = useState("");
   const [awayTeamScores, setAwayTeamScores] = useState("");
-  const [teamName, setTeamName] = useState([]);
+  // const [teamName, setTeamName] = useState([]);
   const [availableteams, setSelectAvailableTeam] = useState<string[]>([]);
+  const [state, formAction] = useFormState(createScores, initialState);
 
   useEffect(() => {
     if (data) {
-      setTeamName(data.map((team: Team) => team.title)); // Extract player names
+      // setTeamName(data.map((team: Team) => team.title));
       setSelectAvailableTeam(data.map((team: Team) => team.title)); // Initialize availableItems
     }
   }, [data]);
 
-  console.log({ selectHomeTeam });
+  // if (isLoading) {
+  //   return <div>Loading teams</div>;
+  // }
+
+  // if (isError) {
+  //   return <div>Error fetching teams</div>;
+  // }
 
   const handleSelectHomeTeam = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const selectedTeam = e.target.value;
@@ -90,7 +96,6 @@ export const CreateScores = () => {
     formAction(formData);
   };
 
-  const [state, formAction] = useFormState(createScores, initialState);
   return (
     <section className="flex gap-4 p-4 ">
       <div className="w-[80%] flex flex-col h-screen bg-white rounded-xl border  p-6">
