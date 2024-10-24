@@ -99,7 +99,7 @@ export default async function Home() {
           </div> */}
         </header>
 
-        <section className="mt-12 md:mx-auto md:w-[80vw] mx-6">
+        <section className="mt-12 md:mx-auto md:w-[80vw] mx-4">
           <h2 className="text-2xl font-semibold  mb-6 text-slate-500">Fixtures</h2>
           <div className="flex flex-row  gap-6 w-full overflow-auto ">
             {/* <button className="sticky left-0 right-0 bg-white px-2 shadow-[0px_8px_20px_14px_rgba(0,0,0,0.08)]">
@@ -143,11 +143,11 @@ export default async function Home() {
         </section>
 
         <section className="mt-12 mx-auto md:w-[80vw] mb-20 ">
-          <h3 className="text-2xl font-semibold  mb-0 text-slate-500 mx-6 md:mx-0">
+          <h3 className="text-2xl font-semibold  mb-0 text-slate-500 mx-4 md:mx-0">
             League standing
           </h3>
-          <div className="overflow-auto mx-6 md:mx-0">
-            <table className=" text-left overflow-x-scroll w-full text-nowrap">
+          <div className="overflow-auto mx-4 md:mx-0">
+            <table className="hidden md:table text-left overflow-x-scroll w-full text-nowrap">
               <caption className="text-2xl font-semibold text-center mb-6 text-slate-400"></caption>
               <thead className="">
                 <tr className="bg-slate-300">
@@ -195,10 +195,55 @@ export default async function Home() {
                 )}
               </tbody>
             </table>
+
+            <table className="md:hidden table text-left overflow-x-scroll w-full text-nowrap">
+              <caption className="text-2xl font-semibold text-center mb-6 text-slate-400"></caption>
+              <thead className="text-sm">
+                <tr className="bg-slate-300">
+                  <th className="px-2">Po</th>
+                  <th className="py-4">Team</th>
+                  <th className="p-2">P</th>
+                  <th className="p-2">W</th>
+                  <th className="p-2">L</th>
+                  <th className="p-2">D</th>
+                  <th className="p-2">GD</th>
+                  <th className="p-2">Pts</th>
+                  <th className="p-2"></th>
+                </tr>
+              </thead>
+              <tbody>
+                {teamData && teamData.length > 0 ? (
+                  teamData.map((teams, index) => (
+                    <tr key={teams.teamId} className="even:bg-gray-100 text-sm">
+                      <td className="px-4">{index + 1}</td>
+                      <td className="py-4 font-bold">{teams.title}</td>
+                      <td className="p-2">{teams.gamesPlayed}</td>
+                      <td className="p-2">{teams.gamesWon}</td>
+                      <td className="p-2">{teams.gamesLost}</td>
+                      <td className="p-2">{teams.gamesDrawn}</td>
+                      <td className="p-2">{teams.goalDifference}</td>
+                      <td className="p-2">{teams.points}</td>
+                      <td className="p-2">
+                        <Link
+                          href={`/team/${teams.teamId}`}
+                          className="text-sm text-blue-500 underline"
+                        >
+                          →
+                        </Link>
+                      </td>
+                    </tr>
+                  ))
+                ) : (
+                  <tr>
+                    <td colSpan={10}>No data to display</td>
+                  </tr>
+                )}
+              </tbody>
+            </table>
           </div>
         </section>
 
-        <footer className="mx-auto w-[80vw] flex justify-center text-slate-400 my-12">
+        <footer className="mx-auto w-[80vw] flex justify-center text-center text-slate-400 my-12">
           &copy;&nbsp;Copyright 2024 city football league - designed with ❤️ by - Seun
         </footer>
       </div>

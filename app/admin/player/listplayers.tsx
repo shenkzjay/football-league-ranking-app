@@ -9,12 +9,19 @@ export async function ListPlayers() {
 
   return (
     <section className="bg-white w-full p-6 rounded-xl h-screen">
-      <div className="my-10">
+      <div className="my-10 space-x-6">
         <Link
           href={"/admin/player/addplayer"}
           className="py-2 mt-4 px-4 bg-black rounded-xl text-white"
         >
           Add players
+        </Link>
+
+        <Link
+          href={"/admin/player/updateplayer"}
+          className="py-2 mt-4 px-4 border-black border-2 rounded-xl text-black"
+        >
+          Update players stats
         </Link>
       </div>
       <h2>List of Players</h2>

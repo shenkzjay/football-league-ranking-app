@@ -3,11 +3,10 @@
 import { createPlayer } from "../../formaction/createplayer-action";
 import { useFormState } from "react-dom";
 
-export const CreatePlayers = () => {
+export default function UpdatePlayerStats() {
   const initialState = {
     message: "",
   };
-
   const [state, formAction] = useFormState(createPlayer, initialState);
   return (
     <section className="flex gap-4 p-4 bg-white h-screen">
@@ -15,19 +14,13 @@ export const CreatePlayers = () => {
         action={formAction}
         className="w-[40%] bg-white flex-col flex  p-6 border gap-6 h-fit rounded-xl"
       >
-        <legend className="font-bold text-xl">Add Team players</legend>
+        <legend className="font-bold text-xl">Update players stats</legend>
         <fieldset className="w-full">
           <div className="flex flex-col w-full gap-4">
-            <label htmlFor="playername" className="sr-only">
-              Enter player&apos;s name or alias
-            </label>
-            <input
-              type="text"
-              name="playername"
-              id="playername"
-              placeholder="Enter player's name"
-              className="border rounded-xl py-2 px-4 w-full"
-            />
+            <select className="border py-2 px-4 w-full rounded-xl" name="hometeam">
+              <option value="">Select player</option>
+              <option>cubasi</option>
+            </select>
 
             <div className="flex flex-row gap-10">
               <div>
@@ -83,11 +76,11 @@ export const CreatePlayers = () => {
               </div>
             </div>
 
-            <button className="py-2 mt-4 px-4 bg-black rounded-xl text-white">Add player</button>
+            <button className="py-2 mt-4 px-4 bg-black rounded-xl text-white">Update stats</button>
           </div>
         </fieldset>
         <p>{state?.message}</p>
       </form>
     </section>
   );
-};
+}
