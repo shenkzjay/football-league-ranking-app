@@ -5,7 +5,7 @@ import Link from "next/link";
 export async function ListPlayers() {
   const players = await getAllPlayers();
 
-  const playerData: Player[] = players;
+  const playerData: Player[] = players ?? [];
 
   return (
     <section className="bg-white w-full p-6 rounded-xl h-screen">
