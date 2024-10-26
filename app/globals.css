@@ -157,3 +157,64 @@ body {
     background-position: 50% 30%;
   }
 } */
+
+.scroll {
+  scroll-snap-type: x mandatory;
+  scroll-padding: 50%;
+}
+.child {
+  scroll-snap-align: center;
+}
+
+input[type="radio"] {
+  display: none;
+}
+
+label {
+  padding: 12px 16px;
+  border-radius: 9999px;
+  cursor: pointer;
+  display: grid;
+  align-items: center;
+  justify-content: center;
+  height: 54px;
+  width: 200px;
+  font-size: 1.25rem;
+  font-weight: 500;
+  border-radius: 99px;
+  cursor: pointer;
+  transition: color 0.15s ease-in;
+}
+
+input[type="radio"]:checked + label {
+  color: white !important;
+}
+
+input[id="radio-1"]:checked ~ .glider {
+  transform: translateX(0);
+}
+
+input[id="radio-2"]:checked ~ .glider {
+  transform: translateX(100%);
+}
+
+.glider {
+  position: absolute;
+  display: flex;
+  height: 54px;
+  width: 200px;
+  background-color: black;
+  z-index: -1;
+  border-radius: 99px;
+  transition: 0.25s ease-out;
+}
+
+.tableu,
+.tab2 {
+  display: none;
+}
+
+input[id="radio-1"]:checked ~ div > .tableu,
+input[id="radio-2"]:checked ~ div > .tab2 {
+  display: block;
+}

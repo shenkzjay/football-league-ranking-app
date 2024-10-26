@@ -1,20 +1,23 @@
 "use client";
 
-import { createTeam } from "../../formaction/createteam-action";
+import { createTeam } from "../../formaction/teamaction/createteam-action";
 import { useFormState } from "react-dom";
 import { useState, useRef, useEffect } from "react";
 import { Colors } from "@/types/color";
 import { Player } from "@/types/player";
-import { Team } from "@/types/team";
+import { TeamDetails } from "@/types/team";
 import { GetAllTeamFromApi } from "@/app/queries/apigetallteams";
 import { GetAllPlayersFromApi } from "@/app/queries/apigetallplayers";
+import { updateTeam } from "../../formaction/teamaction/updateteam-action";
 
 export default function CreateTeams() {
   const { data: teamsData } = GetAllTeamFromApi();
 
   const { data } = GetAllPlayersFromApi();
 
-  const teams: Team[] = teamsData;
+  const teams: TeamDetails[] = teamsData;
+
+  console.log({ teams });
 
   const initialState = {
     message: "",
@@ -24,12 +27,21 @@ export default function CreateTeams() {
   const formRef = useRef<HTMLFormElement | null>(null);
   const [playerNames, setPlayerNames] = useState<string[]>([]);
   const [selectedColor, setSelectedColor] = useState("");
+  const [editMode, setEditMode] = useState(false);
 
   const [toggleInput, setInputToggle] = useState(false);
   const [selectedItems, setSelectedItems] = useState<string[]>([]);
   const [availableItems, setAvailableItems] = useState<string[]>([]); // Available items for selection
+  const [currentTeamData, setCurrentTeamPlayers] = useState<TeamDetails>();
 
   useEffect(() => {
+    if (editMode && currentTeamData && formRef.current) {
+      // Populate form fields with current team data when in edit mode
+      formRef.current.teamname.value = currentTeamData.title;
+      setSelectedItems(currentTeamData.players || []);
+      setSelectedColor(currentTeamData.teamColor);
+    }
+
     let selectedItemsFromStorage: string[] = [];
 
     if (localStorage.length > 0) {
@@ -47,13 +59,8 @@ export default function CreateTeams() {
       setAvailableItems((prevAvailableItems) =>
         prevAvailableItems.filter((item) => !selectedItemsFromStorage.includes(item))
       );
-
-      console.log({ selectedItemsFromStorage });
     }
-  }, [data]);
-
-  console.log({ availableItems });
-  console.log({ playerNames });
+  }, [data, currentTeamData, editMode]);
 
   const handleSelect = (selectedItem: string) => {
     if (!selectedItems.includes(selectedItem)) {
@@ -67,6 +74,11 @@ export default function CreateTeams() {
     setAvailableItems((prevRemovedItems) => [...prevRemovedItems, selectedItem]);
   };
 
+  const handleEditTeam = (team: TeamDetails) => {
+    setEditMode(true);
+    setCurrentTeamPlayers(team);
+  };
+
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
@@ -74,7 +86,6 @@ export default function CreateTeams() {
     const teamName = formData.get("teamname") as string;
     formData.append("selectedItems", JSON.stringify(selectedItems));
     formData.append("teamColor", JSON.stringify(selectedColor));
-    formAction(formData);
 
     const teamData = {
       teamName,
@@ -82,11 +93,18 @@ export default function CreateTeams() {
       selectedColor,
     };
 
+    if (editMode && currentTeamData) {
+      updateTeam(currentTeamData?.teamId, formData);
+    } else {
+      formAction(formData);
+    }
+
     localStorage.setItem("teamDetails", JSON.stringify(teamData));
 
     formRef.current?.reset();
     setSelectedItems([]);
     setAvailableItems(playerNames);
+    setEditMode(false);
   };
 
   const handleSelectColor = (color: string) => {
@@ -181,7 +199,13 @@ export default function CreateTeams() {
                 </div>
               </div>
 
-              <button className="py-2 mt-4 px-4 bg-black rounded-xl text-white">Add Team</button>
+              <button
+                className={`py-2 mt-4 px-4 ${
+                  editMode ? "bg-blue-500" : "bg-black"
+                } rounded-xl text-white`}
+              >
+                {editMode ? "Update team" : "Add Team"}
+              </button>
               <p>{state?.message}</p>
             </div>
           </fieldset>
@@ -189,21 +213,27 @@ export default function CreateTeams() {
       </div>
 
       <section className="flex flex-col justify-between w-full bg-white gap-10  p-6 rounded-xl">
-        <div className="w-1/3">
+        <div className="w-2/3">
           {teams &&
             teams.map((team, index) => (
-              <button
+              <div
                 key={index}
                 //   onClick={() => handleViewTeam(team)}
-                className="flex w-full items-center gap-4 bg-[#f5f5f5] mb-4 p-2 rounded-xl cursor-pointer"
+                className="flex w-full items-center justify-between bg-[#f5f5f5] mb-4 p-2 rounded-xl cursor-pointer"
               >
-                <span
-                  className="w-5 h-5 rounded-full "
-                  style={{ backgroundColor: team?.teamColor }}
-                ></span>
-                <p>{team.title}</p>
-                <span>→</span>
-              </button>
+                <div className="flex gap-4 items-center">
+                  <span
+                    className="w-5 h-5 rounded-full "
+                    style={{ backgroundColor: team?.teamColor }}
+                  ></span>
+                  <p>{team.title}</p>
+                </div>
+                <button type="button" onClick={() => handleEditTeam(team)}>
+                  Edit
+                </button>
+                <button>delete</button>
+                <button>→</button>
+              </div>
             ))}
         </div>
         <div className="pitch relative w-2/3 rounded-xl overflow-hidden">

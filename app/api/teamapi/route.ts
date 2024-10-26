@@ -24,7 +24,8 @@ export async function GET() {
         updatedAt: scoresTable.updatedAt,
       })
       .from(teamsTable)
-      .innerJoin(scoresTable, eq(teamsTable.scoreId, scoresTable.id));
+      .innerJoin(scoresTable, eq(teamsTable.scoreId, scoresTable.id))
+      .orderBy(teamsTable.id);
 
     return Response.json(teams, { status: 200 });
   } catch (error) {

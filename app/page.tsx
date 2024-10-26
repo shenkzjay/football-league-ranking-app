@@ -1,68 +1,18 @@
 import { getAllTeams } from "@/app/queries/getallteams";
+import { getAllPlayers } from "./queries/getallplayers";
 import Link from "next/link";
+import { Fixtures } from "@/ui-components/fixtures";
+import { TeamStanding } from "@/ui-components/teamStandings";
+import { TeamDetails } from "@/types/team";
 
 export default async function Home() {
-  const fixturesData = [
-    {
-      fixtureTitle: "City league",
-      fixtureDate: "Sunday 14 Oct, 2024",
-      fixtureTime: "7:00am",
-      homeTeam: "Team A",
-      awayTeam: "Team B",
-    },
-
-    {
-      fixtureTitle: "City league",
-      fixtureDate: "Sunday 14 Oct, 2024",
-      fixtureTime: "7:00am",
-      homeTeam: "Team C",
-      awayTeam: "Team D",
-    },
-
-    {
-      fixtureTitle: "City league",
-      fixtureDate: "Sunday 14 Oct, 2024",
-      fixtureTime: "7:00am",
-      homeTeam: "Team A",
-      awayTeam: "Team C",
-    },
-
-    {
-      fixtureTitle: "City league",
-      fixtureDate: "Sunday 14 Oct, 2024",
-      fixtureTime: "7:00am",
-      homeTeam: "Team B",
-      awayTeam: "Team C",
-    },
-
-    {
-      fixtureTitle: "City league",
-      fixtureDate: "Sunday 14 Oct, 2024",
-      fixtureTime: "7:00am",
-      homeTeam: "Team A",
-      awayTeam: "Team D",
-    },
-
-    {
-      fixtureTitle: "City league",
-      fixtureDate: "Sunday 14 Oct, 2024",
-      fixtureTime: "7:00am",
-      homeTeam: "Team B",
-      awayTeam: "Team D",
-    },
-
-    {
-      fixtureTitle: "City league",
-      fixtureDate: "Sunday 14 Oct, 2024",
-      fixtureTime: "7:00am",
-      homeTeam: "Team B",
-      awayTeam: "Team D",
-    },
-  ];
-
   const data = await getAllTeams();
 
-  const teamData = data;
+  const players = await getAllPlayers();
+
+  const playerData = players.sort((a, b) => b.goal - a.goal);
+
+  const teamData = data?.sort((a, b) => b.points - a.points);
 
   // const handleTableRowClick = (teamId: number) => {
   //   router.push(`/team/${teamId}`);
@@ -101,152 +51,29 @@ export default async function Home() {
 
         <section className="mt-12 md:mx-auto md:w-[80vw] mx-4">
           <h2 className="text-2xl font-semibold  mb-6 text-slate-500">Fixtures</h2>
-          <div className="flex flex-row  gap-6 w-full overflow-auto ">
-            {/* <button className="sticky left-0 right-0 bg-white px-2 shadow-[0px_8px_20px_14px_rgba(0,0,0,0.08)]">
-              ←
-            </button> */}
-            <div className="flex flex-row gap-6">
-              {fixturesData.map((fixtures, index) => (
-                <button
-                  key={index}
-                  className={`md:w-[20vw] w-[70vw] ${
-                    index === 0 ? "bg-[#f5f5f5]" : "bg-[#333333]"
-                  } p-4 rounded-xl gap-2 flex flex-col`}
-                >
-                  <div
-                    className={`flex w-full flex-row justify-between text-sm ${
-                      index === 0 ? "text-black" : "text-white"
-                    } `}
-                  >
-                    <p>{fixtures.fixtureTitle}</p>
-                    <p>{fixtures.fixtureDate}</p>
-                  </div>
-                  <div
-                    className={`flex flex-col gap-2 ${index === 0 ? "text-black" : "text-white"}`}
-                  >
-                    <div className="flex items-center gap-2">
-                      <span className="w-4 h-4 bg-red-500 rounded-full "></span>
-                      <h4>{fixtures.homeTeam}</h4>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <span className="w-4 h-4 bg-red-500 rounded-full"></span>
-                      <h4>{fixtures.awayTeam}</h4>
-                    </div>
-                  </div>
-                </button>
-              ))}
-            </div>
-            {/* <button className="sticky left-0 right-0 bg-white px-2 shadow-[0px_8px_20px_14px_rgba(0,0,0,0.08)]">
-              →
-            </button> */}
+          <div className="flex flex-row gap-6  ">
+            <Fixtures />
           </div>
         </section>
 
-        <section className="mt-12 mx-auto md:w-[80vw] mb-20 ">
-          <h3 className="text-2xl font-semibold  mb-0 text-slate-500 mx-4 md:mx-0">
-            League standing
-          </h3>
-          <div className="overflow-auto mx-4 md:mx-0">
-            <table className="hidden md:table text-left overflow-x-scroll w-full text-nowrap">
-              <caption className="text-2xl font-semibold text-center mb-6 text-slate-400"></caption>
-              <thead className="">
-                <tr className="bg-slate-300">
-                  <th className="p-4">Pos</th>
-                  <th className="p-4">Team</th>
-                  <th className="p-4">P</th>
-                  <th className="p-4">W</th>
-                  <th className="p-4">L</th>
-                  <th className="p-4">D</th>
-                  <th className="p-4">GF</th>
-                  <th className="p-4">GA</th>
-                  <th className="p-4">GD</th>
-                  <th className="p-4">Pts</th>
-                  <th className="p-4"></th>
-                </tr>
-              </thead>
-              <tbody>
-                {teamData && teamData.length > 0 ? (
-                  teamData.map((teams, index) => (
-                    <tr key={teams.teamId} className="even:bg-gray-100">
-                      <td className="p-4">{index + 1}</td>
-                      <td className="p-4">{teams.title}</td>
-                      <td className="p-4">{teams.gamesPlayed}</td>
-                      <td className="p-4">{teams.gamesWon}</td>
-                      <td className="p-4">{teams.gamesLost}</td>
-                      <td className="p-4">{teams.gamesDrawn}</td>
-                      <td className="p-4">{teams.goalFor}</td>
-                      <td className="p-4">{teams.goalAgainst}</td>
-                      <td className="p-4">{teams.goalDifference}</td>
-                      <td className="p-4">{teams.points}</td>
-                      <td className="p-4">
-                        <Link
-                          href={`/team/${teams.teamId}`}
-                          className="text-sm text-blue-500 underline"
-                        >
-                          View team →
-                        </Link>
-                      </td>
-                    </tr>
-                  ))
-                ) : (
-                  <tr>
-                    <td colSpan={10}>No data to display</td>
-                  </tr>
-                )}
-              </tbody>
-            </table>
-
-            <table className="md:hidden table text-left overflow-x-scroll w-full text-nowrap">
-              <caption className="text-2xl font-semibold text-center mb-6 text-slate-400"></caption>
-              <thead className="text-sm">
-                <tr className="bg-slate-300">
-                  <th className="px-2">Po</th>
-                  <th className="py-4">Team</th>
-                  <th className="p-2">P</th>
-                  <th className="p-2">W</th>
-                  <th className="p-2">L</th>
-                  <th className="p-2">D</th>
-                  <th className="p-2">GD</th>
-                  <th className="p-2">Pts</th>
-                  <th className="p-2"></th>
-                </tr>
-              </thead>
-              <tbody>
-                {teamData && teamData.length > 0 ? (
-                  teamData.map((teams, index) => (
-                    <tr key={teams.teamId} className="even:bg-gray-100 text-sm">
-                      <td className="px-4">{index + 1}</td>
-                      <td className="py-4 font-bold">{teams.title}</td>
-                      <td className="p-2">{teams.gamesPlayed}</td>
-                      <td className="p-2">{teams.gamesWon}</td>
-                      <td className="p-2">{teams.gamesLost}</td>
-                      <td className="p-2">{teams.gamesDrawn}</td>
-                      <td className="p-2">{teams.goalDifference}</td>
-                      <td className="p-2">{teams.points}</td>
-                      <td className="p-2">
-                        <Link
-                          href={`/team/${teams.teamId}`}
-                          className="text-sm text-blue-500 underline"
-                        >
-                          →
-                        </Link>
-                      </td>
-                    </tr>
-                  ))
-                ) : (
-                  <tr>
-                    <td colSpan={10}>No data to display</td>
-                  </tr>
-                )}
-              </tbody>
-            </table>
+        <section className="relative mt-12 mx-auto md:w-[80vw] mb-20 h-[45vh]">
+          <div className="flex relative mb-20">
+            <input type="radio" name="tabs" id="radio-1" defaultChecked />
+            <label className="tabs" htmlFor="radio-1">
+              League standing
+            </label>
+            <input type="radio" name="tabs" id="radio-2" />
+            <label className="tabs" htmlFor="radio-2">
+              Players statistic
+            </label>
+            <span className="glider"></span>
+            <TeamStanding teamData={teamData} playerData={playerData} />
           </div>
         </section>
-
-        <footer className="mx-auto w-[80vw] flex justify-center text-center text-slate-400 my-12">
-          &copy;&nbsp;Copyright 2024 city football league - designed with ❤️ by - Seun
-        </footer>
       </div>
+      {/* <footer className="block mx-auto w-[80vw]  text-center text-slate-400 mt-72 mb-20">
+        &copy;&nbsp;Copyright 2024 city football league - designed with ❤️ by - Seun
+      </footer> */}
     </section>
   );
 }

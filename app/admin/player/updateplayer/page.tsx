@@ -1,6 +1,6 @@
 "use client";
 
-import { createPlayer } from "../../formaction/createplayer-action";
+import { createPlayer } from "../../formaction/playeraction/createplayer-action";
 import { useFormState } from "react-dom";
 
 export default function UpdatePlayerStats() {

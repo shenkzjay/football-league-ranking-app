@@ -1,0 +1,174 @@
+"use client";
+
+import { Player } from "@/types/player";
+import { TeamDetails } from "@/types/team";
+import { useState } from "react";
+import Link from "next/link";
+
+export const TeamStanding = ({
+  teamData,
+  playerData,
+}: {
+  teamData: TeamDetails[];
+  playerData: Player[];
+}) => {
+  const [currentPage, setCurrentPage] = useState(1);
+
+  const playersPerPage = 5;
+
+  const indexOfLastPlayerStats = currentPage * playersPerPage;
+  const indexOfFistPlayerStats = indexOfLastPlayerStats - playersPerPage;
+  const currentPlayerStats = playerData.slice(indexOfFistPlayerStats, indexOfLastPlayerStats);
+  const startIndexOfSN = (currentPage - 1) * playersPerPage;
+
+  const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
+
+  return (
+    <div className="overflow-auto mx-4 md:mx-0 w-full tabler absolute top-[10rem] left-0">
+      <div className="tableu">
+        <table className="hidden md:table text-left overflow-x-scroll w-full text-nowrap desktoptable">
+          <caption className="text-2xl font-semibold text-center mb-6 text-slate-400"></caption>
+          <thead className="">
+            <tr className="bg-slate-300">
+              <th className="p-4">Pos</th>
+              <th className="p-4">Team</th>
+              <th className="p-4">P</th>
+              <th className="p-4">W</th>
+              <th className="p-4">L</th>
+              <th className="p-4">D</th>
+              <th className="p-4">GF</th>
+              <th className="p-4">GA</th>
+              <th className="p-4">GD</th>
+              <th className="p-4">Pts</th>
+              <th className="p-4"></th>
+            </tr>
+          </thead>
+          <tbody>
+            {teamData && teamData.length > 0 ? (
+              teamData.map((teams, index) => (
+                <tr key={teams.teamId} className="even:bg-gray-100">
+                  <td className="p-4">{index + 1}</td>
+                  <td className="p-4">{teams.title}</td>
+                  <td className="p-4">{teams.gamesPlayed}</td>
+                  <td className="p-4">{teams.gamesWon}</td>
+                  <td className="p-4">{teams.gamesLost}</td>
+                  <td className="p-4">{teams.gamesDrawn}</td>
+                  <td className="p-4">{teams.goalFor}</td>
+                  <td className="p-4">{teams.goalAgainst}</td>
+                  <td className="p-4">{teams.goalDifference}</td>
+                  <td className="p-4">{teams.points}</td>
+                  <td className="p-4">
+                    <Link
+                      href={`/team/${teams.teamId}`}
+                      className="text-sm text-blue-500 underline"
+                    >
+                      View team →
+                    </Link>
+                  </td>
+                </tr>
+              ))
+            ) : (
+              <tr>
+                <td colSpan={10}>No data to display</td>
+              </tr>
+            )}
+          </tbody>
+        </table>
+
+        <table className="md:hidden table text-left overflow-x-scroll w-full text-nowrap mobiletable">
+          <caption className="text-2xl font-semibold text-center mb-6 text-slate-400"></caption>
+          <thead className="text-sm">
+            <tr className="bg-slate-300">
+              <th className="px-2">Po</th>
+              <th className="py-4">Team</th>
+              <th className="p-2">P</th>
+              <th className="p-2">W</th>
+              <th className="p-2">L</th>
+              <th className="p-2">D</th>
+              <th className="p-2">GD</th>
+              <th className="p-2">Pts</th>
+              <th className="p-2"></th>
+            </tr>
+          </thead>
+          <tbody>
+            {teamData && teamData.length > 0 ? (
+              teamData.map((teams, index) => (
+                <tr key={teams.teamId} className="even:bg-gray-100 text-sm">
+                  <td className="px-4">{index + 1}</td>
+                  <td className="py-4 font-bold">{teams.title}</td>
+                  <td className="p-2">{teams.gamesPlayed}</td>
+                  <td className="p-2">{teams.gamesWon}</td>
+                  <td className="p-2">{teams.gamesLost}</td>
+                  <td className="p-2">{teams.gamesDrawn}</td>
+                  <td className="p-2">{teams.goalDifference}</td>
+                  <td className="p-2">{teams.points}</td>
+                  <td className="p-2">
+                    <Link
+                      href={`/team/${teams.teamId}`}
+                      className="text-sm text-blue-500 underline"
+                    >
+                      →
+                    </Link>
+                  </td>
+                </tr>
+              ))
+            ) : (
+              <tr>
+                <td colSpan={10}>No data to display</td>
+              </tr>
+            )}
+          </tbody>
+        </table>
+      </div>
+      <div className="tab2">
+        <table className="w-full text-left">
+          <caption className="text-2xl font-semibold text-center mb-6 text-slate-400"></caption>
+          <thead className="bg-slate-300">
+            <tr className="">
+              <th className="p-4">S/N</th>
+              <th className="p-4">Name</th>
+              <th className="p-4">Goal</th>
+              <th className="p-4">Assist</th>
+              <th className="p-4">yellowCard</th>
+              <th className="p-4">redCard</th>
+            </tr>
+          </thead>
+          <tbody>
+            {currentPlayerStats && playerData.length > 0 ? (
+              currentPlayerStats.map((player, index) => (
+                <tr key={player.playerName}>
+                  <td className="p-4">{startIndexOfSN + index + 1}</td>
+                  <td className="p-4">{player.playerName}</td>
+                  <td className="p-4">{player.goal}</td>
+                  <td className="p-4">{player.assist}</td>
+                  <td className="p-4">{player.yellowCard}</td>
+                  <td className="p-4">{player.redCard}</td>
+                </tr>
+              ))
+            ) : (
+              <tr>
+                <td className="px-4 py-2">1</td>
+              </tr>
+            )}
+          </tbody>
+        </table>
+
+        <div className="mt-4 flex justify-center gap-4">
+          {Array.from({ length: Math.ceil(playerData.length / playersPerPage) }, (_, i) => (
+            <button
+              key={i}
+              onClick={() => {
+                paginate(i + 1);
+              }}
+              className={`mx-1 px-4 py-2 rounded-lg ${
+                currentPage === i + 1 ? "bg-blue-500 text-white" : "bg-gray-400 border"
+              }`}
+            >
+              {i + 1}
+            </button>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+};

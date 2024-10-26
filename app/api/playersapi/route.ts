@@ -3,7 +3,7 @@ import { playerTable } from "@/app/db/schema";
 
 export async function GET() {
   try {
-    const players = await db.select().from(playerTable);
+    const players = await db.select().from(playerTable).orderBy(playerTable.id);
 
     return Response.json(players, { status: 200 });
   } catch (error) {
