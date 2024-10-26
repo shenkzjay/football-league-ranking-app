@@ -1,17 +1,20 @@
 "use client";
 
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 
 export const GetAllPlayersFromApi = () => {
+  const queryClient = useQueryClient();
+
+  queryClient.invalidateQueries({ queryKey: ["getallplayerapi"] });
   return useQuery({
-    queryKey: ["getallplayerspi"],
+    queryKey: ["getallplayerapi"],
     queryFn: async () => {
       return await fetch(`http://localhost:3000/api/playersapi`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
         },
-        cache: "force-cache",
+        cache: "no-cache",
       }).then((res) => res.json());
     },
 

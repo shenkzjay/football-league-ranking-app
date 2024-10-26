@@ -129,6 +129,8 @@ body {
 
 .badge {
   border-radius: 0em 0em 20em 20em;
+  width: 4em;
+  height: 4em;
 }
 
 @keyframes scale {
@@ -179,7 +181,7 @@ label {
   justify-content: center;
   height: 54px;
   width: 200px;
-  font-size: 1.25rem;
+  font-size: clamp(1rem, 2vw, 1.25rem);
   font-weight: 500;
   border-radius: 99px;
   cursor: pointer;
@@ -196,6 +198,10 @@ input[id="radio-1"]:checked ~ .glider {
 
 input[id="radio-2"]:checked ~ .glider {
   transform: translateX(100%);
+}
+
+.tablet {
+  top: 4em;
 }
 
 .glider {
@@ -217,4 +223,18 @@ input[id="radio-2"]:checked ~ .glider {
 input[id="radio-1"]:checked ~ div > .tableu,
 input[id="radio-2"]:checked ~ div > .tab2 {
   display: block;
+}
+
+@media screen and (max-width: 800px) {
+  .tablet {
+    margin: 0 12px;
+  }
+}
+
+.tabler-row {
+  background-color: #cbd5e1 !important;
+}
+
+.tabletSection {
+  height: 70vh !important;
 }

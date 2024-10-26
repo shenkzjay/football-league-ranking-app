@@ -191,7 +191,7 @@ export default function CreateTeams() {
                         }}
                         className={`w-10 h-10 ${
                           selectedColor === color ? `outline outline-2 outline-offset-4` : ""
-                        } flex rounded-full cursor-pointer hover:outline hover:outline-offset-4 hover:outline-slate-400`}
+                        } flex rounded-full cursor-pointer hover:outline hover:outline-offset-4 hover:outline-slate-400 border`}
                       ></label>
                       <input type="radio" name="radio" id={color} hidden className={` `}></input>
                     </div>

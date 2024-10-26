@@ -1,6 +1,6 @@
 "use server";
 
-import { InsertTeam, teamsTable } from "@/app/db/schema";
+import { teamsTable } from "@/app/db/schema";
 import { db } from "@/app/db";
 import { eq } from "drizzle-orm";
 

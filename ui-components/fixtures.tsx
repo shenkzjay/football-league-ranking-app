@@ -58,13 +58,13 @@ export const Fixtures = () => {
   ];
 
   return (
-    <div className="flex flex-row gap-6">
+    <div className="flex flex-row gap-6 w-[100vw]">
       {fixturesData.map((fixtures, index) => (
         <button
           key={index}
-          className={`md:w-[20vw] w-[70vw] child ${
+          className={`md:w-[100vw] w-[70vw] child ${
             index === 0 ? "bg-[#f5f5f5]" : "bg-[#333333]"
-          } p-4 rounded-xl gap-2 flex flex-col`}
+          } p-4 rounded-xl gap-2 flex flex-col bg-[#262626]`}
         >
           <div
             className={`flex w-full flex-row justify-between text-sm ${
@@ -74,7 +74,7 @@ export const Fixtures = () => {
             <p>{fixtures.fixtureTitle}</p>
             <p>{fixtures.fixtureDate}</p>
           </div>
-          <div className={`flex flex-col gap-2 ${index === 0 ? "text-black" : "text-white"}`}>
+          <div className={`flex flex-col gap-2 ${index === 0 ? "text-black" : "text-black"}`}>
             <div className="flex items-center gap-2">
               <span className="w-4 h-4 bg-red-500 rounded-full "></span>
               <h4>{fixtures.homeTeam}</h4>

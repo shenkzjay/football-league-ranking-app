@@ -147,7 +147,7 @@ export const CreatePlayers = () => {
         <p>{state?.message}</p>
       </form>
 
-      <div>
+      <div className="h-[30vw]  overflow-auto">
         <table className="w-full text-left bg">
           <thead>
             <tr className="">

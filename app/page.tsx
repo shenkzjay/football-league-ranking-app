@@ -1,9 +1,10 @@
 import { getAllTeams } from "@/app/queries/getallteams";
 import { getAllPlayers } from "./queries/getallplayers";
-import Link from "next/link";
-import { Fixtures } from "@/ui-components/fixtures";
+// import Link from "next/link";
+// import { Fixtures } from "@/ui-components/fixtures";
 import { TeamStanding } from "@/ui-components/teamStandings";
 import { TeamDetails } from "@/types/team";
+import { FixtureCard } from "@/ui-components/fixturecard";
 
 export default async function Home() {
   const data = await getAllTeams();
@@ -12,7 +13,8 @@ export default async function Home() {
 
   const playerData = players.sort((a, b) => b.goal - a.goal);
 
-  const teamData = data?.sort((a, b) => b.points - a.points);
+  //@ts-expect-error type error expecting the values of teamData to be undefined
+  const teamData: TeamDetails[] = data?.sort((a, b) => b.points - a.points);
 
   // const handleTableRowClick = (teamId: number) => {
   //   router.push(`/team/${teamId}`);
@@ -26,40 +28,51 @@ export default async function Home() {
             <div className="w-full h-full bg-black/50 absolute top-0"></div>
             <div className="text-3xl font-extrabold flex flex-col justify-center h-full md:w-[80vw] md:mx-auto  mx-6">
               <span className="flex flex-col md:gap-10 z-10 text-white" id="titleEffects">
-                <p>City Football Club</p>
-                <p>Mini League</p>
+                <p>City United FC</p>
+                <p className="">Unity league cup</p>
               </span>{" "}
               <p className="text-white text-base z-20 relative mt-6">
                 Get live scores update of thrilling soccer games <br />
                 happening live in the arena of dreams!
               </p>
-              {/* <div className="item top w-full h-full absolute top-0">
-                <div className="stars">★</div>
-              </div> */}
               <div className="item"></div>
             </div>
           </div>
-          {/* <div className="absolute top-0 right-0">
-            <Image
-              src={soccer}
-              width={300}
-              height={300}
-              alt="illustration of a man striking a football"
-            />
-          </div> */}
         </header>
 
         <section className="mt-12 md:mx-auto md:w-[80vw] mx-4">
           <h2 className="text-2xl font-semibold  mb-6 text-slate-500">Fixtures</h2>
-          <div className="flex flex-row gap-6  ">
-            <Fixtures />
+          <div className="grid grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-16 border p-6 rounded-xl">
+            <div className=" flex items-center p-10 gap-4 border rounded-xl bg-[#e4e4e4]">
+              <FixtureCard
+                home="ARSENAL"
+                away="CHELSEA"
+                time="7:20am"
+                outlineHomeColor="outline-red-500"
+                bgHomeColor="bg-red-500"
+                outlineAwayColor="outline-blue-500"
+                bgAwayColor="bg-blue-500"
+              />
+            </div>
+
+            <div className=" flex items-center p-10 gap-4 border rounded-xl bg-[#e4e4e4]">
+              <FixtureCard
+                home="REAL-MADRID"
+                away="MAN-UTD"
+                time="7:20am"
+                outlineHomeColor="outline-white"
+                bgHomeColor="bg-white"
+                outlineAwayColor="outline-red-500"
+                bgAwayColor="bg-red-500"
+              />
+            </div>
           </div>
         </section>
 
-        <section className="relative mt-12 mx-auto md:w-[80vw] mb-20 h-[45vh]">
-          <div className="flex relative mb-20">
+        <section className=" mt-12 md:mx-auto md:w-[80vw] h-[55vh] mx-4 tabletSection">
+          <div className="flex relative w-full">
             <input type="radio" name="tabs" id="radio-1" defaultChecked />
-            <label className="tabs" htmlFor="radio-1">
+            <label className="" htmlFor="radio-1">
               League standing
             </label>
             <input type="radio" name="tabs" id="radio-2" />

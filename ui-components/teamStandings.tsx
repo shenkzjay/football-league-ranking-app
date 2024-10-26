@@ -24,45 +24,45 @@ export const TeamStanding = ({
   const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
 
   return (
-    <div className="overflow-auto mx-4 md:mx-0 w-full tabler absolute top-[10rem] left-0">
+    <div className="overflow-auto md:mx-0 w-full flex flex-col absolute top-[0rem] left-0 tablet">
       <div className="tableu">
-        <table className="hidden md:table text-left overflow-x-scroll w-full text-nowrap desktoptable">
+        <table className="table text-left overflow-x-scroll w-full text-nowrap text-sm">
           <caption className="text-2xl font-semibold text-center mb-6 text-slate-400"></caption>
           <thead className="">
-            <tr className="bg-slate-300">
-              <th className="p-4">Pos</th>
-              <th className="p-4">Team</th>
-              <th className="p-4">P</th>
-              <th className="p-4">W</th>
-              <th className="p-4">L</th>
-              <th className="p-4">D</th>
-              <th className="p-4">GF</th>
-              <th className="p-4">GA</th>
-              <th className="p-4">GD</th>
-              <th className="p-4">Pts</th>
-              <th className="p-4"></th>
+            <tr className="tablet-row bg-slate-300">
+              <th className="p-2">Pos</th>
+              <th className="p-2">Team</th>
+              <th className="p-2">P</th>
+              <th className="p-2">W</th>
+              <th className="p-2">L</th>
+              <th className="p-2">D</th>
+              <th className="p-2">GF</th>
+              <th className="p-2">GA</th>
+              <th className="p-2">GD</th>
+              <th className="p-2">Pts</th>
+              <th className="p-2"></th>
             </tr>
           </thead>
           <tbody>
             {teamData && teamData.length > 0 ? (
               teamData.map((teams, index) => (
-                <tr key={teams.teamId} className="even:bg-gray-100">
-                  <td className="p-4">{index + 1}</td>
-                  <td className="p-4">{teams.title}</td>
-                  <td className="p-4">{teams.gamesPlayed}</td>
-                  <td className="p-4">{teams.gamesWon}</td>
-                  <td className="p-4">{teams.gamesLost}</td>
-                  <td className="p-4">{teams.gamesDrawn}</td>
-                  <td className="p-4">{teams.goalFor}</td>
-                  <td className="p-4">{teams.goalAgainst}</td>
-                  <td className="p-4">{teams.goalDifference}</td>
-                  <td className="p-4">{teams.points}</td>
-                  <td className="p-4">
+                <tr key={teams.teamId} className="even:bg-gray-100 tablet-body">
+                  <td className="p-2">{index + 1}</td>
+                  <td className="p-2">{teams.title}</td>
+                  <td className="p-2">{teams.gamesPlayed}</td>
+                  <td className="p-2">{teams.gamesWon}</td>
+                  <td className="p-2">{teams.gamesLost}</td>
+                  <td className="p-2">{teams.gamesDrawn}</td>
+                  <td className="p-2">{teams.goalFor}</td>
+                  <td className="p-2">{teams.goalAgainst}</td>
+                  <td className="p-2">{teams.goalDifference}</td>
+                  <td className="p-2">{teams.points}</td>
+                  <td className="p-2">
                     <Link
                       href={`/team/${teams.teamId}`}
                       className="text-sm text-blue-500 underline"
                     >
-                      View team →
+                      more →
                     </Link>
                   </td>
                 </tr>
@@ -75,7 +75,7 @@ export const TeamStanding = ({
           </tbody>
         </table>
 
-        <table className="md:hidden table text-left overflow-x-scroll w-full text-nowrap mobiletable">
+        {/* <table className="md:hidden table text-left overflow-x-scroll w-full text-nowrap mobiletable">
           <caption className="text-2xl font-semibold text-center mb-6 text-slate-400"></caption>
           <thead className="text-sm">
             <tr className="bg-slate-300">
@@ -118,7 +118,7 @@ export const TeamStanding = ({
               </tr>
             )}
           </tbody>
-        </table>
+        </table> */}
       </div>
       <div className="tab2">
         <table className="w-full text-left">
@@ -136,7 +136,7 @@ export const TeamStanding = ({
           <tbody>
             {currentPlayerStats && playerData.length > 0 ? (
               currentPlayerStats.map((player, index) => (
-                <tr key={player.playerName}>
+                <tr key={player.playerName} className="even:bg-gray-100 tablet-body">
                   <td className="p-4">{startIndexOfSN + index + 1}</td>
                   <td className="p-4">{player.playerName}</td>
                   <td className="p-4">{player.goal}</td>

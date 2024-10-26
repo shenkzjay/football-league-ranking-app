@@ -10,7 +10,7 @@ export type TeamDetails = {
   teamId: number;
   title: string;
   teamColor: string;
-  players: string[];
+  players: string[] | null;
   scoreId: number;
   gamesPlayed: number;
   gamesWon: number;
