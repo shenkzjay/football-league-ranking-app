@@ -14,7 +14,7 @@ export const GetAllPlayersFromApi = () => {
         headers: {
           "Content-Type": "application/json",
         },
-        cache: "no-cache",
+        cache: "force-cache",
       }).then((res) => res.json());
     },
 

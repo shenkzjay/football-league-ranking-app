@@ -5,6 +5,7 @@ import { db } from "@/app/db";
 import { scoresTable, teamsTable } from "@/app/db/schema";
 
 import { eq, ilike } from "drizzle-orm";
+import { revalidateTag } from "next/cache";
 
 export async function createScores(prevState: unknown, formData: FormData) {
   const homeTeamName = formData.get("hometeam") as string;
@@ -99,6 +100,8 @@ export async function createScores(prevState: unknown, formData: FormData) {
           : 0),
     })
     .where(eq(scoresTable.id, awayScoreId));
+
+  revalidateTag("teams");
 
   return {
     message: `Scores successfully updated`,

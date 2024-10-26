@@ -2,6 +2,7 @@
 import { db } from "@/app/db";
 import { playerTable } from "@/app/db/schema";
 import { redirect } from "next/navigation";
+import { revalidateTag } from "next/cache";
 
 export async function createPlayer(prevState: unknown, formData: FormData) {
   try {
@@ -14,6 +15,8 @@ export async function createPlayer(prevState: unknown, formData: FormData) {
     };
 
     const result = await db.insert(playerTable).values(playerDetails);
+
+    revalidateTag("players");
 
     if (result.rowCount === 1) {
       return {

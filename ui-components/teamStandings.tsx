@@ -62,7 +62,7 @@ export const TeamStanding = ({
                       href={`/team/${teams.teamId}`}
                       className="text-sm text-blue-500 underline"
                     >
-                      more →
+                      view →
                     </Link>
                   </td>
                 </tr>
@@ -121,16 +121,16 @@ export const TeamStanding = ({
         </table> */}
       </div>
       <div className="tab2">
-        <table className=" text-left">
+        <table className=" text-left w-full">
           <caption className="text-2xl font-semibold text-center mb-6 text-slate-400"></caption>
           <thead className="bg-slate-300">
             <tr className="">
-              <th className="p-2">S/N</th>
+              <th className="p-2">No</th>
               <th className="p-2">Name</th>
-              <th className="p-2">Goal</th>
-              <th className="p-2">Assist</th>
-              <th className="p-2">yellowCard</th>
-              <th className="p-2">redCard</th>
+              <th className="p-2">⚽️</th>
+              <th className="p-2">🥾</th>
+              <th className="p-2">🟨</th>
+              <th className="p-2">🟥</th>
             </tr>
           </thead>
           <tbody>
@@ -160,7 +160,7 @@ export const TeamStanding = ({
               onClick={() => {
                 paginate(i + 1);
               }}
-              className={`mx-1 px-3 pagination py-2  rounded-lg ${
+              className={`mx-1 px-4 pagination py-2  rounded-lg ${
                 currentPage === i + 1 ? "bg-blue-500 text-white" : "bg-gray-400 border"
               }`}
             >
@@ -168,6 +168,13 @@ export const TeamStanding = ({
             </button>
           ))}
         </div>
+      </div>
+
+      <div className="icon_keys">
+        <p>⚽️ - Goal</p>
+        <p>🥾 - assist</p>
+        <p>🟨 - yellow card</p>
+        <p>🟥 - red card</p>
       </div>
     </div>
   );

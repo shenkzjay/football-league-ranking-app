@@ -1,6 +1,7 @@
 "use server";
 import { db } from "@/app/db";
 import { teamsTable, scoresTable, InsertTeam } from "@/app/db/schema";
+import { revalidateTag } from "next/cache";
 
 export async function createTeam(prevState: unknown, formData: FormData) {
   try {
@@ -49,6 +50,10 @@ export async function createTeam(prevState: unknown, formData: FormData) {
     console.log({ teamDetails });
 
     await db.insert(teamsTable).values(teamDetails);
+
+    revalidateTag("teams");
+    revalidateTag("players");
+    revalidateTag("singleteam");
 
     return { message: `${teamDetails.title} created successfully` };
   } catch (error) {

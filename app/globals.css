@@ -248,6 +248,10 @@ input[id="radio-2"]:checked ~ div > .tab2 {
   .pagination {
     padding: 0 8px;
   }
+
+  .tabletSection {
+    padding: 0 24px;
+  }
 }
 
 .tabler-row {
@@ -256,4 +260,8 @@ input[id="radio-2"]:checked ~ div > .tab2 {
 
 .tabletSection {
   height: 70vh !important;
+}
+
+.icon_keys {
+  margin-top: 3rem;
 }

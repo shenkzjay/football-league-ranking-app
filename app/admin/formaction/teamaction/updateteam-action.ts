@@ -3,6 +3,7 @@
 import { teamsTable } from "@/app/db/schema";
 import { db } from "@/app/db";
 import { eq } from "drizzle-orm";
+import { revalidateTag } from "next/cache";
 
 export async function updateTeam(teamId: number, formData: FormData) {
   try {
@@ -35,6 +36,8 @@ export async function updateTeam(teamId: number, formData: FormData) {
     if (!result) {
       throw new Error("Failed to update team or team not found");
     }
+
+    revalidateTag("teams");
 
     return { message: `${updateTeamDetails.title} updated successfully` };
   } catch (error) {

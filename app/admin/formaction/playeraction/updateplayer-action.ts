@@ -3,6 +3,7 @@
 import { db } from "@/app/db";
 import { playerTable } from "@/app/db/schema";
 import { eq } from "drizzle-orm";
+import { revalidateTag } from "next/cache";
 
 export async function updatePlayerData(playerId: number, formData: FormData) {
   try {
@@ -25,6 +26,8 @@ export async function updatePlayerData(playerId: number, formData: FormData) {
     if (!result) {
       throw new Error("Failed to update team or team not found");
     }
+
+    revalidateTag("players");
 
     return {
       message: `Player ${updatePlayerDetails.playerName} records has been updated`,
