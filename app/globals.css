@@ -227,7 +227,26 @@ input[id="radio-2"]:checked ~ div > .tab2 {
 
 @media screen and (max-width: 800px) {
   .tablet {
-    margin: 0 12px;
+    margin: 0 0px;
+    left: 0;
+  }
+
+  .fixtureCard {
+    font-size: 0.8rem;
+  }
+
+  .glider {
+    width: 150px;
+  }
+
+  label {
+    width: 150px;
+
+    font-size: 0.9rem;
+  }
+
+  .pagination {
+    padding: 0 8px;
   }
 }
 

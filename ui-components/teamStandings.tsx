@@ -24,7 +24,7 @@ export const TeamStanding = ({
   const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
 
   return (
-    <div className="overflow-auto md:mx-0 w-full flex flex-col absolute top-[0rem] left-0 tablet">
+    <div className="overflow-auto md:mx-0 mx-6 w-full flex flex-col absolute top-[0rem] left-0 tablet">
       <div className="tableu">
         <table className="table text-left overflow-x-scroll w-full text-nowrap text-sm">
           <caption className="text-2xl font-semibold text-center mb-6 text-slate-400"></caption>
@@ -121,28 +121,28 @@ export const TeamStanding = ({
         </table> */}
       </div>
       <div className="tab2">
-        <table className="w-full text-left">
+        <table className=" text-left">
           <caption className="text-2xl font-semibold text-center mb-6 text-slate-400"></caption>
           <thead className="bg-slate-300">
             <tr className="">
-              <th className="p-4">S/N</th>
-              <th className="p-4">Name</th>
-              <th className="p-4">Goal</th>
-              <th className="p-4">Assist</th>
-              <th className="p-4">yellowCard</th>
-              <th className="p-4">redCard</th>
+              <th className="p-2">S/N</th>
+              <th className="p-2">Name</th>
+              <th className="p-2">Goal</th>
+              <th className="p-2">Assist</th>
+              <th className="p-2">yellowCard</th>
+              <th className="p-2">redCard</th>
             </tr>
           </thead>
           <tbody>
             {currentPlayerStats && playerData.length > 0 ? (
               currentPlayerStats.map((player, index) => (
                 <tr key={player.playerName} className="even:bg-gray-100 tablet-body">
-                  <td className="p-4">{startIndexOfSN + index + 1}</td>
-                  <td className="p-4">{player.playerName}</td>
-                  <td className="p-4">{player.goal}</td>
-                  <td className="p-4">{player.assist}</td>
-                  <td className="p-4">{player.yellowCard}</td>
-                  <td className="p-4">{player.redCard}</td>
+                  <td className="p-2">{startIndexOfSN + index + 1}</td>
+                  <td className="p-2">{player.playerName}</td>
+                  <td className="p-2">{player.goal}</td>
+                  <td className="p-2">{player.assist}</td>
+                  <td className="p-2">{player.yellowCard}</td>
+                  <td className="p-2">{player.redCard}</td>
                 </tr>
               ))
             ) : (
@@ -160,7 +160,7 @@ export const TeamStanding = ({
               onClick={() => {
                 paginate(i + 1);
               }}
-              className={`mx-1 px-4 py-2 rounded-lg ${
+              className={`mx-1 px-3 pagination py-2  rounded-lg ${
                 currentPage === i + 1 ? "bg-blue-500 text-white" : "bg-gray-400 border"
               }`}
             >

@@ -42,7 +42,7 @@ export default async function Home() {
 
         <section className="mt-12 md:mx-auto md:w-[80vw] mx-4">
           <h2 className="text-2xl font-semibold  mb-6 text-slate-500">Fixtures</h2>
-          <div className="grid grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-16 border p-6 rounded-xl">
+          <div className="grid grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-16 border md:p-6 p-0 rounded-xl">
             <div className=" flex items-center p-10 gap-4 border rounded-xl bg-[#e4e4e4]">
               <FixtureCard
                 home="ARSENAL"
@@ -69,7 +69,7 @@ export default async function Home() {
           </div>
         </section>
 
-        <section className=" mt-12 md:mx-auto md:w-[80vw] h-[55vh] mx-4 tabletSection">
+        <section className=" mt-12 md:mx-auto md:w-[80vw] h-[55vh]  tabletSection">
           <div className="flex relative w-full">
             <input type="radio" name="tabs" id="radio-1" defaultChecked />
             <label className="" htmlFor="radio-1">

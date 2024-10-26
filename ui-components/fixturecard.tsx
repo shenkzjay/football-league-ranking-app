@@ -26,7 +26,7 @@ export const FixtureCard = ({
           day: "2-digit",
         })}
       </p>
-      <div className="[font-size:clamp(1rem,5vw,2rem)] flex flex-row justify-between items-center">
+      <div className="[font-size:clamp(.5rem,2vw,1rem)] flex flex-row justify-between items-center fixtureCard">
         <div
           className={`w-[4em] h-[4em] outline outline-2 ${outlineHomeColor} outline-offset-4 ${bgHomeColor} badge`}
         ></div>
