@@ -11,10 +11,10 @@ export default async function Home() {
 
   const players = await getAllPlayers();
 
-  const playerData = players.sort((a, b) => b.goal - a.goal);
+  const playerData = players?.sort((a, b) => b.goal - a.goal) ?? [];
 
   //@ts-expect-error type error expecting the values of teamData to be undefined
-  const teamData: TeamDetails[] = data?.sort((a, b) => b.points - a.points);
+  const teamData: TeamDetails[] = data?.sort((a, b) => b.points - a.points) ?? [];
 
   // const handleTableRowClick = (teamId: number) => {
   //   router.push(`/team/${teamId}`);
