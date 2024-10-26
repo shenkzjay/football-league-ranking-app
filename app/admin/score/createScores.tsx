@@ -2,7 +2,7 @@
 
 import { useFormState } from "react-dom";
 import { useState, useEffect } from "react";
-import { createScores } from "../formaction/createscore-action";
+import { createScores } from "../formaction/scoreaction/createscore-action";
 import { GetAllTeamFromApi } from "@/app/queries/apigetallteams";
 import { Team } from "@/types/team";
 
