@@ -38,6 +38,7 @@ export async function updateTeam(teamId: number, formData: FormData) {
     }
 
     revalidateTag("teams");
+    revalidateTag("singleteam");
 
     return { message: `${updateTeamDetails.title} updated successfully` };
   } catch (error) {

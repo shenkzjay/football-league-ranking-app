@@ -11,7 +11,7 @@ export const GetAllTeamFromApi = () => {
         headers: {
           "Content-Type": "application/json",
         },
-        cache: "force-cache",
+        // cache: "force-cache",
       }).then((res) => res.json());
     },
 
