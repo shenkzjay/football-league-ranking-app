@@ -83,7 +83,7 @@ export const Fixtures = () => {
               index === 0 || index === 1 ? "text-black" : "text-white"
             }`}
           >
-            <div className="flex flex-col gap-2 updateScoretab">
+            <div className="flex flex-col gap-2 updateScoretxt">
               <div className="flex items-center gap-2">
                 <span className="w-4 h-4 bg-red-500 rounded-full "></span>
                 <h4>{fixtures.homeTeam}</h4>
@@ -94,7 +94,7 @@ export const Fixtures = () => {
               </div>
             </div>
 
-            <div className="font-bold flex flex-col gap-2">
+            <div className="font-bold flex flex-col gap-2 updateScores">
               <p>{fixtures.homeTeamScores ?? "-"}</p>
               <p>{fixtures.awayTeamScores ?? "-"}</p>
             </div>

@@ -254,8 +254,15 @@ input[id="radio-2"]:checked ~ div > .tab2 {
     padding: 0 24px;
   }
 
-  .updateScoretab {
+  .updateScoretxt {
     width: 100vw;
+    font-size: 0.8rem !important;
+    text-wrap: nowrap;
+  }
+
+  .updateScores {
+    width: 100vw;
+    font-size: 0.8rem;
   }
 
   .fixCard {
@@ -281,4 +288,9 @@ input[id="radio-2"]:checked ~ div > .tab2 {
 
 .fixCard {
   width: 100vw;
+}
+
+svg {
+  width: 100%;
+  height: auto;
 }

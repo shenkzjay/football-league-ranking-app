@@ -1,6 +1,6 @@
 export const Chelsea = () => {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 209.477 209.476">
+    <svg xmlns="http://www.w3.org/2000/svg" width="65" height="65" viewBox="0 0 209.477 209.476">
       <path
         fill="#DBA111"
         d="M209.477 104.738c0 57.851-46.895 104.738-104.737 104.738C46.892 209.477 0 162.588 0 104.738 0 46.895 46.892 0 104.738 0c57.844 0 104.739 46.895 104.739 104.738"
