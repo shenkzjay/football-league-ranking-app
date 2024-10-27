@@ -8,6 +8,8 @@ export default async function Team({ params }: { params: { id: number } }) {
 
   const team = await getSingleTeam(teamId);
 
+  console.log({ team });
+
   return (
     <section className="md:mx-auto md:w-[80vw] mx-6">
       <div>
