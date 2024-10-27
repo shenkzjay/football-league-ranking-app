@@ -8,6 +8,7 @@ export const Fixtures = () => {
       awayTeam: "CHELSEA",
       homeTeamScores: "1",
       awayTeamScores: "1",
+      matchDate: "27/10/2024",
     },
 
     {
@@ -18,6 +19,7 @@ export const Fixtures = () => {
       awayTeam: "MAN-UTD",
       homeTeamScores: "0",
       awayTeamScores: "0",
+      matchDate: "27/10/2024",
     },
 
     {
@@ -26,6 +28,7 @@ export const Fixtures = () => {
       fixtureTime: "7:00am",
       homeTeam: "Team A",
       awayTeam: "Team C",
+      matchDate: "--/--/--",
     },
 
     {
@@ -34,6 +37,7 @@ export const Fixtures = () => {
       fixtureTime: "7:00am",
       homeTeam: "Team B",
       awayTeam: "Team C",
+      matchDate: "--/--/--",
     },
 
     {
@@ -42,6 +46,7 @@ export const Fixtures = () => {
       fixtureTime: "7:00am",
       homeTeam: "Team A",
       awayTeam: "Team D",
+      matchDate: "--/--/--",
     },
 
     {
@@ -50,6 +55,7 @@ export const Fixtures = () => {
       fixtureTime: "7:00am",
       homeTeam: "Team B",
       awayTeam: "Team D",
+      matchDate: "--/--/--",
     },
 
     {
@@ -58,6 +64,7 @@ export const Fixtures = () => {
       fixtureTime: "7:00am",
       homeTeam: "Team B",
       awayTeam: "Team D",
+      matchDate: "--/--/--",
     },
   ];
 
@@ -83,18 +90,18 @@ export const Fixtures = () => {
               index === 0 || index === 1 ? "text-black" : "text-white"
             }`}
           >
-            <div className="flex flex-col gap-2 updateScoretxt">
-              <div className="flex items-center gap-2">
-                <span className="w-4 h-4 bg-red-500 rounded-full "></span>
+            <div className="flex flex-col gap-2 updateScoretxt text-left">
+              <div className="text-xs text-slate-500">{fixtures.matchDate}</div>
+              <div className="flex items-center ">
                 <h4>{fixtures.homeTeam}</h4>
               </div>
-              <div className="flex items-center gap-2">
-                <span className="w-4 h-4 bg-red-500 rounded-full"></span>
+              <div className="flex items-center ">
                 <h4>{fixtures.awayTeam}</h4>
               </div>
             </div>
 
             <div className="font-bold flex flex-col gap-2 updateScores">
+              <div className="text-xs mb-4"></div>
               <p>{fixtures.homeTeamScores ?? "-"}</p>
               <p>{fixtures.awayTeamScores ?? "-"}</p>
             </div>
