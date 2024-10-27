@@ -11,6 +11,7 @@ import { Arsenal } from "@/public/svg/arsenal";
 import { Chelsea } from "@/public/svg/chelsea";
 import { ManU } from "@/public/svg/manU";
 import { RealMadrid } from "@/public/svg/realmadrid";
+import { Barca } from "@/public/svg/barca";
 
 export default async function Home() {
   const data = await getAllTeams();
@@ -49,10 +50,19 @@ export default async function Home() {
   //@ts-expect-error type error expecting the values of teamData to be undefined
   const teamData: TeamDetails[] =
     data?.sort((a, b) => {
-      if (b.points === a.points) {
-        return a.title.localeCompare(b.title);
+      if (b.points !== a.points) {
+        return b.points - a.points;
       }
-      return b.points - a.points;
+
+      if (b.goalDifference !== a.goalDifference) {
+        return b.goalDifference - a.goalDifference;
+      }
+
+      if (b.goalFor !== a.goalFor) {
+        return b.goalFor - a.goalFor;
+      }
+
+      return a.title.localeCompare(b.title);
     }) ?? [];
 
   // const handleTableRowClick = (teamId: number) => {
@@ -98,14 +108,14 @@ export default async function Home() {
 
             <div className=" flex items-center p-10 gap-4 border rounded-xl bg-[#e4e4e4]">
               <FixtureCard
-                home="REAL-MADRID"
+                home="BARCELONA"
                 away="MAN-UTD"
                 time="7:20am"
                 outlineHomeColor="outline-white"
                 bgHomeColor="bg-white"
                 outlineAwayColor="outline-red-500"
                 bgAwayColor="bg-red-500"
-                homeIcon={<RealMadrid />}
+                homeIcon={<Barca />}
                 awayIcon={<ManU />}
               />
             </div>

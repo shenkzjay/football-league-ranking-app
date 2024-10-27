@@ -15,7 +15,7 @@ export const Fixtures = () => {
       fixtureTitle: "City league",
       fixtureDate: "Sunday 14 Oct, 2024",
       fixtureTime: "7:00am",
-      homeTeam: "REAL-MADRID",
+      homeTeam: "BARCELONA",
       awayTeam: "MAN-UTD",
       homeTeamScores: "0",
       awayTeamScores: "0",
