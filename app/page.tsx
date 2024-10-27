@@ -5,16 +5,55 @@ import { getAllPlayers } from "./queries/getallplayers";
 import { TeamStanding } from "@/ui-components/teamStandings";
 import { TeamDetails } from "@/types/team";
 import { FixtureCard } from "@/ui-components/fixturecard";
+import { Fixtures } from "@/ui-components/fixtures";
+import { Player } from "@/types/player";
+import { Arsenal } from "@/public/svg/arsenal";
+import { Chelsea } from "@/public/svg/chelsea";
+import { ManU } from "@/public/svg/manU";
+import { RealMadrid } from "@/public/svg/realmadrid";
 
 export default async function Home() {
   const data = await getAllTeams();
 
   const players = await getAllPlayers();
 
-  const playerData = players?.sort((a, b) => b.goal - a.goal) ?? [];
+  const playerData: Player[] =
+    players?.sort((a, b) => {
+      //sort goal in descending order
+      if (b.goal !== a.goal) {
+        return b.goal - a.goal;
+      }
+
+      //if goals are equal, sort by assist in decending order
+      if (b.assist !== a.assist) {
+        return b.assist - a.assist;
+      }
+
+      //if goals and assist are equal, sort by yellowcard in descending order
+      if (b.yellowCard !== a.yellowCard) {
+        return b.yellowCard - a.yellowCard;
+      }
+
+      //if goals, assists and yellowcard are equal, sort by redCard in descending order
+      if (b.redCard !== a.redCard) {
+        return b.redCard - a.redCard;
+      }
+
+      // Push players with zero stats to the bottom
+      const aHasStats = a.goal || a.assist || a.yellowCard || a.redCard;
+      const bHasStats = b.goal || b.assist || b.yellowCard || b.redCard;
+
+      return bHasStats - aHasStats;
+    }) ?? [];
 
   //@ts-expect-error type error expecting the values of teamData to be undefined
-  const teamData: TeamDetails[] = data?.sort((a, b) => b.points - a.points) ?? [];
+  const teamData: TeamDetails[] =
+    data?.sort((a, b) => {
+      if (b.points === a.points) {
+        return a.title.localeCompare(b.title);
+      }
+      return b.points - a.points;
+    }) ?? [];
 
   // const handleTableRowClick = (teamId: number) => {
   //   router.push(`/team/${teamId}`);
@@ -52,6 +91,8 @@ export default async function Home() {
                 bgHomeColor="bg-red-500"
                 outlineAwayColor="outline-blue-500"
                 bgAwayColor="bg-blue-500"
+                homeIcon={<Arsenal />}
+                awayIcon={<Chelsea />}
               />
             </div>
 
@@ -64,9 +105,16 @@ export default async function Home() {
                 bgHomeColor="bg-white"
                 outlineAwayColor="outline-red-500"
                 bgAwayColor="bg-red-500"
+                homeIcon={<RealMadrid />}
+                awayIcon={<ManU />}
               />
             </div>
           </div>
+        </section>
+
+        <section className="md:mx-auto md:w-[80vw] overflow-x-auto mx-6 my-24">
+          <h3 className="text-2xl font-semibold  mb-6 text-slate-500">Scores update</h3>
+          <Fixtures />
         </section>
 
         <section className=" mt-12 md:mx-auto md:w-[80vw] h-[55vh]  tabletSection">
@@ -77,7 +125,7 @@ export default async function Home() {
             </label>
             <input type="radio" name="tabs" id="radio-2" />
             <label className="tabs" htmlFor="radio-2">
-              Players statistic
+              Player statistics
             </label>
             <span className="glider"></span>
             <TeamStanding teamData={teamData} playerData={playerData} />

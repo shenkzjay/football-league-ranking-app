@@ -173,8 +173,12 @@ export const TeamStanding = ({
       <div className="icon_keys">
         <p>⚽️ - Goal</p>
         <p>🥾 - assist</p>
-        <p>🟨 - yellow card</p>
-        <p>🟥 - red card</p>
+        <p>
+          🟨 - yellow card <i className="text-sm text-slate-500">(NGN 200 fine)</i>
+        </p>
+        <p>
+          🟥 - red card <i className="text-sm text-slate-500">(NGN 500 fine)</i>
+        </p>
       </div>
     </div>
   );

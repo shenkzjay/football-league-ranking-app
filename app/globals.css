@@ -166,6 +166,7 @@ body {
 }
 .child {
   scroll-snap-align: center;
+  width: 20vw;
 }
 
 input[type="radio"] {
@@ -252,6 +253,18 @@ input[id="radio-2"]:checked ~ div > .tab2 {
   .tabletSection {
     padding: 0 24px;
   }
+
+  .updateScoretab {
+    width: 100vw;
+  }
+
+  .fixCard {
+    width: 100vw;
+  }
+
+  .child {
+    width: 40vw !important;
+  }
 }
 
 .tabler-row {
@@ -264,4 +277,8 @@ input[id="radio-2"]:checked ~ div > .tab2 {
 
 .icon_keys {
   margin-top: 3rem;
+}
+
+.fixCard {
+  width: 100vw;
 }
