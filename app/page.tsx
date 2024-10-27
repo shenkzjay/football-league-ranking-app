@@ -10,7 +10,7 @@ import { Player } from "@/types/player";
 import { Arsenal } from "@/public/svg/arsenal";
 import { Chelsea } from "@/public/svg/chelsea";
 import { ManU } from "@/public/svg/manU";
-import { RealMadrid } from "@/public/svg/realmadrid";
+// import { RealMadrid } from "@/public/svg/realmadrid";
 import { Barca } from "@/public/svg/barca";
 
 export default async function Home() {
