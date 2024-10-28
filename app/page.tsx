@@ -129,7 +129,7 @@ export default async function Home() {
           </div>
         </section>
 
-        <section className=" mt-12 md:mx-auto md:w-[80vw]  tabletSection">
+        <section className=" mt-12 md:mx-auto md:w-[80vw]   tabletSection">
           <div className="flex relative w-full">
             <input type="radio" name="tabs" id="radio-1" defaultChecked />
             <label className="" htmlFor="radio-1">
@@ -144,7 +144,7 @@ export default async function Home() {
           </div>
         </section>
 
-        <div className="icon_keys mb-20 mx-auto w-[80vw]">
+        <div className="icon_keys my-20 mx-auto w-[80vw] pt-24">
           <p>⚽️ - Goal</p>
           <p>🥾 - assist</p>
           <p>

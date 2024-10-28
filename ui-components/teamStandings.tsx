@@ -39,8 +39,8 @@ export const TeamStanding = ({
   };
 
   return (
-    <div className="overflow-auto md:mx-0 mx-6 w-full flex flex-col absolute top-[0rem] left-0 tablet">
-      <div className="tableu">
+    <div className="overflow-auto md:mx-0 mx-6 w-full flex flex-col absolute top-[0rem] left-0 tablet ">
+      <div className="tableu ">
         <table className="table text-left overflow-x-scroll w-full text-nowrap text-sm">
           <caption className="text-2xl font-semibold text-center mb-6 text-slate-400"></caption>
           <thead className="">
@@ -135,7 +135,7 @@ export const TeamStanding = ({
           </tbody>
         </table> */}
       </div>
-      <div className="tab2">
+      <div className="tab2 ">
         <div className="mt-4">
           <label className="sr-only">Search players</label>
           <input
