@@ -2,7 +2,7 @@
 
 import { Player } from "@/types/player";
 import { TeamDetails } from "@/types/team";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 
 export const TeamStanding = ({
@@ -16,12 +16,27 @@ export const TeamStanding = ({
 
   const playersPerPage = 5;
 
-  const indexOfLastPlayerStats = currentPage * playersPerPage;
-  const indexOfFistPlayerStats = indexOfLastPlayerStats - playersPerPage;
-  const currentPlayerStats = playerData.slice(indexOfFistPlayerStats, indexOfLastPlayerStats);
-  const startIndexOfSN = (currentPage - 1) * playersPerPage;
+  const [search, setSearchQuery] = useState("");
+  const [filteredData, setFilteredData] = useState<Player[]>(playerData);
 
   const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
+
+  useEffect(() => {
+    const filteredTeams = playerData.filter((team) =>
+      team.playerName.toLowerCase().includes(search.toLowerCase())
+    );
+
+    setFilteredData(filteredTeams);
+  }, [search, playerData]);
+
+  const indexOfLastPlayerStats = currentPage * playersPerPage;
+  const indexOfFistPlayerStats = indexOfLastPlayerStats - playersPerPage;
+  const currentPlayerStats = filteredData.slice(indexOfFistPlayerStats, indexOfLastPlayerStats);
+  const startIndexOfSN = (currentPage - 1) * playersPerPage;
+
+  const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchQuery(e.target.value);
+  };
 
   return (
     <div className="overflow-auto md:mx-0 mx-6 w-full flex flex-col absolute top-[0rem] left-0 tablet">
@@ -121,6 +136,17 @@ export const TeamStanding = ({
         </table> */}
       </div>
       <div className="tab2">
+        <div className="mt-4">
+          <label className="sr-only">Search players</label>
+          <input
+            type="search"
+            name="searchplayers"
+            id="searchplayers"
+            placeholder="Search player name"
+            className="border py-2 px-4 w-full rounded-xl"
+            onChange={handleSearch}
+          />
+        </div>
         <table className=" text-left w-full">
           <caption className="text-2xl font-semibold text-center mb-6 text-slate-400"></caption>
           <thead className="bg-slate-300">
@@ -134,7 +160,7 @@ export const TeamStanding = ({
             </tr>
           </thead>
           <tbody>
-            {currentPlayerStats && playerData.length > 0 ? (
+            {currentPlayerStats && currentPlayerStats.length > 0 ? (
               currentPlayerStats.map((player, index) => (
                 <tr key={player.playerName} className="even:bg-gray-100 tablet-body">
                   <td className="p-2">{startIndexOfSN + index + 1}</td>

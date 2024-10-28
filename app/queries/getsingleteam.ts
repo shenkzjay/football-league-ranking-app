@@ -15,6 +15,6 @@ export const getSingleTeam = (teamId: number) => {
       }
     },
     ["single-team", teamId.toString()],
-    { tags: ["singleteam"] }
+    { tags: ["singleteam"], revalidate: 3600 }
   )();
 };
