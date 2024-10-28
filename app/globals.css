@@ -279,7 +279,7 @@ input[id="radio-2"]:checked ~ div > .tab2 {
 }
 
 .tabletSection {
-  height: 70vh !important;
+  height: 60vh !important;
 }
 
 .icon_keys {

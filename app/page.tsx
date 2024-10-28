@@ -90,7 +90,7 @@ export default async function Home() {
         </header>
 
         <section className="mt-12 md:mx-auto md:w-[80vw] mx-4">
-          <h2 className="text-2xl font-semibold  mb-6 text-slate-500">Fixtures</h2>
+          <h2 className="text-2xl font-semibold mb-6 text-slate-500">Fixtures</h2>
           <div className="grid grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-16 border md:p-6 p-0 rounded-xl">
             <div className=" flex items-center p-10 gap-4 border rounded-xl bg-[#e4e4e4]">
               <FixtureCard
@@ -122,12 +122,14 @@ export default async function Home() {
           </div>
         </section>
 
-        <section className="md:mx-auto md:w-[80vw] overflow-x-auto mx-6 my-24">
+        <section className="md:mx-auto md:w-[80vw]  mx-6 my-24">
           <h3 className="text-2xl font-semibold  mb-6 text-slate-500">Scores update</h3>
-          <Fixtures />
+          <div className="overflow-x-auto">
+            <Fixtures />
+          </div>
         </section>
 
-        <section className=" mt-12 md:mx-auto md:w-[80vw] h-[55vh]  tabletSection">
+        <section className=" mt-12 md:mx-auto md:w-[80vw]  tabletSection">
           <div className="flex relative w-full">
             <input type="radio" name="tabs" id="radio-1" defaultChecked />
             <label className="" htmlFor="radio-1">
@@ -141,6 +143,17 @@ export default async function Home() {
             <TeamStanding teamData={teamData} playerData={playerData} />
           </div>
         </section>
+
+        <div className="icon_keys mb-20 mx-auto w-[80vw]">
+          <p>⚽️ - Goal</p>
+          <p>🥾 - assist</p>
+          <p>
+            🟨 - yellow card <i className="text-sm text-slate-500">(NGN 200 fine)</i>
+          </p>
+          <p>
+            🟥 - red card <i className="text-sm text-slate-500">(NGN 500 fine)</i>
+          </p>
+        </div>
       </div>
       {/* <footer className="block mx-auto w-[80vw]  text-center text-slate-400 mt-72 mb-20">
         &copy;&nbsp;Copyright 2024 city football league - designed with ❤️ by - Seun

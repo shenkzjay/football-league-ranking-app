@@ -4,11 +4,7 @@ import Link from "next/link";
 export default async function Team({ params }: { params: { id: number } }) {
   const teamId = params.id;
 
-  console.log({ teamId });
-
   const team = await getSingleTeam(teamId);
-
-  console.log({ team });
 
   return (
     <section className="md:mx-auto md:w-[80vw] mx-6">
