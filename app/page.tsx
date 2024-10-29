@@ -129,7 +129,7 @@ export default async function Home() {
           </div>
         </section>
 
-        <section className=" mt-12 md:mx-auto md:w-[80vw]   tabletSection">
+        <section className=" mt-12 md:mx-auto md:w-[80vw] tabletSection">
           <div className="flex relative w-full">
             <input type="radio" name="tabs" id="radio-1" defaultChecked />
             <label className="" htmlFor="radio-1">

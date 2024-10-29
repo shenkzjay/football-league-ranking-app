@@ -15,7 +15,23 @@ export const CreatePlayers = () => {
   const { data } = GetAllPlayersFromApi();
   // const { data } = GetAllPlayersFromApi();
 
-  const playerData: Player[] = data;
+  const players: Player[] = data;
+
+  const playerData: Player[] = players?.sort((a, b) => {
+    if (a.goal !== b.goal) {
+      return b.goal - a.goal;
+    }
+
+    if (a.assist !== b.assist) {
+      return b.assist - a.assist;
+    }
+
+    if (a.yellowCard !== b.yellowCard) {
+      return b.yellowCard - a.yellowCard;
+    }
+
+    return b.redCard - a.redCard;
+  });
 
   const [state, formAction] = useFormState(createPlayer, initialState);
 
@@ -24,6 +40,23 @@ export const CreatePlayers = () => {
   const [editMode, setEditMode] = useState(false);
 
   const formRef = useRef<HTMLFormElement | null>(null);
+
+  const [currentPage, setCurrentPage] = useState(1);
+
+  const [searchQuery, setSearchQuery] = useState("");
+
+  const [filteredData, setFilteredData] = useState(playerData);
+
+  const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
+
+  const playersPerPage = 10;
+
+  const indexOfLastPage = currentPage * playersPerPage;
+
+  const indexOfFirstPage = indexOfLastPage - playersPerPage;
+
+  const currentPlayerStats = filteredData?.slice(indexOfFirstPage, indexOfLastPage);
+  const startIndexOfSN = (currentPage - 1) * playersPerPage;
 
   useEffect(() => {
     //populate the fields with current formData
@@ -35,7 +68,13 @@ export const CreatePlayers = () => {
       formRef.current.yellowCard.value = currentPlayer.yellowCard;
       formRef.current.redCard.value = currentPlayer.redCard;
     }
-  }, [currentPlayer, editMode]);
+
+    const filteredTeams = playerData?.filter((player) =>
+      player?.playerName.toLowerCase().includes(searchQuery.toLowerCase())
+    );
+
+    setFilteredData(filteredTeams);
+  }, [currentPlayer, editMode, searchQuery, playerData]);
 
   const handleEditPlayer = (player: Player) => {
     setCurrentPlayer(player);
@@ -150,7 +189,18 @@ export const CreatePlayers = () => {
         <p>{state?.message}</p>
       </form>
 
-      <div className="h-[30vw]  overflow-auto">
+      <div className="h-[40vw]  overflow-auto">
+        <div>
+          <label className="sr-only">Search players name</label>
+          <input
+            type="playername"
+            name="playername"
+            id="playername"
+            className="py-2 px-4 border rounded-xl"
+            placeholder="search players name"
+            onChange={(e) => setSearchQuery(e.target.value)}
+          />
+        </div>
         <table className="w-full text-left bg">
           <thead>
             <tr className="">
@@ -165,10 +215,10 @@ export const CreatePlayers = () => {
             </tr>
           </thead>
           <tbody>
-            {playerData && playerData.length > 0 ? (
-              playerData.map((player) => (
+            {currentPlayerStats && currentPlayerStats.length > 0 ? (
+              currentPlayerStats.map((player, index) => (
                 <tr key={player.playerName}>
-                  <td className="px-4 py-2">{player.id}</td>
+                  <td className="px-4 py-2">{startIndexOfSN + index + 1}</td>
                   <td className="px-4 py-2">{player.playerName}</td>
                   <td className="px-4 py-2">{player.goal}</td>
                   <td className="px-4 py-2">{player.assist}</td>
@@ -189,6 +239,22 @@ export const CreatePlayers = () => {
             )}
           </tbody>
         </table>
+
+        <section className="flex justify-center">
+          {Array.from({ length: Math.ceil(playerData?.length / playersPerPage) }, (_, i) => (
+            <button
+              key={i}
+              onClick={() => {
+                paginate(i + 1);
+              }}
+              className={`mx-1 px-4 pagination py-2 mt-10 rounded-xl  justify-center ${
+                currentPage === i + 1 ? "bg-blue-500 text-white" : "bg-gray-100 border"
+              }`}
+            >
+              {i + 1}
+            </button>
+          ))}
+        </section>
       </div>
     </section>
   );

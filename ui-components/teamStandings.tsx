@@ -31,7 +31,7 @@ export const TeamStanding = ({
 
   const indexOfLastPlayerStats = currentPage * playersPerPage;
   const indexOfFistPlayerStats = indexOfLastPlayerStats - playersPerPage;
-  const currentPlayerStats = filteredData.slice(indexOfFistPlayerStats, indexOfLastPlayerStats);
+  const currentPlayerStats = filteredData?.slice(indexOfFistPlayerStats, indexOfLastPlayerStats);
   const startIndexOfSN = (currentPage - 1) * playersPerPage;
 
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -39,7 +39,7 @@ export const TeamStanding = ({
   };
 
   return (
-    <div className="overflow-auto md:mx-0 mx-6 w-full flex flex-col absolute top-[0rem] left-0 tablet ">
+    <div className="overflow-auto md:mx-0  w-full flex flex-col absolute top-[0rem] left-0 tablet ">
       <div className="tableu ">
         <table className="table text-left overflow-x-scroll w-full text-nowrap text-sm">
           <caption className="text-2xl font-semibold text-center mb-6 text-slate-400"></caption>
@@ -162,7 +162,7 @@ export const TeamStanding = ({
           <tbody>
             {currentPlayerStats && currentPlayerStats.length > 0 ? (
               currentPlayerStats.map((player, index) => (
-                <tr key={player.playerName} className="even:bg-gray-100 tablet-body">
+                <tr key={player.playerName} className="even:bg-gray-400 tablet-body">
                   <td className="p-2">{startIndexOfSN + index + 1}</td>
                   <td className="p-2">{player.playerName}</td>
                   <td className="p-2">{player.goal}</td>
@@ -187,7 +187,7 @@ export const TeamStanding = ({
                 paginate(i + 1);
               }}
               className={`mx-1 px-4 pagination py-2  rounded-lg ${
-                currentPage === i + 1 ? "bg-blue-500 text-white" : "bg-gray-400 border"
+                currentPage === i + 1 ? "bg-blue-500 text-white" : "bg-gray-100 border"
               }`}
             >
               {i + 1}
