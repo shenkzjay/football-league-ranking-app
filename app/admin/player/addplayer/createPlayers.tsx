@@ -13,12 +13,14 @@ export const CreatePlayers = () => {
   };
 
   const { data } = GetAllPlayersFromApi();
+  // const { data } = GetAllPlayersFromApi();
 
   const playerData: Player[] = data;
 
   const [state, formAction] = useFormState(createPlayer, initialState);
 
   const [currentPlayer, setCurrentPlayer] = useState<Player>();
+
   const [editMode, setEditMode] = useState(false);
 
   const formRef = useRef<HTMLFormElement | null>(null);
@@ -60,6 +62,7 @@ export const CreatePlayers = () => {
     formRef?.current.reset();
     setEditMode(false);
   };
+
   return (
     <section className="flex gap-4 p-4 bg-white h-screen">
       <form
