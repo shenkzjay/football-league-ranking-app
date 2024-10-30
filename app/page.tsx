@@ -73,7 +73,7 @@ export default async function Home() {
     <section>
       <div className="">
         <header className="relative">
-          <div className="bannerbg rounded-xl">
+          <div className="bannerbg w-full h-ful">
             <div className="w-full h-full bg-black/50 absolute top-0"></div>
             <div className="text-3xl font-extrabold flex flex-col justify-center h-full md:w-[80vw] md:mx-auto  mx-6">
               <span className="flex flex-col md:gap-10 z-10 text-white" id="titleEffects">

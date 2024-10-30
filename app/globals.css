@@ -81,13 +81,14 @@ body {
 }
 
 .bannerbg {
-  --bg1: url("/imgs/bg2.jpg") top/cover;
-  --bg2: url("/imgs/bg1.jpg") top/cover;
-  --bg3: url("/imgs/bg-4.jpg") top/cover;
+  --bg1: url("/imgs/bg2.jpg") top/100% 100vh;
+  --bg2: url("/imgs/bg1.jpg") top/100% 100vh;
+  --bg3: url("/imgs/bg-4.jpg") top / 100% 100vh;
   background: var(--bg1);
   background-repeat: no-repeat;
   width: 100%;
   height: 70vh;
+  overflow: hidden;
   /* background-position: 50% 30%; */
   animation: fadeBg 15s linear infinite;
   transition: background-image 2s ease-in-out;
