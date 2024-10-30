@@ -91,6 +91,7 @@ body {
   /* background-position: 50% 30%; */
   animation: fadeBg 15s linear infinite;
   transition: background-image 2s ease-in-out;
+  overflow: auto;
 }
 
 .stars {
