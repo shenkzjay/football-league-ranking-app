@@ -94,28 +94,28 @@ export default async function Home() {
           <div className="grid grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-16 border md:p-6 p-0 rounded-xl">
             <div className=" flex items-center p-10 gap-4 border rounded-xl bg-[#e4e4e4]">
               <FixtureCard
-                home="ARSENAL"
-                away="CHELSEA"
+                home="BARCELONA"
+                away="ARSENAL"
                 time="7:20am"
                 outlineHomeColor="outline-red-500"
                 bgHomeColor="bg-red-500"
                 outlineAwayColor="outline-blue-500"
                 bgAwayColor="bg-blue-500"
-                homeIcon={<Arsenal />}
-                awayIcon={<Chelsea />}
+                homeIcon={<Barca />}
+                awayIcon={<Arsenal />}
               />
             </div>
 
             <div className=" flex items-center p-10 gap-4 border rounded-xl bg-[#e4e4e4]">
               <FixtureCard
-                home="BARCELONA"
+                home="CHELSEA"
                 away="MAN-UTD"
-                time="7:20am"
+                time="8:00am"
                 outlineHomeColor="outline-white"
                 bgHomeColor="bg-white"
                 outlineAwayColor="outline-red-500"
                 bgAwayColor="bg-red-500"
-                homeIcon={<Barca />}
+                homeIcon={<Chelsea />}
                 awayIcon={<ManU />}
               />
             </div>
