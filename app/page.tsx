@@ -74,16 +74,26 @@ export default async function Home() {
       <div className="">
         <header className="relative">
           <div className="bannerbg">
+            <video autoPlay muted loop className=" w-full h-full object-cover" src="/vid/cloud.mp4">
+              <source src="/vid/cloud.mp4" type="video"></source>
+            </video>
             <div className="w-full h-full bg-black/50 absolute top-0"></div>
-            <div className="text-3xl font-extrabold flex flex-col justify-center h-full md:w-[80vw] md:mx-auto  mx-6">
+            <div className="absolute top-0 text-3xl font-extrabold flex flex-col justify-center h-full md:w-[80vw] md:mx-auto  mx-6">
               <span className="flex flex-col md:gap-10 z-10 text-white" id="titleEffects">
-                <p>City United FC</p>
-                <p className="">Unity league cup</p>
+                <p>Man Utd beats Chelsea ⚽️</p>
+                {/* <p className="">Unity league cup</p> */}
               </span>{" "}
-              <p className="text-white text-base z-20 relative mt-6">
-                Get live scores update of thrilling soccer games <br />
-                happening live in the arena of dreams!
-              </p>
+              <ul className="font-normal text-white text-base z-20  mt-10 md:w-1/2 flex flex-col gap-6">
+                <li className="">
+                  In a thrilling encounter, Man Utd edged out their rivals, with{" "}
+                  <i className="font-bold">Engr. Segun&apos;s</i> &nbsp; decisive goal securing
+                  their position at the top of the league.
+                </li>
+                <li>
+                  Barcelona and Arsenal locked horns in a battle of titans, but the match ended in a
+                  frustrating goalless draw.
+                </li>
+              </ul>
               <div className="item"></div>
             </div>
           </div>
