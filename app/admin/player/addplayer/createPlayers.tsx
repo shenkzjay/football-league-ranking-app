@@ -63,10 +63,10 @@ export const CreatePlayers = () => {
     if (editMode && currentPlayer && formRef.current) {
       // Populate form fields with current team data when in edit mode
       formRef.current.playername.value = currentPlayer.playerName;
-      formRef.current.goal.value = currentPlayer.goal;
-      formRef.current.assist.value = currentPlayer.assist;
-      formRef.current.yellowCard.value = currentPlayer.yellowCard;
-      formRef.current.redCard.value = currentPlayer.redCard;
+      // formRef.current.goal.value = currentPlayer.goal;
+      // formRef.current.assist.value = currentPlayer.assist;
+      // formRef.current.yellowCard.value = currentPlayer.yellowCard;
+      // formRef.current.redCard.value = currentPlayer.redCard;
     }
 
     const filteredTeams = playerData?.filter((player) =>

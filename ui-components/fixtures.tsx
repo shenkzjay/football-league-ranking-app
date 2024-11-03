@@ -26,18 +26,22 @@ export const Fixtures = () => {
       fixtureTitle: "City league",
       fixtureDate: "Sunday 14 Oct, 2024",
       fixtureTime: "7:00am",
-      homeTeam: "Team A",
-      awayTeam: "Team C",
-      matchDate: "--/--/--",
+      homeTeam: "BARCELONA",
+      awayTeam: "ARSENAL",
+      matchDate: "03/11/2024",
+      homeTeamScores: "0",
+      awayTeamScores: "0",
     },
 
     {
       fixtureTitle: "City league",
       fixtureDate: "Sunday 14 Oct, 2024",
       fixtureTime: "7:00am",
-      homeTeam: "Team B",
-      awayTeam: "Team C",
-      matchDate: "--/--/--",
+      homeTeam: "CHELSEA",
+      awayTeam: "MAN-UTD",
+      matchDate: "03/11/2024",
+      homeTeamScores: "0",
+      awayTeamScores: "1",
     },
 
     {
@@ -74,12 +78,14 @@ export const Fixtures = () => {
         <button
           key={index}
           className={` child ${
-            index === 0 || index === 1 ? "w-full bg-[#f5f5f5]" : "w-full bg-black"
+            index === 0 || index === 1 || index === 2 || index === 3
+              ? "w-full bg-[#f5f5f5]"
+              : "w-full bg-black"
           } p-4 rounded-xl gap-2 flex flex-col bg-[#262626] w-full`}
         >
           <div
             className={`flex w-full flex-row justify-between text-sm gap-10 ${
-              index === 0 || index === 1 ? "text-black" : "text-white"
+              index === 0 || index === 1 || index == 2 || index === 3 ? "text-black" : "text-white"
             } `}
           >
             {/* <p className="text-nowrap">{fixtures.fixtureTitle}</p> */}
@@ -87,7 +93,7 @@ export const Fixtures = () => {
           </div>
           <div
             className={`flex flex-row justify-between w-full ${
-              index === 0 || index === 1 ? "text-black" : "text-white"
+              index === 0 || index === 1 || index == 2 || index === 3 ? "text-black" : "text-white"
             }`}
           >
             <div className="flex flex-col gap-2 updateScoretxt text-left">
