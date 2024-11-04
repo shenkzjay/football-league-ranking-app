@@ -134,6 +134,7 @@ export default async function Home() {
 
         <section className="md:mx-auto md:w-[80vw]  mx-6 my-24">
           <h3 className="text-2xl font-semibold  mb-6 text-slate-500">Scores update</h3>
+          <p className="text-slate-400 text-center mb-2 italic">← swipe to view more updates →</p>
           <div className="overflow-x-auto">
             <Fixtures />
           </div>

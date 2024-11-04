@@ -39,10 +39,11 @@ export const TeamStanding = ({
   };
 
   return (
-    <div className="overflow-auto md:mx-0  w-full flex flex-col absolute top-[0rem] left-0 tablet ">
-      <div className="tableu ">
+    <div className="overflow-auto md:mx-0 w-full flex flex-col absolute top-[0rem] left-0 tablet ">
+      <div className="tableu">
+        <p className=" text-center italic text-slate-400"> ← swipe to view more →</p>
         <table className="table text-left overflow-x-scroll w-full text-nowrap text-sm">
-          <caption className="text-2xl font-semibold text-center mb-6 text-slate-400"></caption>
+          <caption className=" font-semibold text-left mb-2 text-slate-400"></caption>
           <thead className="">
             <tr className="tablet-row bg-slate-300">
               <th className="p-2">Pos</th>
