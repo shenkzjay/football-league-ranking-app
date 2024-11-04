@@ -73,17 +73,14 @@ export default async function Home() {
     <section>
       <div className="">
         <header className="relative">
-          <div className="bannerbg">
-            <video autoPlay muted loop className=" w-full h-full object-cover" src="/vid/cloud.mp4">
-              <source src="/vid/cloud.mp4" type="video"></source>
-            </video>
-            <div className="w-full h-full bg-black/40 absolute top-0"></div>
-            <div className="absolute top-0 md:left-36 text-3xl font-extrabold flex flex-col justify-center h-full md:w-[80vw] md:mx-auto  mx-6">
-              <span className="flex flex-col md:gap-10 z-10 text-white" id="titleEffects">
-                <p>Man Utd beats Chelsea ⚽️</p>
+          <div className="bannerb flex md:mx-auto md:w-[80vw] mt-20 md:flex-row flex-col justify-between gap-20 mx-6">
+            {/* <div className="w-full h-full bg-black/40 absolute top-0"></div> */}
+            <div className=" md:left-36 text-3xl font-extrabold flex flex-col justify-center h-full md:w-[80vw] md:mx-auto text-black">
+              <span className="flex flex-col md:gap-10 z-10 text-6xl text-wrap">
+                <p>Man Utd beats Chelsea</p>
                 {/* <p className="">Unity league cup</p> */}
               </span>{" "}
-              <ul className="font-normal text-white text-base z-20  mt-10 md:w-1/2 flex flex-col gap-6">
+              <ul className="font-normal  text-base z-20  mt-6 md:w-2/3 flex flex-col gap-6">
                 <li className="">
                   In a thrilling encounter, Man Utd edged out their rivals, with{" "}
                   <i className="font-bold">Engr. Segun&apos;s</i> &nbsp; decisive goal securing
@@ -96,10 +93,21 @@ export default async function Home() {
               </ul>
               <div className="item"></div>
             </div>
+            <div>
+              <video
+                autoPlay
+                muted
+                loop
+                className=" w-full md:h-full h-[30vh] object-cover rounded-xl"
+                src="/vid/cloud.mp4"
+              >
+                <source src="/vid/cloud.mp4" type="video"></source>
+              </video>
+            </div>
           </div>
         </header>
 
-        <section className="mt-12 md:mx-auto md:w-[80vw] mx-4">
+        <section className="mt-24 md:mx-auto md:w-[80vw] mx-4">
           <h2 className="text-2xl font-semibold mb-6 text-slate-500">Fixtures</h2>
           <div className="grid grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-16 border md:p-6 p-0 rounded-xl">
             <div className=" flex items-center p-10 gap-4 border rounded-xl bg-[#e4e4e4]">
