@@ -50,6 +50,13 @@
       "when": 1729605909850,
       "tag": "0006_clumsy_wolverine",
       "breakpoints": true
+    },
+    {
+      "idx": 7,
+      "version": "7",
+      "when": 1730975881980,
+      "tag": "0007_certain_steel_serpent",
+      "breakpoints": true
     }
   ]
 }

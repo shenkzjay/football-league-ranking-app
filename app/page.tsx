@@ -72,8 +72,8 @@ export default async function Home() {
   return (
     <section>
       <div className="">
-        <header className="relative bg-[teal] h-full">
-          <div className="bannerb flex md:mx-auto md:w-[80vw] py-20 md:flex-row flex-col justify-between gap-20 mx-6">
+        <header className="relative bg-[#f4f4f4] h-full">
+          <div className="bannerb flex md:mx-auto md:w-[80vw] md:py-40 py-20 md:flex-row flex-col justify-between gap-20 mx-6">
             {/* <div className="w-full h-full bg-black/40 absolute top-0"></div> */}
             <div className="text-3xl font-extrabold flex flex-col justify-center h-full md:w-[80vw] md:mx-auto text-black">
               <span className="flex flex-col md:gap-10 z-10 md:text-6xl text-3xl text-wrap">

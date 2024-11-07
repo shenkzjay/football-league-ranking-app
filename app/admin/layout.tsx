@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import "@/app/globals.css";
-import { SideMenu } from "@/ui-components/sidemenu";
 import Provider from "../provider";
+import AuthServer from "./auth/authserver";
 
 export const metadata: Metadata = {
   title: "City club league",
@@ -15,12 +15,7 @@ export default function AdminLayout({
 }>) {
   return (
     <Provider>
-      <section className="h-full flex">
-        <div className="w-[15rem] p-6 mt-10">
-          <SideMenu />
-        </div>
-        <div className=" w-full h-screen border bg-[#f5f5f5]">{children}</div>
-      </section>
+      <AuthServer>{children}</AuthServer>
     </Provider>
   );
 }

@@ -47,6 +47,19 @@ export const teamPlayersTable = pgTable("team_and_players", {
     .unique(),
 });
 
+export const userTable = pgTable("users", {
+  id: serial("id").primaryKey(),
+  username: text("username").notNull().unique(),
+  passwordHash: text("password_hash").notNull(),
+  createdAt: timestamp("created_at").notNull().defaultNow(),
+  updatedAt: timestamp("updated_at")
+    .notNull()
+    .$onUpdate(() => new Date()),
+});
+
+export type InsertUser = typeof userTable.$inferInsert;
+export type SelectUser = typeof userTable.$inferSelect;
+
 export type InsertTeam = typeof teamsTable.$inferInsert;
 export type SelectTeam = typeof teamsTable.$inferSelect;
 

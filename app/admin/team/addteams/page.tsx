@@ -1,4 +1,5 @@
 "use client";
+export const dynamic = "force-dynamic";
 
 import { createTeam } from "../../formaction/teamaction/createteam-action";
 import { useFormState } from "react-dom";
