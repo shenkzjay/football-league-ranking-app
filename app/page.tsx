@@ -72,15 +72,14 @@ export default async function Home() {
   return (
     <section>
       <div className="">
-        <header className="relative">
-          <div className="bannerb flex md:mx-auto md:w-[80vw] mt-20 md:flex-row flex-col justify-between gap-20 mx-6">
+        <header className="relative bg-[teal] h-full">
+          <div className="bannerb flex md:mx-auto md:w-[80vw] py-20 md:flex-row flex-col justify-between gap-20 mx-6">
             {/* <div className="w-full h-full bg-black/40 absolute top-0"></div> */}
-            <div className=" md:left-36 text-3xl font-extrabold flex flex-col justify-center h-full md:w-[80vw] md:mx-auto text-black">
-              <span className="flex flex-col md:gap-10 z-10 text-6xl text-wrap">
+            <div className="text-3xl font-extrabold flex flex-col justify-center h-full md:w-[80vw] md:mx-auto text-black">
+              <span className="flex flex-col md:gap-10 z-10 md:text-6xl text-3xl text-wrap">
                 <p>Man Utd beats Chelsea</p>
-                {/* <p className="">Unity league cup</p> */}
               </span>{" "}
-              <ul className="font-normal  text-base z-20  mt-6 md:w-2/3 flex flex-col gap-6">
+              <ul className="font-normal text-base z-20  mt-6 md:w-2/3 flex flex-col gap-5">
                 <li className="">
                   In a thrilling encounter, Man Utd edged out their rivals, with{" "}
                   <i className="font-bold">Engr. Segun&apos;s</i> &nbsp; decisive goal securing
@@ -93,7 +92,7 @@ export default async function Home() {
               </ul>
               <div className="item"></div>
             </div>
-            <div>
+            <div className="w-full">
               <video
                 autoPlay
                 muted
@@ -107,35 +106,37 @@ export default async function Home() {
           </div>
         </header>
 
-        <section className="mt-24 md:mx-auto md:w-[80vw] mx-4">
-          <h2 className="text-2xl font-semibold mb-6 text-slate-500">Fixtures</h2>
-          <div className="grid grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-16 border md:p-6 p-0 rounded-xl">
-            <div className=" flex items-center p-10 gap-4 border rounded-xl bg-[#e4e4e4]">
-              <FixtureCard
-                home="BARCELONA"
-                away="ARSENAL"
-                time="7:20am"
-                outlineHomeColor="outline-red-500"
-                bgHomeColor="bg-red-500"
-                outlineAwayColor="outline-blue-500"
-                bgAwayColor="bg-blue-500"
-                homeIcon={<Barca />}
-                awayIcon={<Arsenal />}
-              />
-            </div>
+        <section className="">
+          <div className="pt-24 md:mx-auto md:w-[80vw] mx-4">
+            <h2 className="text-2xl font-semibold mb-6 text-slate-500">Fixtures</h2>
+            <div className="grid grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-16 border md:p-6 p-0 rounded-xl">
+              <div className=" flex items-center p-10 gap-4 border rounded-xl bg-[#e4e4e4]">
+                <FixtureCard
+                  home="BARCELONA"
+                  away="ARSENAL"
+                  time="7:20am"
+                  outlineHomeColor="outline-red-500"
+                  bgHomeColor="bg-red-500"
+                  outlineAwayColor="outline-blue-500"
+                  bgAwayColor="bg-blue-500"
+                  homeIcon={<Barca />}
+                  awayIcon={<Arsenal />}
+                />
+              </div>
 
-            <div className=" flex items-center p-10 gap-4 border rounded-xl bg-[#e4e4e4]">
-              <FixtureCard
-                home="CHELSEA"
-                away="MAN-UTD"
-                time="8:00am"
-                outlineHomeColor="outline-white"
-                bgHomeColor="bg-white"
-                outlineAwayColor="outline-red-500"
-                bgAwayColor="bg-red-500"
-                homeIcon={<Chelsea />}
-                awayIcon={<ManU />}
-              />
+              <div className=" flex items-center p-10 gap-4 border rounded-xl bg-[#e4e4e4]">
+                <FixtureCard
+                  home="CHELSEA"
+                  away="MAN-UTD"
+                  time="8:00am"
+                  outlineHomeColor="outline-white"
+                  bgHomeColor="bg-white"
+                  outlineAwayColor="outline-red-500"
+                  bgAwayColor="bg-red-500"
+                  homeIcon={<Chelsea />}
+                  awayIcon={<ManU />}
+                />
+              </div>
             </div>
           </div>
         </section>

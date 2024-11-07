@@ -3,6 +3,7 @@ import localFont from "next/font/local";
 import { Courgette } from "next/font/google";
 import "./globals.css";
 import Provider from "./provider";
+import { Analytics } from "@vercel/analytics/react";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -39,6 +40,7 @@ export default function RootLayout({
           className={`${courgette.variable} ${geistSans.variable} ${geistMono.variable}  antialiased`}
         >
           {children}
+          <Analytics />
         </body>
       </html>
     </Provider>
