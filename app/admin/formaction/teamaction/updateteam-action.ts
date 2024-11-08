@@ -18,7 +18,9 @@ export async function updateTeam(teamId: number, formData: FormData) {
     const selectedItems = JSON.parse(selectedItemsJson);
 
     if (!Array.isArray(selectedItems)) {
-      throw new Error("Selected items must be an array");
+      return {
+        message: "Selected items must be an array",
+      };
     }
 
     const updateTeamDetails = {
@@ -34,7 +36,9 @@ export async function updateTeam(teamId: number, formData: FormData) {
       .returning();
 
     if (!result) {
-      throw new Error("Failed to update team or team not found");
+      return {
+        message: "Failed to update team or team not found",
+      };
     }
 
     revalidateTag("teams");

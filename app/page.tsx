@@ -71,11 +71,11 @@ export default async function Home() {
 
   return (
     <section>
-      <div className="">
-        <header className="relative bg-[#f4f4f4] h-full">
+      <div className=" backbg">
+        <header className="relative h-full">
           <div className="bannerb flex md:mx-auto md:w-[80vw] md:py-40 py-20 md:flex-row flex-col justify-between gap-20 mx-6">
             {/* <div className="w-full h-full bg-black/40 absolute top-0"></div> */}
-            <div className="text-3xl font-extrabold flex flex-col justify-center h-full md:w-[80vw] md:mx-auto text-black">
+            <div className="text-3xl font-extrabold flex flex-col justify-center h-full md:w-[80vw] md:mx-auto text-white">
               <span className="flex flex-col md:gap-10 z-10 md:text-6xl text-3xl text-wrap">
                 <p>Man Utd beats Chelsea</p>
               </span>{" "}
@@ -105,74 +105,75 @@ export default async function Home() {
             </div>
           </div>
         </header>
+        <div className="bg-white md:rounded-tl-[10rem] rounded-tl-[5rem] rounded-tr-[5rem] md:rounded-tr-[10rem]">
+          <section className="">
+            <div className="pt-24 md:mx-auto md:w-[80vw] mx-4">
+              <h2 className="text-2xl font-semibold mb-6 text-slate-500">Fixtures</h2>
+              <div className="grid grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-16 border md:p-6 p-0 rounded-xl">
+                <div className=" flex items-center p-10 gap-4 border rounded-xl bg-[#e4e4e4]">
+                  <FixtureCard
+                    home="BARCELONA"
+                    away="ARSENAL"
+                    time="7:20am"
+                    outlineHomeColor="outline-red-500"
+                    bgHomeColor="bg-red-500"
+                    outlineAwayColor="outline-blue-500"
+                    bgAwayColor="bg-blue-500"
+                    homeIcon={<Barca />}
+                    awayIcon={<Arsenal />}
+                  />
+                </div>
 
-        <section className="">
-          <div className="pt-24 md:mx-auto md:w-[80vw] mx-4">
-            <h2 className="text-2xl font-semibold mb-6 text-slate-500">Fixtures</h2>
-            <div className="grid grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-16 border md:p-6 p-0 rounded-xl">
-              <div className=" flex items-center p-10 gap-4 border rounded-xl bg-[#e4e4e4]">
-                <FixtureCard
-                  home="BARCELONA"
-                  away="ARSENAL"
-                  time="7:20am"
-                  outlineHomeColor="outline-red-500"
-                  bgHomeColor="bg-red-500"
-                  outlineAwayColor="outline-blue-500"
-                  bgAwayColor="bg-blue-500"
-                  homeIcon={<Barca />}
-                  awayIcon={<Arsenal />}
-                />
-              </div>
-
-              <div className=" flex items-center p-10 gap-4 border rounded-xl bg-[#e4e4e4]">
-                <FixtureCard
-                  home="CHELSEA"
-                  away="MAN-UTD"
-                  time="8:00am"
-                  outlineHomeColor="outline-white"
-                  bgHomeColor="bg-white"
-                  outlineAwayColor="outline-red-500"
-                  bgAwayColor="bg-red-500"
-                  homeIcon={<Chelsea />}
-                  awayIcon={<ManU />}
-                />
+                <div className=" flex items-center p-10 gap-4 border rounded-xl bg-[#e4e4e4]">
+                  <FixtureCard
+                    home="CHELSEA"
+                    away="MAN-UTD"
+                    time="8:00am"
+                    outlineHomeColor="outline-white"
+                    bgHomeColor="bg-white"
+                    outlineAwayColor="outline-red-500"
+                    bgAwayColor="bg-red-500"
+                    homeIcon={<Chelsea />}
+                    awayIcon={<ManU />}
+                  />
+                </div>
               </div>
             </div>
-          </div>
-        </section>
+          </section>
 
-        <section className="md:mx-auto md:w-[80vw]  mx-6 my-24">
-          <h3 className="text-2xl font-semibold  mb-6 text-slate-500">Scores update</h3>
-          <p className="text-slate-400 text-center mb-2 italic">← swipe to view more updates →</p>
-          <div className="overflow-x-auto">
-            <Fixtures />
-          </div>
-        </section>
+          <section className="md:mx-auto md:w-[80vw]  mx-6 my-24">
+            <h3 className="text-2xl font-semibold  mb-6 text-slate-500">Scores update</h3>
+            <p className="text-slate-400 text-center mb-2 italic">← swipe to view more updates →</p>
+            <div className="overflow-x-auto">
+              <Fixtures />
+            </div>
+          </section>
 
-        <section className=" mt-12 md:mx-auto md:w-[80vw] tabletSection">
-          <div className="flex relative w-full">
-            <input type="radio" name="tabs" id="radio-1" defaultChecked />
-            <label className="" htmlFor="radio-1">
-              League standing
-            </label>
-            <input type="radio" name="tabs" id="radio-2" />
-            <label className="tabs" htmlFor="radio-2">
-              Player statistics
-            </label>
-            <span className="glider"></span>
-            <TeamStanding teamData={teamData} playerData={playerData} />
-          </div>
-        </section>
+          <section className=" mt-12 md:mx-auto md:w-[80vw] tabletSection">
+            <div className="flex relative w-full">
+              <input type="radio" name="tabs" id="radio-1" defaultChecked />
+              <label className="" htmlFor="radio-1">
+                League standing
+              </label>
+              <input type="radio" name="tabs" id="radio-2" />
+              <label className="tabs" htmlFor="radio-2">
+                Player statistics
+              </label>
+              <span className="glider"></span>
+              <TeamStanding teamData={teamData} playerData={playerData} />
+            </div>
+          </section>
 
-        <div className="icon_keys my-20 mx-auto w-[80vw] pt-24">
-          <p>⚽️ - Goal</p>
-          <p>🥾 - assist</p>
-          <p>
-            🟨 - yellow card <i className="text-sm text-slate-500">(NGN 200 fine)</i>
-          </p>
-          <p>
-            🟥 - red card <i className="text-sm text-slate-500">(NGN 500 fine)</i>
-          </p>
+          <div className="icon_keys my-20 mx-auto w-[80vw] pt-24">
+            <p>⚽️ - Goal</p>
+            <p>🥾 - assist</p>
+            <p>
+              🟨 - yellow card <i className="text-sm text-slate-500">(NGN 200 fine)</i>
+            </p>
+            <p>
+              🟥 - red card <i className="text-sm text-slate-500">(NGN 500 fine)</i>
+            </p>
+          </div>
         </div>
       </div>
       {/* <footer className="block mx-auto w-[80vw]  text-center text-slate-400 mt-72 mb-20">

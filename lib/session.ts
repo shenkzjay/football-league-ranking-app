@@ -11,7 +11,7 @@ type SessionData = {
   user: { id: number };
   expires: string;
 };
-
+``;
 export async function hashPassword(password: string) {
   return hash(password, SALT_ROUND);
 }

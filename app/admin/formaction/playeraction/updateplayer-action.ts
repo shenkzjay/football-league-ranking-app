@@ -27,7 +27,9 @@ export async function updatePlayerData(playerId: number, formData: FormData) {
       .then((rows) => rows[0]);
 
     if (!existingPlayerDetails) {
-      throw new Error("Player not found");
+      return {
+        message: "Player not found",
+      };
     }
 
     const result = await db
@@ -49,7 +51,9 @@ export async function updatePlayerData(playerId: number, formData: FormData) {
     //   .returning();
 
     if (!result) {
-      throw new Error("Failed to update team or team not found");
+      return {
+        message: "Failed to update team or team not found",
+      };
     }
 
     revalidateTag("players");

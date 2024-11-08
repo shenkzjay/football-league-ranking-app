@@ -31,7 +31,9 @@ export async function createScores(prevState: unknown, formData: FormData) {
     .where(ilike(teamsTable.title, scoreDetails.awayTeamName));
 
   if (!homeTeam.length || !awayTeam.length) {
-    throw new Error("Team not found");
+    return {
+      message: "Team not found",
+    };
   }
 
   const homeTeamId = homeTeam[0].id;
@@ -43,7 +45,9 @@ export async function createScores(prevState: unknown, formData: FormData) {
   console.log({ homeScoreRecord, awayScoreRecord });
 
   if (!homeScoreRecord.length || !awayScoreRecord.length) {
-    throw new Error("Score record not found for one of the teams");
+    return {
+      message: "Score record not found for one of the teams",
+    };
   }
 
   const homeScoreId = homeScoreRecord[0].id;

@@ -16,7 +16,9 @@ export async function createTeam(prevState: unknown, formData: FormData) {
     const selectedItems = JSON.parse(selectedItemsJson);
 
     if (!Array.isArray(selectedItems)) {
-      throw new Error("Selected items must be an array");
+      return {
+        message: "Selected items must be an array",
+      };
     }
 
     const scores = {
@@ -37,7 +39,9 @@ export async function createTeam(prevState: unknown, formData: FormData) {
       .returning({ id: scoresTable.id });
 
     if (!newScore) {
-      throw new Error("Failed to insert score");
+      return {
+        message: "Failed to insert score",
+      };
     }
 
     const teamDetails: InsertTeam = {
