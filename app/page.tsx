@@ -105,7 +105,7 @@ export default async function Home() {
             </div>
           </div>
         </header>
-        <div className="bg-white md:rounded-tl-[10rem] rounded-tl-[5rem] rounded-tr-[5rem] md:rounded-tr-[10rem]">
+        <div className="bg-white md:rounded-tl-[10rem] rounded-tl-[3rem] rounded-tr-[3rem] md:rounded-tr-[10rem]">
           <section className="">
             <div className="pt-24 md:mx-auto md:w-[80vw] mx-4">
               <h2 className="text-2xl font-semibold mb-6 text-slate-500">Fixtures</h2>
