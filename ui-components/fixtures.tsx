@@ -48,18 +48,22 @@ export const Fixtures = () => {
       fixtureTitle: "City league",
       fixtureDate: "Sunday 14 Oct, 2024",
       fixtureTime: "7:00am",
-      homeTeam: "Team A",
-      awayTeam: "Team D",
-      matchDate: "--/--/--",
+      homeTeam: "MAN-UTD",
+      awayTeam: "ARSENAL",
+      matchDate: "11/10/24",
+      homeTeamScores: "0",
+      awayTeamScores: "0",
     },
 
     {
       fixtureTitle: "City league",
       fixtureDate: "Sunday 14 Oct, 2024",
       fixtureTime: "7:00am",
-      homeTeam: "Team B",
-      awayTeam: "Team D",
-      matchDate: "--/--/--",
+      homeTeam: "CHELSEA",
+      awayTeam: "BARCELONA",
+      matchDate: "11/10/-24",
+      homeTeamScores: "2",
+      awayTeamScores: "0",
     },
 
     {
@@ -78,14 +82,16 @@ export const Fixtures = () => {
         <button
           key={index}
           className={` child ${
-            index === 0 || index === 1 || index === 2 || index === 3
+            index === 0 || index === 1 || index == 2 || index === 3 || index === 4 || index === 5
               ? "w-full bg-[#f5f5f5]"
               : "w-full bg-black"
           } p-4 rounded-xl gap-2 flex flex-col bg-[#262626] w-full`}
         >
           <div
             className={`flex w-full flex-row justify-between text-sm gap-10 ${
-              index === 0 || index === 1 || index == 2 || index === 3 ? "text-black" : "text-white"
+              index === 0 || index === 1 || index == 2 || index === 3 || index === 4 || index === 5
+                ? "text-black"
+                : "text-white"
             } `}
           >
             {/* <p className="text-nowrap">{fixtures.fixtureTitle}</p> */}
@@ -93,7 +99,9 @@ export const Fixtures = () => {
           </div>
           <div
             className={`flex flex-row justify-between w-full ${
-              index === 0 || index === 1 || index == 2 || index === 3 ? "text-black" : "text-white"
+              index === 0 || index === 1 || index == 2 || index === 3 || index === 4 || index === 5
+                ? "text-black"
+                : "text-white"
             }`}
           >
             <div className="flex flex-col gap-2 updateScoretxt text-left">

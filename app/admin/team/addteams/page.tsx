@@ -18,8 +18,6 @@ export default function CreateTeams() {
 
   const teams: TeamDetails[] = teamsData;
 
-  console.log({ teams });
-
   const initialState = {
     message: "",
   };

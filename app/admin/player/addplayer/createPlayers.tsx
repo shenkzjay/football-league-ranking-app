@@ -6,16 +6,38 @@ import { useFormState } from "react-dom";
 import { Player } from "@/types/player";
 import { useState, useRef, useEffect } from "react";
 import { updatePlayerData } from "../../formaction/playeraction/updateplayer-action";
+import { useQueryClient, useMutation } from "@tanstack/react-query";
+
+const DeletePlayerRequest = async (playerId: number) => {
+  const response = await fetch(`http://localhost:3000/api//deleteplayer/${playerId}`, {
+    method: "DELETE",
+  });
+
+  if (!response) {
+    throw new Error("failed to delete player");
+  }
+
+  return response.json();
+};
 
 export const CreatePlayers = () => {
   const initialState = {
     message: "",
   };
 
+  const queryClient = useQueryClient();
+
   const { data } = GetAllPlayersFromApi();
-  // const { data } = GetAllPlayersFromApi();
 
   const players: Player[] = data;
+
+  const mutation = useMutation({
+    mutationFn: DeletePlayerRequest,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["getallplayerapi"] });
+      console.log("Player successfully deleted");
+    },
+  });
 
   const playerData: Player[] = players?.sort((a, b) => {
     if (a.goal !== b.goal) {
@@ -100,6 +122,10 @@ export const CreatePlayers = () => {
 
     formRef?.current.reset();
     setEditMode(false);
+  };
+
+  const handleDeletePlayer = async (player: Player) => {
+    mutation.mutate(player.id);
   };
 
   return (
@@ -228,7 +254,7 @@ export const CreatePlayers = () => {
                     <button onClick={() => handleEditPlayer(player)}>Edit</button>
                   </td>
                   <td className="px-4 py-2">
-                    <button>delete</button>
+                    <button onClick={() => handleDeletePlayer(player)}>delete</button>
                   </td>
                 </tr>
               ))

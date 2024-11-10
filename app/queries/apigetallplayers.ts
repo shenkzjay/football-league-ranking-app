@@ -1,11 +1,11 @@
 "use client";
 
-import { useQuery, useQueryClient } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 
 export const GetAllPlayersFromApi = () => {
-  const queryClient = useQueryClient();
+  // const queryClient = useQueryClient();
 
-  queryClient.invalidateQueries({ queryKey: ["getallplayerapi"] });
+  // queryClient.invalidateQueries({ queryKey: ["getallplayerapi"] });
   return useQuery({
     queryKey: ["getallplayerapi"],
     queryFn: async () => {

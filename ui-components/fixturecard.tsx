@@ -29,7 +29,7 @@ export const FixtureCard = ({
           month: "2-digit",
           day: "2-digit",
         })} */}
-        03/11/2024
+        10/11/2024
       </p>
       <div className="[font-size:clamp(.5rem,2vw,1rem)] flex flex-row justify-between items-center fixtureCard">
         <div className={`flex w-[4em] h-[4em] rounded-xl overflow-hidden `}>{homeIcon}</div>
