@@ -351,3 +351,10 @@ svg {
 
 @keyframes slow {
 }
+
+.wrapper_bg {
+  background: url("/imgs/doodlebg.webp");
+  mix-blend-mode: multiply;
+  filter: blur(1px);
+  opacity: 0.15;
+}

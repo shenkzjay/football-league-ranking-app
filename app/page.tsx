@@ -73,21 +73,24 @@ export default async function Home() {
     <section>
       <div className=" backbg">
         <header className="relative h-full">
+          <div
+            className="wrapper_bg
+       w-full h-[100vh] absolute top-0"
+          ></div>
           <div className="bannerb flex md:mx-auto md:w-[80vw] md:py-40 py-20 md:flex-row flex-col justify-between gap-20 mx-6">
             {/* <div className="w-full h-full bg-black/40 absolute top-0"></div> */}
             <div className="text-3xl font-extrabold flex flex-col justify-center h-full md:w-[80vw] md:mx-auto text-white">
               <span className="flex flex-col md:gap-10 z-10 md:text-6xl text-3xl text-wrap">
-                <p>Man Utd beats Chelsea</p>
+                <p>Messi and Saka the Magic duo</p>
               </span>{" "}
               <ul className="font-normal text-base z-20  mt-6 md:w-2/3 flex flex-col gap-5">
                 <li className="">
-                  In a thrilling encounter, Man Utd edged out their rivals, with{" "}
-                  <i className="font-bold">Engr. Segun&apos;s</i> &nbsp; decisive goal securing
-                  their position at the top of the league.
+                  <i className="font-bold">Messi</i> and <i className="font-bold">Saka</i> recorded
+                  a goal and an assist each as Chelsea thumps Barcelona.
                 </li>
                 <li>
-                  Barcelona and Arsenal locked horns in a battle of titans, but the match ended in a
-                  frustrating goalless draw.
+                  In the other game, Arsenal winless run continues as they were held by Man Utd to a
+                  goalless draw
                 </li>
               </ul>
               <div className="item"></div>
@@ -97,7 +100,7 @@ export default async function Home() {
                 autoPlay
                 muted
                 loop
-                className=" w-full md:h-full h-[30vh] object-cover rounded-xl"
+                className="!z-10   relative w-full md:h-full h-[30vh] object-cover rounded-xl"
                 src="/vid/cloud.mp4"
               >
                 <source src="/vid/cloud.mp4" type="video"></source>
@@ -105,7 +108,7 @@ export default async function Home() {
             </div>
           </div>
         </header>
-        <div className="bg-white md:rounded-tl-[10rem] rounded-tl-[3rem] rounded-tr-[3rem] md:rounded-tr-[10rem]">
+        <div className="z-10 relative bg-white md:rounded-tl-[10rem] rounded-tl-[3rem] rounded-tr-[3rem] md:rounded-tr-[10rem]">
           <section className="">
             <div className="pt-24 md:mx-auto md:w-[80vw] mx-4">
               <h2 className="text-2xl font-semibold mb-6 text-slate-500">Fixtures</h2>
