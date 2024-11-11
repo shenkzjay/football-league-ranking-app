@@ -23,7 +23,7 @@ export async function DeletePlayers(playerId: number) {
     };
   } catch (error) {
     return {
-      message: "Failed to delete player",
+      message: "Failed to delete player " + error,
     };
   }
 }

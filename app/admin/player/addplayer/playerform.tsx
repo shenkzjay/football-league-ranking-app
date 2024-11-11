@@ -2,7 +2,7 @@
 
 import { createPlayer } from "../../formaction/playeraction/createplayer-action";
 import { useFormState } from "react-dom";
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef } from "react";
 import { Player } from "@/types/player";
 
 import { updatePlayerData } from "../../formaction/playeraction/updateplayer-action";
@@ -13,7 +13,7 @@ export const PlayerForm = () => {
   };
 
   const [state, formAction] = useFormState(createPlayer, initialState);
-  const [currentPlayer, setCurrentPlayer] = useState<Player>();
+  const [currentPlayer] = useState<Player>();
 
   const [editMode, setEditMode] = useState(false);
   const formRef = useRef<HTMLFormElement | null>(null);
