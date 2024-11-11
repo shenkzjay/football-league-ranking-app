@@ -2,20 +2,27 @@
 
 import { createPlayer } from "../../formaction/playeraction/createplayer-action";
 import { useFormState } from "react-dom";
-import { useState, useRef } from "react";
+import { useState, useRef, SetStateAction } from "react";
 import { Player } from "@/types/player";
-
 import { updatePlayerData } from "../../formaction/playeraction/updateplayer-action";
 
-export const PlayerForm = () => {
+interface EditProp {
+  editMode: boolean;
+  setEditMode: React.Dispatch<SetStateAction<boolean>>;
+  currentPlayer: Player | null;
+}
+
+export const PlayerForm = ({ editMode, setEditMode, currentPlayer }: EditProp) => {
   const initialState = {
     message: "",
   };
 
   const [state, formAction] = useFormState(createPlayer, initialState);
-  const [currentPlayer] = useState<Player>();
+  //   const [currentPlayer] = useState<Player>();
 
-  const [editMode, setEditMode] = useState(false);
+  console.log({ currentPlayer });
+
+  //   const [editMode, setEditMode] = useState(false);
   const formRef = useRef<HTMLFormElement | null>(null);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -55,6 +62,7 @@ export const PlayerForm = () => {
             type="text"
             name="playername"
             id="playername"
+            defaultValue={currentPlayer?.playerName}
             placeholder="Enter player's name"
             className="border rounded-xl py-2 px-4 w-full"
           />

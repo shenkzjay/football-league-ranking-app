@@ -37,7 +37,7 @@ export const CreatePlayers = async () => {
 
   return (
     <section className="flex gap-4 p-4 bg-white h-screen">
-      <PlayerForm />
+      {/* <PlayerForm /> */}
       <Suspense fallback="Loading..">
         <PlayerList playerDatas={playerData} />
       </Suspense>
