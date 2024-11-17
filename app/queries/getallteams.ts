@@ -36,6 +36,6 @@ export const getAllTeams = unstable_cache(
   ["all-teams"],
   {
     tags: ["teams"],
-    revalidate: 3600,
+    // revalidate: 3600,
   }
 );
