@@ -2,7 +2,7 @@
 
 import { createPlayer } from "../../formaction/playeraction/createplayer-action";
 import { useFormState } from "react-dom";
-import { useState, useRef, SetStateAction } from "react";
+import { useRef, SetStateAction } from "react";
 import { Player } from "@/types/player";
 import { updatePlayerData } from "../../formaction/playeraction/updateplayer-action";
 

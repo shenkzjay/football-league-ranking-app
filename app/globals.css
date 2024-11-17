@@ -279,6 +279,16 @@ input[id="radio-2"]:checked ~ div > .tab2 {
     width: 40vw !important;
   }
 
+  .cardscroll {
+    view-timeline: --viewscroll;
+  }
+
+  .fixcardscroll {
+    animation: move 1s both;
+    animation-timeline: --viewscroll;
+    animation-range: calc((var(--c) - 1) * 50%) calc(var(--c) * 10% + 1px);
+  }
+
   /* .bannerbg {
     --bg1: url("/imgs/bg2.jpg") top/140% 100%;
     --bg2: url("/imgs/bg1.jpg") top/140% 100%;
@@ -357,4 +367,10 @@ svg {
   mix-blend-mode: multiply;
   filter: blur(1px);
   opacity: 0.15;
+}
+
+@keyframes move {
+  to {
+    transform: translateX(calc(-100vw - 220%));
+  }
 }

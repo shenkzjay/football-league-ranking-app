@@ -1,7 +1,7 @@
 // import { GetAllPlayersFromApi } from "@/app/queries/apigetallplayers";
 
 import { getAllPlayers } from "@/app/queries/getallplayers";
-import { PlayerForm } from "./playerform";
+// import { PlayerForm } from "./playerform";
 import { PlayerList } from "./playerList";
 import { Player } from "@/types/player";
 import { Suspense } from "react";

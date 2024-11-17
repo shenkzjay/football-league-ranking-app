@@ -81,16 +81,17 @@ export default async function Home() {
             {/* <div className="w-full h-full bg-black/40 absolute top-0"></div> */}
             <div className="text-3xl font-extrabold flex flex-col justify-center h-full md:w-[80vw] md:mx-auto text-white">
               <span className="flex flex-col md:gap-10 z-10 md:text-6xl text-3xl text-wrap">
-                <p>Messi and Saka the Magic duo</p>
+                <p>Abdul with a brace to bury abysmal Arsenal!</p>
               </span>{" "}
               <ul className="font-normal text-base z-20  mt-6 md:w-2/3 flex flex-col gap-5">
                 <li className="">
-                  <i className="font-bold">Messi</i> and <i className="font-bold">Saka</i> recorded
-                  a goal and an assist each as Chelsea thumps Barcelona.
+                  <i className="font-bold">Abdul</i> put in a man of the match performance to grab
+                  two goals against a toothless Arsenal team.
                 </li>
                 <li>
-                  In the other game, Arsenal winless run continues as they were held by Man Utd to a
-                  goalless draw
+                  In the other game, <i className="font-bold">Messi</i> and{" "}
+                  <i className="font-bold">Saka</i> led an exciting comeback in a fiercely contested
+                  fixture against Barcelona.
                 </li>
               </ul>
               <div className="item"></div>
@@ -147,8 +148,10 @@ export default async function Home() {
           <section className="md:mx-auto md:w-[80vw]  mx-6 my-24">
             <h3 className="text-2xl font-semibold  mb-6 text-slate-500">Scores update</h3>
             <p className="text-slate-400 text-center mb-2 italic">← swipe to view more updates →</p>
-            <div className="overflow-x-auto">
-              <Fixtures />
+            <div className="overflow-x-auto cardscroll ">
+              <div className="fixcardscroll">
+                <Fixtures />
+              </div>
             </div>
           </section>
 

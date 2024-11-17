@@ -3,6 +3,7 @@
 import { useFormState } from "react-dom";
 import { useState, useEffect } from "react";
 import { createScores } from "../formaction/scoreaction/createscore-action";
+// import { revertScores } from "../formaction/scoreaction/createscore-action";
 import { GetAllTeamFromApi } from "@/app/queries/apigetallteams";
 import { Team } from "@/types/team";
 
@@ -17,6 +18,7 @@ export const CreateScores = () => {
   const [selectAwayTeam, setSelectAwayTeam] = useState("");
   const [homeTeamScores, setHomeTeamScores] = useState("");
   const [awayTeamScores, setAwayTeamScores] = useState("");
+  // const [isLoading, setIsLoading] = useState(false);
   // const [teamName, setTeamName] = useState([]);
   const [availableteams, setSelectAvailableTeam] = useState<string[]>([]);
   const [state, formAction] = useFormState(createScores, initialState);
@@ -212,7 +214,9 @@ export const CreateScores = () => {
                 )}
               </div>
             </div>
+
             <button className="py-2 mt-4 px-4 bg-black rounded-xl text-white">Update scores</button>
+
             <p>{state?.message}</p>
           </fieldset>
         </form>

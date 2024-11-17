@@ -180,7 +180,7 @@ export const TeamStanding = ({
           </tbody>
         </table>
 
-        <div className="mt-4 flex justify-center gap-4">
+        <div className="mt-4 flex justify-center gap-2 md:gao-4">
           {Array.from({ length: Math.ceil(playerData.length / playersPerPage) }, (_, i) => (
             <button
               key={i}
