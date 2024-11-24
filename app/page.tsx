@@ -81,7 +81,7 @@ export default async function Home() {
   const generateRandomSpeed = () => {
     return Math.random() * 10 + 5; // Speed between 2s and 5s
   };
-  const generateRandomPosition = () => Math.random() * 90; // Position between 0% and 100%
+  const generateRandomPosition = () => Math.random() * 80; // Position between 0% and 100%
 
   const balloons = Array.from({ length: 20 }, (_, index) => ({
     id: index,
