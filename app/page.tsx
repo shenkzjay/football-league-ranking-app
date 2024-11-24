@@ -69,10 +69,54 @@ export default async function Home() {
   //   router.push(`/team/${teamId}`);
   // };
 
+  const generateRandomColor = () => {
+    const letters = "0123456789ABCDEF";
+    let color = "#";
+    for (let i = 0; i < 6; i++) {
+      color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
+  };
+
+  const generateRandomSpeed = () => {
+    return Math.random() * 10 + 5; // Speed between 2s and 5s
+  };
+  const generateRandomPosition = () => Math.random() * 100; // Position between 0% and 100%
+
+  const balloons = Array.from({ length: 20 }, (_, index) => ({
+    id: index,
+    color: generateRandomColor(),
+    speed: generateRandomSpeed(),
+    position: generateRandomPosition(),
+  }));
+
   return (
     <section>
       <div className=" backbg">
         <header className="relative h-full">
+          {balloons.map((balloon) => (
+            <div
+              key={balloon.id}
+              className="balloon-container"
+              style={{
+                animationDuration: `${balloon.speed}s`,
+                left: `${balloon.position}%`,
+              }}
+            >
+              <div
+                className="balloon"
+                style={{
+                  backgroundColor: balloon.color,
+                }}
+              />
+              <div
+                className="stem"
+                style={{
+                  borderColor: `transparent transparent ${balloon.color}  transparent`,
+                }}
+              />
+            </div>
+          ))}
           <div
             className="wrapper_bg
        w-full h-[100vh] absolute top-0"
@@ -81,17 +125,18 @@ export default async function Home() {
             {/* <div className="w-full h-full bg-black/40 absolute top-0"></div> */}
             <div className="text-3xl font-extrabold flex flex-col justify-center h-full md:w-[80vw] md:mx-auto text-white">
               <span className="flex flex-col md:gap-10 z-10 md:text-6xl text-3xl text-wrap">
-                <p>Abdul with a brace to bury abysmal Arsenal!</p>
+                <p>Jagaban too hot for Arsenal!</p>
               </span>{" "}
               <ul className="font-normal text-base z-20  mt-6 md:w-2/3 flex flex-col gap-5">
                 <li className="">
-                  <i className="font-bold">Abdul</i> put in a man of the match performance to grab
-                  two goals against a toothless Arsenal team.
+                  <i className="font-bold">Jagaban - The Birthday Boy</i> 🎉🥳🎉 - scored a brace to
+                  dent Arsenal&apos;s hope of ending their winless run.
                 </li>
                 <li>
-                  In the other game, <i className="font-bold">Messi</i> and{" "}
-                  <i className="font-bold">Saka</i> led an exciting comeback in a fiercely contested
-                  fixture against Barcelona.
+                  In the other game, both teams shared points as a goal from{" "}
+                  <i className="font-bold">Senior man</i> cancelled out{" "}
+                  <i className="font-bold">Gbolahan&apos;s</i> initial effort in what was a
+                  pulsating encounter.
                 </li>
               </ul>
               <div className="item"></div>
@@ -102,7 +147,7 @@ export default async function Home() {
                 muted
                 loop
                 className="!z-10   relative w-full md:h-full h-[30vh] object-cover rounded-xl"
-                src="/vid/cloud.mp4"
+                src="/vid/telegram2.mp4"
               >
                 <source src="/vid/cloud.mp4" type="video"></source>
               </video>
@@ -117,27 +162,27 @@ export default async function Home() {
                 <div className=" flex items-center p-10 gap-4 border rounded-xl bg-[#e4e4e4]">
                   <FixtureCard
                     home="MAN-UTD"
-                    away="ARSENAL"
+                    away="CHELSEA"
                     time="7:20am"
                     outlineHomeColor="outline-red-500"
                     bgHomeColor="bg-red-500"
                     outlineAwayColor="outline-blue-500"
                     bgAwayColor="bg-blue-500"
                     homeIcon={<ManU />}
-                    awayIcon={<Arsenal />}
+                    awayIcon={<Chelsea />}
                   />
                 </div>
 
                 <div className=" flex items-center p-10 gap-4 border rounded-xl bg-[#e4e4e4]">
                   <FixtureCard
-                    home="CHELSEA"
+                    home="ARSENAL"
                     away="BARCELONA "
                     time="8:00am"
                     outlineHomeColor="outline-white"
                     bgHomeColor="bg-white"
                     outlineAwayColor="outline-red-500"
                     bgAwayColor="bg-red-500"
-                    homeIcon={<Chelsea />}
+                    homeIcon={<Arsenal />}
                     awayIcon={<Barca />}
                   />
                 </div>

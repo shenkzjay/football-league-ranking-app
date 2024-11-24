@@ -89,17 +89,38 @@ export const Fixtures = () => {
       homeTeamScores: "2",
       awayTeamScores: "1",
     },
+    {
+      fixtureTitle: "City league",
+      fixtureDate: "Sunday 14 Oct, 2024",
+      fixtureTime: "7:00am",
+      homeTeam: "MAN-U",
+      awayTeam: "CHELSEA",
+      matchDate: "17/10/24",
+      homeTeamScores: "1",
+      awayTeamScores: "1",
+    },
+
+    {
+      fixtureTitle: "City league",
+      fixtureDate: "Sunday 14 Oct, 2024",
+      fixtureTime: "7:00am",
+      homeTeam: "BARCELONA",
+      awayTeam: "ARSENAL",
+      matchDate: "17/10/24",
+      homeTeamScores: "3",
+      awayTeamScores: "0",
+    },
   ];
 
   return (
-    <div className="flex w-full gap-6  fixCard">
+    <div className="flex w-full gap-4 fixCard">
       {fixturesData.map((fixtures, index) => {
-        const isHighlighted = index < 8;
+        const isHighlighted = index < 10;
         return (
           <button
             key={index}
             style={{ "--c": index + 1 } as CSSProperties}
-            className={` child   ${
+            className={` child text-nowrap  ${
               isHighlighted ? "w-full bg-[#f5f5f5]" : "w-full bg-black"
             } p-4 rounded-xl gap-2 flex flex-col bg-[#262626] w-full`}
           >
@@ -116,7 +137,7 @@ export const Fixtures = () => {
                 isHighlighted ? "text-black" : "text-white"
               }`}
             >
-              <div className="flex flex-col gap-2 updateScoretxt text-left">
+              <div className="flex flex-col gap-2 updateScoretxt text-left ">
                 <div className="text-xs text-slate-500">{fixtures.matchDate}</div>
                 <div className="flex items-center ">
                   <h4>{fixtures.homeTeam}</h4>
