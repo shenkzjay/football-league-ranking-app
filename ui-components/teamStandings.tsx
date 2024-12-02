@@ -42,10 +42,10 @@ export const TeamStanding = ({
     <div className="overflow-auto md:mx-0 w-full flex flex-col absolute top-[0rem] left-0 tablet ">
       <div className="tableu">
         <p className=" text-center italic text-slate-400"> ← swipe to view more →</p>
-        <table className="table text-left overflow-x-scroll w-full text-nowrap text-sm">
-          <caption className=" font-semibold text-left mb-2 text-slate-400"></caption>
+        <table className="table text-left overflow-x-scroll w-full text-nowrap text-sm text-white">
+          <caption className=" font-semibold text-left mb-2 "></caption>
           <thead className="">
-            <tr className="tablet-row bg-slate-300">
+            <tr className="tablet-row !bg-slate-300">
               <th className="p-2">Pos</th>
               <th className="p-2">Team</th>
               <th className="p-2">P</th>
@@ -62,8 +62,8 @@ export const TeamStanding = ({
           <tbody>
             {teamData && teamData.length > 0 ? (
               teamData.map((teams, index) => (
-                <tr key={teams.teamId} className="even:bg-gray-100 tablet-body">
-                  <td className="p-2">{index + 1}</td>
+                <tr key={teams.teamId} className={`${index === 0 ? " tablecolor" : ""}`}>
+                  <td className={`p-2 `}>{index === 0 ? "🏆" : index + 1}</td>
                   <td className="p-2">{teams.title}</td>
                   <td className="p-2">{teams.gamesPlayed}</td>
                   <td className="p-2">{teams.gamesWon}</td>
@@ -148,7 +148,7 @@ export const TeamStanding = ({
             onChange={handleSearch}
           />
         </div>
-        <table className=" text-left w-full">
+        <table className=" text-left w-full text-white">
           <caption className="text-2xl font-semibold text-center mb-6 text-slate-400"></caption>
           <thead className="bg-slate-300">
             <tr className="">
@@ -163,7 +163,7 @@ export const TeamStanding = ({
           <tbody>
             {currentPlayerStats && currentPlayerStats.length > 0 ? (
               currentPlayerStats.map((player, index) => (
-                <tr key={player.playerName} className="even:bg-gray-400 tablet-body">
+                <tr key={player.playerName} className={`${index === 0 ? "tablecolor" : ""}`}>
                   <td className="p-2">{startIndexOfSN + index + 1}</td>
                   <td className="p-2">{player.playerName}</td>
                   <td className="p-2">{player.goal}</td>

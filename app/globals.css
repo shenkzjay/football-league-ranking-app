@@ -192,11 +192,12 @@ label {
   border-radius: 99px;
   cursor: pointer;
   transition: color 0.15s ease-in;
+  color: white;
 }
 
 input[type="radio"]:checked + label {
   color: white !important;
-  background-color: black;
+  background-color: #6c799a;
 }
 
 input[id="radio-1"]:checked ~ .glider {
@@ -216,7 +217,7 @@ input[id="radio-2"]:checked ~ .glider {
   display: flex;
   height: 54px;
   width: 200px;
-  background-color: black;
+  background-color: #6c799a;
   z-index: -1;
   border-radius: 99px;
   transition: 0.25s ease-out;
@@ -230,6 +231,12 @@ input[id="radio-2"]:checked ~ .glider {
 input[id="radio-1"]:checked ~ div > .tableu,
 input[id="radio-2"]:checked ~ div > .tab2 {
   display: block;
+}
+
+.tablecolor {
+  color: white;
+  background-color: green;
+  border-radius: 20px;
 }
 
 @media screen and (max-width: 800px) {
@@ -258,6 +265,7 @@ input[id="radio-2"]:checked ~ div > .tab2 {
 
   .tabletSection {
     padding: 0 24px;
+    height: 40vh !important;
   }
 
   .updateScoretxt {
@@ -301,7 +309,7 @@ input[id="radio-2"]:checked ~ div > .tab2 {
 }
 
 .tabletSection {
-  height: 60vh !important;
+  height: 50vh !important;
 }
 
 .icon_keys {
@@ -354,7 +362,7 @@ svg {
   background: radial-gradient(ellipse at right, rgba(255, 165, 0, 0.5) 10%, transparent 50%) 100% -15% /
       100vmin 70vmin,
     radial-gradient(ellipse at left, orange 10%, transparent 50%),
-    linear-gradient(90deg, #125354, #174a4b);
+    linear-gradient(90deg, #1c294c, #262626);
   background-repeat: no-repeat;
   animation: slow 5s linear infinite;
 }
@@ -389,6 +397,40 @@ svg {
   border-width: 0 10px 20px 10px; /* Triangle dimensions */
 }
 
+.footerbg {
+  background-color: rgba(255, 255, 255, 0.3);
+  filter: blur(20px) contrast(1px);
+  border-radius: 9999px;
+}
+
+.lineflow {
+  position: relative;
+
+  overflow: hidden;
+}
+
+.lineflow::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+      45deg,
+      transparent 40%,
+      rgba(255, 255, 255, 0.1) 10% 50%,
+      transparent 50%
+    ),
+    linear-gradient(45deg, transparent 55%, rgba(255, 255, 255, 0.1) 10% 65%, transparent 65%);
+  background-repeat: no-repeat;
+  animation: slidethrough 5s linear infinite;
+}
+
+.animatecup {
+  animation: animatecup 1s linear infinite;
+}
+
 @keyframes slideUp {
   0% {
     transform: translateY(0);
@@ -399,6 +441,24 @@ svg {
 }
 
 @keyframes slow {
+}
+
+@keyframes slidethrough {
+  from {
+    background-position: -250px;
+  }
+  to {
+    background-position: 250px;
+  }
+}
+
+@keyframes animatecup {
+  0% {
+    transform: scale(0.5);
+  }
+  100% {
+    transform: scale(0.5);
+  }
 }
 
 .wrapper_bg {

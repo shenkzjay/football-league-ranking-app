@@ -85,7 +85,7 @@ export const Fixtures = () => {
       fixtureTime: "7:00am",
       homeTeam: "CHELSEA",
       awayTeam: "BARCELONA",
-      matchDate: "17/10/24",
+      matchDate: "17/11/24",
       homeTeamScores: "2",
       awayTeamScores: "1",
     },
@@ -95,7 +95,7 @@ export const Fixtures = () => {
       fixtureTime: "7:00am",
       homeTeam: "MAN-U",
       awayTeam: "CHELSEA",
-      matchDate: "17/10/24",
+      matchDate: "24/11/24",
       homeTeamScores: "1",
       awayTeamScores: "1",
     },
@@ -106,8 +106,29 @@ export const Fixtures = () => {
       fixtureTime: "7:00am",
       homeTeam: "BARCELONA",
       awayTeam: "ARSENAL",
-      matchDate: "17/10/24",
+      matchDate: "24/11/24",
       homeTeamScores: "3",
+      awayTeamScores: "0",
+    },
+    {
+      fixtureTitle: "City league",
+      fixtureDate: "Sunday 14 Oct, 2024",
+      fixtureTime: "7:00am",
+      homeTeam: "MAN-U",
+      awayTeam: "BARCELONA",
+      matchDate: "1/12/24",
+      homeTeamScores: "0",
+      awayTeamScores: "0",
+    },
+
+    {
+      fixtureTitle: "City league",
+      fixtureDate: "Sunday 14 Oct, 2024",
+      fixtureTime: "7:00am",
+      homeTeam: "CHELSEA",
+      awayTeam: "ARSENAL",
+      matchDate: "1/12/24",
+      homeTeamScores: "0",
       awayTeamScores: "0",
     },
   ];
@@ -115,7 +136,7 @@ export const Fixtures = () => {
   return (
     <div className="flex w-full gap-4 fixCard">
       {fixturesData.map((fixtures, index) => {
-        const isHighlighted = index < 10;
+        const isHighlighted = index < 12;
         return (
           <button
             key={index}

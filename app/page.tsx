@@ -69,32 +69,36 @@ export default async function Home() {
   //   router.push(`/team/${teamId}`);
   // };
 
-  const generateRandomColor = () => {
-    const letters = "0123456789ABCDEF";
-    let color = "#";
-    for (let i = 0; i < 6; i++) {
-      color += letters[Math.floor(Math.random() * 16)];
-    }
-    return color;
-  };
+  // const generateRandomColor = () => {
+  //   const letters = "0123456789ABCDEF";
+  //   let color = "#";
+  //   for (let i = 0; i < 6; i++) {
+  //     color += letters[Math.floor(Math.random() * 16)];
+  //   }
+  //   return color;
+  // };
 
-  const generateRandomSpeed = () => {
-    return Math.random() * 10 + 5; // Speed between 2s and 5s
-  };
-  const generateRandomPosition = () => Math.random() * 80; // Position between 0% and 100%
+  // const generateRandomSpeed = () => {
+  //   return Math.random() * 10 + 5; // Speed between 2s and 5s
+  // };
+  // const generateRandomPosition = () => Math.random() * 80; // Position between 0% and 100%
 
-  const balloons = Array.from({ length: 20 }, (_, index) => ({
-    id: index,
-    color: generateRandomColor(),
-    speed: generateRandomSpeed(),
-    position: generateRandomPosition(),
-  }));
+  // const balloons = Array.from({ length: 20 }, (_, index) => ({
+  //   id: index,
+  //   color: generateRandomColor(),
+  //   speed: generateRandomSpeed(),
+  //   position: generateRandomPosition(),
+  // }));
 
   return (
     <section>
-      <div className=" backbg">
+      <div className="relative backb bg-[#192544] ">
+        <div
+          className="wrapper_bg
+       w-full h-full absolute top-0"
+        ></div>
         <header className="relative h-full">
-          {balloons.map((balloon) => (
+          {/* {balloons.map((balloon) => (
             <div
               key={balloon.id}
               className="balloon-container"
@@ -116,27 +120,27 @@ export default async function Home() {
                 }}
               />
             </div>
-          ))}
-          <div
-            className="wrapper_bg
-       w-full h-[100vh] absolute top-0"
-          ></div>
+          ))} */}
+
           <div className="bannerb flex md:mx-auto md:w-[80vw] md:py-40 py-20 md:flex-row flex-col justify-between gap-20 mx-6">
             {/* <div className="w-full h-full bg-black/40 absolute top-0"></div> */}
             <div className="text-3xl font-extrabold flex flex-col justify-center h-full md:w-[80vw] md:mx-auto text-white">
+              <div className="w-fit lineflow footerbg flex text-white font-normal text-sm py-2 px-6 mb-6 rounded-full outline outline-[1px] outline-slate-400">
+                {" "}
+                <p>City United league cup 🏆</p>
+              </div>
               <span className="flex flex-col md:gap-10 z-10 md:text-6xl text-3xl text-wrap">
-                <p>Jagaban too hot for Arsenal!</p>
+                <p>Man Utd wins the league! 🏆</p>
               </span>{" "}
               <ul className="font-normal text-base z-20  mt-6 md:w-2/3 flex flex-col gap-5">
                 <li className="">
-                  <i className="font-bold">Jagaban - The Birthday Boy</i> 🎉🥳🎉 - scored a brace to
-                  dent Arsenal&apos;s hope of ending their winless run.
+                  A point was enough for <i className="font-bold">Man Utd</i> to become champions of
+                  the 2024 City United League Cup. Capping a fine outing that made them unbeaten
+                  throughout the tornament
                 </li>
                 <li>
-                  In the other game, both teams shared points as a goal from{" "}
-                  <i className="font-bold">Senior man</i> cancelled out{" "}
-                  <i className="font-bold">Gbolahan&apos;s</i> initial effort in what was a
-                  pulsating encounter.
+                  The other game ended in a goalless draw. Arsenal couldn't break their winless
+                  streak through the entire campaign
                 </li>
               </ul>
               <div className="item"></div>
@@ -154,9 +158,9 @@ export default async function Home() {
             </div>
           </div>
         </header>
-        <div className="z-10 relative bg-white md:rounded-tl-[10rem] rounded-tl-[3rem] rounded-tr-[3rem] md:rounded-tr-[10rem]">
+        <div className="z-10 relative bg-transparent ">
           <section className="">
-            <div className="pt-24 md:mx-auto md:w-[80vw] mx-4">
+            <div className="pt-0 md:mx-auto md:w-[80vw] mx-4">
               <h2 className="text-2xl font-semibold mb-6 text-slate-500">Fixtures</h2>
               <div className="grid grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-16 border md:p-6 p-0 rounded-xl">
                 <div className=" flex items-center p-10 gap-4 border rounded-xl bg-[#e4e4e4]">
@@ -190,17 +194,17 @@ export default async function Home() {
             </div>
           </section>
 
-          <section className="md:mx-auto md:w-[80vw]  mx-6 my-24">
+          <section className="md:mx-auto md:w-[80vw]  mx-6 my-32">
             <h3 className="text-2xl font-semibold  mb-6 text-slate-500">Scores update</h3>
             <p className="text-slate-400 text-center mb-2 italic">← swipe to view more updates →</p>
-            <div className="overflow-x-auto cardscroll ">
-              <div className="fixcardscroll">
+            <div className="overflow-x-auto cardscrol ">
+              <div className="fixcardscrol">
                 <Fixtures />
               </div>
             </div>
           </section>
 
-          <section className=" mt-12 md:mx-auto md:w-[80vw] tabletSection">
+          <section className="md:mx-auto md:w-[80vw] tabletSection  px-6 justify-center">
             <div className="flex relative w-full">
               <input type="radio" name="tabs" id="radio-1" defaultChecked />
               <label className="" htmlFor="radio-1">
@@ -215,7 +219,7 @@ export default async function Home() {
             </div>
           </section>
 
-          <div className="icon_keys my-20 mx-auto w-[80vw] pt-24">
+          <div className="icon_keys py-20 mx-auto w-[80vw] md:pt-24 text-white">
             <p>⚽️ - Goal</p>
             <p>🥾 - assist</p>
             <p>
