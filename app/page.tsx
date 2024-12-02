@@ -4,14 +4,12 @@ import { getAllPlayers } from "./queries/getallplayers";
 // import { Fixtures } from "@/ui-components/fixtures";
 import { TeamStanding } from "@/ui-components/teamStandings";
 import { TeamDetails } from "@/types/team";
-import { FixtureCard } from "@/ui-components/fixturecard";
 import { Fixtures } from "@/ui-components/fixtures";
 import { Player } from "@/types/player";
-import { Arsenal } from "@/public/svg/arsenal";
-import { Chelsea } from "@/public/svg/chelsea";
-import { ManU } from "@/public/svg/manU";
-// import { RealMadrid } from "@/public/svg/realmadrid";
-import { Barca } from "@/public/svg/barca";
+import Final from "@/public/imgs/final.jpeg";
+import Image from "next/image";
+
+import Memories from "@/ui-components/swiper";
 
 export default async function Home() {
   const data = await getAllTeams();
@@ -97,7 +95,7 @@ export default async function Home() {
           className="wrapper_bg
        w-full h-full absolute top-0"
         ></div>
-        <header className="relative h-full">
+        <header className="relative h-full overflow-hidden">
           {/* {balloons.map((balloon) => (
             <div
               key={balloon.id}
@@ -122,7 +120,7 @@ export default async function Home() {
             </div>
           ))} */}
 
-          <div className="bannerb flex md:mx-auto md:w-[80vw] md:py-40 py-20 md:flex-row flex-col justify-between gap-20 mx-6">
+          <div className="bannerb flex md:mx-auto md:w-[80vw] md:py-40 py-20 md:flex-row flex-col justify-between gap-20 mx-6 ">
             {/* <div className="w-full h-full bg-black/40 absolute top-0"></div> */}
             <div className="text-3xl font-extrabold flex flex-col justify-center h-full md:w-[80vw] md:mx-auto text-white">
               <div className="w-fit lineflow footerbg flex text-white font-normal text-sm py-2 px-6 mb-6 rounded-full outline outline-[1px] outline-slate-400">
@@ -146,23 +144,27 @@ export default async function Home() {
               <div className="item"></div>
             </div>
             <div className="w-full">
-              <video
-                autoPlay
-                muted
-                loop
-                className="!z-10   relative w-full md:h-full h-[30vh] object-cover rounded-xl"
-                src="/vid/telegram2.mp4"
-              >
-                <source src="/vid/cloud.mp4" type="video"></source>
-              </video>
+              <div className="outline mx-0 outline-white outline-[1rem] [transform:rotate(5deg)] imgshadow ">
+                <Image
+                  src={Final}
+                  width={500}
+                  height={100}
+                  quality={80}
+                  priority
+                  alt="image of winners showcasing their medals"
+                  className="w-full md:h-[55vh] h-[40vh] object-cover object-center relative"
+                />
+              </div>
             </div>
           </div>
         </header>
         <div className="z-10 relative bg-transparent ">
           <section className="">
-            <div className="pt-0 md:mx-auto md:w-[80vw] mx-4">
-              <h2 className="text-2xl font-semibold mb-6 text-slate-500">Fixtures</h2>
-              <div className="grid grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-16 border md:p-6 p-0 rounded-xl">
+            <div className="pt-24 md:pt-0 md:mx-auto md:w-[80vw] mx-4">
+              <h2 className="text-2xl font-semibold mb-6 text-slate-500">
+                Highlights of City united league cup 2024
+              </h2>
+              {/* <div className="grid grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-16 border md:p-6 p-0 rounded-xl">
                 <div className=" flex items-center p-10 gap-4 border rounded-xl bg-[#e4e4e4]">
                   <FixtureCard
                     home="MAN-UTD"
@@ -190,7 +192,8 @@ export default async function Home() {
                     awayIcon={<Barca />}
                   />
                 </div>
-              </div>
+              </div> */}
+              <Memories />
             </div>
           </section>
 
