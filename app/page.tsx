@@ -137,7 +137,7 @@ export default async function Home() {
                   throughout the tornament
                 </li>
                 <li>
-                  The other game ended in a goalless draw. Arsenal couldn't break their winless
+                  The other game ended in a goalless draw. Arsenal couldn&apos;t break their winless
                   streak through the entire campaign
                 </li>
               </ul>
