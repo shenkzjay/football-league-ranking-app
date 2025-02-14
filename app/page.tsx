@@ -1,242 +1,101 @@
-import { getAllTeams } from "@/app/queries/getallteams";
-import { getAllPlayers } from "./queries/getallplayers";
-// import Link from "next/link";
-// import { Fixtures } from "@/ui-components/fixtures";
-import { TeamStanding } from "@/ui-components/teamStandings";
-import { TeamDetails } from "@/types/team";
-import { Fixtures } from "@/ui-components/fixtures";
-import { Player } from "@/types/player";
-import Final from "@/public/imgs/final.jpeg";
 import Image from "next/image";
+import Final from "@/public/imgs/final.jpeg";
+import BlogLayout from "./blog-layout";
 
-import Memories from "@/ui-components/swiper";
-
-export default async function Home() {
-  const data = await getAllTeams();
-
-  const players = await getAllPlayers();
-
-  const playerData: Player[] =
-    players?.sort((a, b) => {
-      //sort goal in descending order
-      if (b.goal !== a.goal) {
-        return b.goal - a.goal;
-      }
-
-      //if goals are equal, sort by assist in decending order
-      if (b.assist !== a.assist) {
-        return b.assist - a.assist;
-      }
-
-      //if goals and assist are equal, sort by yellowcard in descending order
-      if (b.yellowCard !== a.yellowCard) {
-        return b.yellowCard - a.yellowCard;
-      }
-
-      //if goals, assists and yellowcard are equal, sort by redCard in descending order
-      if (b.redCard !== a.redCard) {
-        return b.redCard - a.redCard;
-      }
-
-      // Push players with zero stats to the bottom
-      const aHasStats = a.goal || a.assist || a.yellowCard || a.redCard;
-      const bHasStats = b.goal || b.assist || b.yellowCard || b.redCard;
-
-      return bHasStats - aHasStats;
-    }) ?? [];
-
-  //@ts-expect-error type error expecting the values of teamData to be undefined
-  const teamData: TeamDetails[] =
-    data?.sort((a, b) => {
-      if (b.points !== a.points) {
-        return b.points - a.points;
-      }
-
-      if (b.goalDifference !== a.goalDifference) {
-        return b.goalDifference - a.goalDifference;
-      }
-
-      if (b.goalFor !== a.goalFor) {
-        return b.goalFor - a.goalFor;
-      }
-
-      return a.title.localeCompare(b.title);
-    }) ?? [];
-
-  // const handleTableRowClick = (teamId: number) => {
-  //   router.push(`/team/${teamId}`);
-  // };
-
-  // const generateRandomColor = () => {
-  //   const letters = "0123456789ABCDEF";
-  //   let color = "#";
-  //   for (let i = 0; i < 6; i++) {
-  //     color += letters[Math.floor(Math.random() * 16)];
-  //   }
-  //   return color;
-  // };
-
-  // const generateRandomSpeed = () => {
-  //   return Math.random() * 10 + 5; // Speed between 2s and 5s
-  // };
-  // const generateRandomPosition = () => Math.random() * 80; // Position between 0% and 100%
-
-  // const balloons = Array.from({ length: 20 }, (_, index) => ({
-  //   id: index,
-  //   color: generateRandomColor(),
-  //   speed: generateRandomSpeed(),
-  //   position: generateRandomPosition(),
-  // }));
-
+export default function HomePage() {
   return (
-    <section>
-      <div className="relative backb bg-[#192544] ">
-        <div
-          className="wrapper_bg
-       w-full h-full absolute top-0"
-        ></div>
-        <header className="relative h-full overflow-hidden">
-          {/* {balloons.map((balloon) => (
-            <div
-              key={balloon.id}
-              className="balloon-container"
-              style={{
-                animationDuration: `${balloon.speed}s`,
-                left: `${balloon.position}%`,
-              }}
-            >
-              <div
-                className="balloon"
-                style={{
-                  backgroundColor: balloon.color,
-                }}
+    <BlogLayout>
+      <section className="">
+        <div className="">
+          <main className=" ">
+            <div className="p-2 rounded-2xl bg-white  ">
+              <Image
+                src={Final}
+                width={500}
+                height={100}
+                quality={80}
+                priority
+                alt="image of winners showcasing their medals"
+                className="w-full md:h-[40vh] h-[40vh] object-cover object-[0,-100px] relative rounded-2xl"
               />
-              <div
-                className="stem"
-                style={{
-                  borderColor: `transparent transparent ${balloon.color}  transparent`,
-                }}
-              />
-            </div>
-          ))} */}
-
-          <div className="bannerb flex md:mx-auto md:w-[80vw] md:py-40 py-20 md:flex-row flex-col justify-between gap-20 mx-6 ">
-            {/* <div className="w-full h-full bg-black/40 absolute top-0"></div> */}
-            <div className="text-3xl font-extrabold flex flex-col justify-center h-full md:w-[80vw] md:mx-auto text-white">
-              <div className="w-fit lineflow footerbg flex text-white font-normal text-sm py-2 px-6 mb-6 rounded-full outline outline-[1px] outline-slate-400">
-                {" "}
-                <p>City United league cup 🏆</p>
-              </div>
-              <span className="flex flex-col md:gap-10 z-10 md:text-6xl text-3xl text-wrap">
-                <p>Man Utd wins the league! 🏆</p>
-              </span>{" "}
-              <ul className="font-normal text-base z-20  mt-6 md:w-2/3 flex flex-col gap-5">
-                <li className="">
-                  A point was enough for <i className="font-bold">Man Utd</i> to become champions of
-                  the 2024 City United League Cup. Capping a fine outing that made them unbeaten
-                  throughout the tornament
-                </li>
-                <li>
-                  The other game ended in a goalless draw. Arsenal couldn&apos;t break their winless
-                  streak through the entire campaign
-                </li>
-              </ul>
-              <div className="item"></div>
-            </div>
-            <div className="w-full">
-              <div className="outline mx-0 outline-white outline-[1rem] [transform:rotate(5deg)] imgshadow ">
-                <Image
-                  src={Final}
-                  width={500}
-                  height={100}
-                  quality={80}
-                  priority
-                  alt="image of winners showcasing their medals"
-                  className="w-full md:h-[55vh] h-[40vh] object-cover object-center relative"
-                />
-              </div>
-            </div>
-          </div>
-        </header>
-        <div className="z-10 relative bg-transparent ">
-          <section className="">
-            <div className="pt-24 md:pt-0 md:mx-auto md:w-[80vw] mx-4">
-              <h2 className="text-2xl font-semibold mb-6 text-slate-500">
-                Highlights of City united league cup 2024
-              </h2>
-              {/* <div className="grid grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-16 border md:p-6 p-0 rounded-xl">
-                <div className=" flex items-center p-10 gap-4 border rounded-xl bg-[#e4e4e4]">
-                  <FixtureCard
-                    home="MAN-UTD"
-                    away="CHELSEA"
-                    time="7:20am"
-                    outlineHomeColor="outline-red-500"
-                    bgHomeColor="bg-red-500"
-                    outlineAwayColor="outline-blue-500"
-                    bgAwayColor="bg-blue-500"
-                    homeIcon={<ManU />}
-                    awayIcon={<Chelsea />}
-                  />
+              <div className="flex justify-between p-4 items-center">
+                <div>
+                  <span className="flex px-2 py-1 bg-[#f7f8fa] rounded-xl text-sm">
+                    <p>sports</p>
+                  </span>
                 </div>
 
-                <div className=" flex items-center p-10 gap-4 border rounded-xl bg-[#e4e4e4]">
-                  <FixtureCard
-                    home="ARSENAL"
-                    away="BARCELONA "
-                    time="8:00am"
-                    outlineHomeColor="outline-white"
-                    bgHomeColor="bg-white"
-                    outlineAwayColor="outline-red-500"
-                    bgAwayColor="bg-red-500"
-                    homeIcon={<Arsenal />}
-                    awayIcon={<Barca />}
-                  />
+                <div className="space-x-6">
+                  <span>view</span>
+                  <span>like</span>
+                  <span>share</span>
                 </div>
-              </div> */}
-              <Memories />
-            </div>
-          </section>
+              </div>
 
-          <section className="md:mx-auto md:w-[80vw]  mx-6 my-32">
-            <h3 className="text-2xl font-semibold  mb-6 text-slate-500">Scores update</h3>
-            <p className="text-slate-400 text-center mb-2 italic">← swipe to view more updates →</p>
-            <div className="overflow-x-auto cardscrol ">
-              <div className="fixcardscrol">
-                <Fixtures />
+              <div className="p-4">
+                <h4 className="text-xl font-semibold w-[80%] text-balance">
+                  Intelligence Committee to begin circulating dragt Ukraine report Monday
+                </h4>
+                <p className="text-xs">
+                  by{" "}
+                  <i>
+                    <b>Olajide seun</b>
+                  </i>
+                </p>
+                <p className="text-xs">Mon 24th Nov, 2025</p>
               </div>
             </div>
-          </section>
 
-          <section className="md:mx-auto md:w-[80vw] tabletSection  px-6 justify-center">
-            <div className="flex relative w-full">
-              <input type="radio" name="tabs" id="radio-1" defaultChecked />
-              <label className="" htmlFor="radio-1">
-                League standing
-              </label>
-              <input type="radio" name="tabs" id="radio-2" />
-              <label className="tabs" htmlFor="radio-2">
-                Player statistics
-              </label>
-              <span className="glider"></span>
-              <TeamStanding teamData={teamData} playerData={playerData} />
+            <div className="p-4">
+              <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat alias natus quia at
+                a corporis suscipit tenetur ratione assumenda. Qui error voluptates, animi
+                aspernatur nisi omnis totam ad veritatis officia.
+              </p>
+              <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat alias natus quia at
+                a corporis suscipit tenetur ratione assumenda. Qui error voluptates, animi
+                aspernatur nisi omnis totam ad veritatis officia.
+              </p>
+              <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat alias natus quia at
+                a corporis suscipit tenetur ratione assumenda. Qui error voluptates, animi
+                aspernatur nisi omnis totam ad veritatis officia.
+              </p>
+              <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat alias natus quia at
+                a corporis suscipit tenetur ratione assumenda. Qui error voluptates, animi
+                aspernatur nisi omnis totam ad veritatis officia.
+              </p>
+              <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat alias natus quia at
+                a corporis suscipit tenetur ratione assumenda. Qui error voluptates, animi
+                aspernatur nisi omnis totam ad veritatis officia.
+              </p>
+              <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat alias natus quia at
+                a corporis suscipit tenetur ratione assumenda. Qui error voluptates, animi
+                aspernatur nisi omnis totam ad veritatis officia.
+              </p>
+              <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat alias natus quia at
+                a corporis suscipit tenetur ratione assumenda. Qui error voluptates, animi
+                aspernatur nisi omnis totam ad veritatis officia.
+              </p>
+              <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat alias natus quia at
+                a corporis suscipit tenetur ratione assumenda. Qui error voluptates, animi
+                aspernatur nisi omnis totam ad veritatis officia.
+              </p>
+              <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat alias natus quia at
+                a corporis suscipit tenetur ratione assumenda. Qui error voluptates, animi
+                aspernatur nisi omnis totam ad veritatis officia.
+              </p>
             </div>
-          </section>
-
-          <div className="icon_keys py-20 mx-auto w-[80vw] md:pt-24 text-white">
-            <p>⚽️ - Goal</p>
-            <p>🥾 - assist</p>
-            <p>
-              🟨 - yellow card <i className="text-sm text-slate-500">(NGN 200 fine)</i>
-            </p>
-            <p>
-              🟥 - red card <i className="text-sm text-slate-500">(NGN 500 fine)</i>
-            </p>
-          </div>
+          </main>
         </div>
-      </div>
-      {/* <footer className="block mx-auto w-[80vw]  text-center text-slate-400 mt-72 mb-20">
-        &copy;&nbsp;Copyright 2024 city football league - designed with ❤️ by - Seun
-      </footer> */}
-    </section>
+      </section>
+    </BlogLayout>
   );
 }

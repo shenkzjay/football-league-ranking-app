@@ -14,6 +14,10 @@ export const SideMenu = ({ user }: UserProp) => {
       <Link href={"/admin/player"}>Players</Link>
       <Link href={"/admin/team"}>Teams</Link>
       <Link href={"/admin/score"}>Scores update</Link>
+      <Link href={"/admin/season"}>Season</Link>
+      <Link href={"/admin/season/competition"}>Competition</Link>
+      <Link href={"/admin/season/blog"}>Blog</Link>
+      <Link href={"/admin/season/blog/author"}>Author</Link>
 
       <Suspense>
         <SignOut />
